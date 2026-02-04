@@ -1,27 +1,19 @@
-import { Component } from '@angular/core';
-import { TestSpringService } from './service/test-spring';
+import { Component, OnInit } from '@angular/core';
+import { TestService } from './services/test.service';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  template: `
-    <h1>Angular + Spring Boot</h1>
-    <p>{{ message }}</p>
-  `
+  template: `<h1>{{message}}</h1>`
 })
-export class App {
+export class AppComponent implements OnInit {
 
   message = '';
 
-  constructor(private testService: TestSpringService) {
-    this.testService.getTest().subscribe({
-      next: res => {
-        console.log('Răspuns din backend:', res);
-        this.message = res;
-      },
-      error: err => {
-        console.error('Eroare:', err);
-      }
+  constructor(private testService: TestService) {}
+
+  ngOnInit(): void {
+    this.testService.getMessage().subscribe(res => {
+      this.message = res;
     });
   }
 }
