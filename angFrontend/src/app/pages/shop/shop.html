@@ -1,0 +1,16 @@
+<div class="shop-container">
+  <h1>Shop</h1>
+
+  <div class="products-grid">
+
+    @for (product of products; track product.id) {
+        <div class="product">
+            <h3>{{ product.name }}</h3>
+            <p> {{ product.price }}</p>
+
+            <button [routerLink]="['/product', product.id]"> View product </button>
+        </div>
+    }
+
+  </div>
+</div>
