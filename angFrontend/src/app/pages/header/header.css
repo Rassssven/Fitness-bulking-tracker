@@ -3,7 +3,18 @@
     flex-direction: row;
 
     justify-content: space-between;
+    padding: 12px 25px;
+    margin-right: 10px;
+    background-color: #fff;
+    border-bottom: 1px solid #858181;
 }
+
+.h-left,
+.h-right {
+  display: flex;
+  gap: 12px;
+}
+
 
 .h-left{ 
     display: flex;
@@ -19,7 +30,21 @@
 }
 
 .header button {
-    border-radius: 10px;
-    color: red;
-    size: 40px;
+    padding: 8px 16px;
+    border-radius: 999px;   
+    border-color: white;
+    border: 1px solid #e53935;
+    
+    background: transparent;
+    color: #e53935;
+   
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.1s ease;
+}
+
+.header button:hover {
+  background-color: #e53935;
+  color: white;
 }
