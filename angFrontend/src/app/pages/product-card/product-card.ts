@@ -1,21 +1,24 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from '../../models/product';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-product-card',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './product-card.html',
   styleUrl: './product-card.css',
 })
 export class ProductCard {
 
-  @Input() product!: Product;
+  @Input({required: true}) product!: Product;
 
-  @Output() selected = new EventEmitter<Product>();
+  @Input() showPrice = true;
 
-  selectProduct() {
-    this.selected.emit(this.product);
+  @Output() buy = new EventEmitter<number>();
+
+  onViewClick() {
+    
   }
 
 }

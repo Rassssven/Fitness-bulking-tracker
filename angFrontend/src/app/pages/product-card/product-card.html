@@ -1,13 +1,13 @@
 <div class="product-page">
 
   <div class="product-info">
-    <img src="/product1.jpg" alt="Product">
+    <img [src]="product.image" [alt]="product.name">
 
     <div class="details">
-      <h1>Product Name</h1>
-      <p class="price">199 lei</p>
+      <h1>{{product.name}}</h1>
+      <p class="price">{{product.price}}</p>
       <p class="description">
-        This is a detailed description of the product.
+        {{ product.description }}
       </p>
     </div>
     
