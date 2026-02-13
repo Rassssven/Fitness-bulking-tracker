@@ -2,7 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Product } from '../../models/product';
-import { ProductCard } from '../product-card/product-card';
+import { ProductCard } from '../../products/product-card/product-card';
+import { ProductService } from '../../products/ProductService/productService';
 
 @Component({
   selector: 'app-shop',
@@ -12,26 +13,10 @@ import { ProductCard } from '../product-card/product-card';
 })
 export class Shop {
 
-  searchText = '';
+  products: Product[];
 
-  products: Product[] = [
-    {
-      id: 1,
-      name: 'Laptop',
-      price: 4050,
-      description: 'Powerful laptop',
-      image: 'product1.jpg'
-    }, 
-    {
-      id: 2,
-      name: 'Phone',
-      price: 2400,
-      description: 'Smart phone',
-      image: 'product1.jpg'
-    }
-  ]
-
-  onBuy(product: Product) {
-    alert(`Ai cumparat ${product.name}`);
+  constructor(private productService: ProductService) {
+    this.products = this.productService.getProducts();
   }
+
 }

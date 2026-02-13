@@ -13,12 +13,5 @@ export class ProductCard {
 
   @Input({required: true}) product!: Product;
 
-  @Input() showPrice = true;
-
-  @Output() buy = new EventEmitter<number>();
-
-  onViewClick() {
-    
-  }
 
 }
