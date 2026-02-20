@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { CardModule, GridLayoutModule } from '@progress/kendo-angular-layout';
 
 @Component({
   selector: 'app-home',
   imports: [    
     GridModule,
-    ButtonsModule],
+    ButtonsModule,
+    GridLayoutModule,
+    CardModule],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })

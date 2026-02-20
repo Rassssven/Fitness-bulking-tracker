@@ -11,40 +11,53 @@
             </p>
         </div>
 
-        <div class="gym-grid">
+        <kendo-gridlayout
+            [cols]="['1fr', '1fr', '1fr', '1fr']"
+            rowHeight="auto"
+            [gap]="24"
+            class="gym-grid"
+            >
+
             @for (option of gymOptions; track option.title) {
-                <div class="gym-table-card">
+                <kendo-card class="wlcm-card">
 
-                <div class="table-header">
+                <kendo-card-header class="wlcm-card-header">
+                    <h3 kendoCardTitle class="wlcm-card-title">
                     {{ option.title }}
-                </div>
+                    </h3>
+                </kendo-card-header>
 
-                <div class="table-content">
-                    <div class="table-row">
-                    <span class="label">Goal</span>
-                    <span class="value">{{ option.description }}</span>
+                <kendo-card-body class="wlcm-card-body">
+                    <div class="wlcm-card-metric">
+                    <span class="wlcm-card-label">Goal</span>
+                    <span class="wlcm-card-value">{{ option.description }}</span>
                     </div>
 
-                    <div class="table-row">
-                    <span class="label">Calories</span>
-                    <span class="value highlight">{{ option.calories }}</span>
+                    <div class="wlcm-card-metric wlcm-card-metric-hover">
+                    <span class="wlcm-card-label">Calories</span>
+                    <span class="wlcm-card-value">{{ option.calories }}</span>
                     </div>
 
-                    <div class="table-row">
-                    <span class="label">Difficulty</span>
-                    <span class="value">{{ option.difficulty }}</span>
+                    <div class="wlcm-card-metric">
+                    <span class="wlcm-card-label">Difficulty</span>
+                    <span class="wlcm-card-value">{{ option.difficulty }}</span>
                     </div>
-                </div>
+                </kendo-card-body>
 
-                <div class="table-footer">
-                    <button kendoButton themeColor="primary">
+                <kendo-card-footer class="wlcm-card-footer">
+                    <button
+                    kendoButton
+                    themeColor="primary"
+                    fillMode="solid"
+                    rounded="medium"
+                    >
                     Select
                     </button>
-                </div>
+                </kendo-card-footer>
 
-                </div>
+                </kendo-card>
             }
-        </div>
+        </kendo-gridlayout>
     </div>
 
 </div>
