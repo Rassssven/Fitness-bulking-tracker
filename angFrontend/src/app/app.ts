@@ -6,10 +6,20 @@ import { Footer } from "./pages/footer/footer";
 import { Home } from "./pages/home/home";
 import { RouterOutlet } from "@angular/router";
 
+import { GridModule } from '@progress/kendo-angular-grid';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, Header, Footer, Home, RouterOutlet],
+  imports: [
+    CommonModule,
+    Header, 
+    Footer, 
+    Home, 
+    RouterOutlet,
+    GridModule,
+    ButtonsModule],
   templateUrl: './app.html'
 })
 export class AppComponent {
