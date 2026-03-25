@@ -24,6 +24,16 @@ public class Workout {
     @JoinColumn(name = "user_id")
     private User user;
 
+    public Workout() {
+    	
+    }
+    
+	public Workout(String name, String description) {
+		super();
+		this.name = name;
+		this.description = description;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -56,5 +66,7 @@ public class Workout {
 		this.user = user;
 	}
     
+	
+	
     
 }

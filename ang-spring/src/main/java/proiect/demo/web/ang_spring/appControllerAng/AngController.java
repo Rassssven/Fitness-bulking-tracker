@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import proiect.demo.web.ang_spring.services.workoutService;
 
 @RestController
 @RequestMapping("/api")
@@ -17,11 +16,6 @@ import proiect.demo.web.ang_spring.services.workoutService;
 public class AngController {
 
 	private static final Logger logger = LogManager.getLogger(AngController.class);
-	private final workoutService wkService;
-	
-	public AngController(workoutService wkService) {
-        this.wkService = wkService;
-    }
 
     @GetMapping("/hello")
     public String hello() {
@@ -37,16 +31,4 @@ public class AngController {
     	return "Ok!";
     }
     
-    @GetMapping("/add-workout")
-    public String addWorkout() {
-
-        wkService.createWorkout(
-                "Chest workout",
-                "Bench press and pushups"
-        );
-
-        return "Workout added";
-    }
-    
- 
 }

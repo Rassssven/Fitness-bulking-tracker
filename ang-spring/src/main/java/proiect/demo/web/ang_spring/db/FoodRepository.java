@@ -7,11 +7,5 @@ import org.springframework.data.repository.query.Param;
 import proiect.demo.web.ang_spring.Entities.Food;
 
 public interface FoodRepository extends JpaRepository<Food, Long>{
-
-	@Procedure(procedureName = "update_food_calories")
-	void updateFoodCalories(
-	        @Param("p_food_id") int foodId,
-	        @Param("p_calories") int calories
-	);
 	
 }

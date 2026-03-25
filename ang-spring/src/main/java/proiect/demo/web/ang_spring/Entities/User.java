@@ -1,10 +1,14 @@
 package proiect.demo.web.ang_spring.Entities;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -23,6 +27,25 @@ public class User {
 	private int tel;
 	private String email;
 	
+	@OneToMany(mappedBy = "user")
+	private List<Workout> workouts;
+
+	@OneToMany(mappedBy = "user")
+	private List<Food> foods;
+	
+	public User() {
+		
+	}
+	
+	public User(String password, String nume, String prenume, int tel, String email) {
+		super();
+		this.password = password;
+		this.nume = nume;
+		this.prenume = prenume;
+		this.tel = tel;
+		this.email = email;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -69,6 +92,22 @@ public class User {
 	
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public List<Workout> getWorkouts() {
+		return workouts;
+	}
+
+	public void setWorkouts(List<Workout> workouts) {
+		this.workouts = workouts;
+	}
+
+	public List<Food> getFoods() {
+		return foods;
+	}
+
+	public void setFoods(List<Food> foods) {
+		this.foods = foods;
 	}
 	
 	
