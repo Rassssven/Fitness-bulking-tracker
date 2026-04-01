@@ -9,7 +9,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="workout")
+@Table(name="Workout")
 public class Workout {
 
 	@Id
@@ -17,16 +17,14 @@ public class Workout {
     private Long id;
 	
 	private String name;
-
+	private int burnedCalories;
     private String description;
     
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Workout() {
-    	
-    }
+    public Workout() {}
     
 	public Workout(String name, String description) {
 		super();
@@ -48,6 +46,14 @@ public class Workout {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public int getBurnedCalories() {
+		return burnedCalories;
+	}
+
+	public void setBurnedCalories(int burnedCalories) {
+		this.burnedCalories = burnedCalories;
 	}
 
 	public String getDescription() {

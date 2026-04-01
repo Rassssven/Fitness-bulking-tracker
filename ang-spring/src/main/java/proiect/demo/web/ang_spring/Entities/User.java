@@ -12,12 +12,12 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "users")
+@Table(name = "User")
 public class User {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	
 	@Column(nullable = false)
 	private String password;
@@ -33,6 +33,9 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<Food> foods;
 	
+	@OneToMany(mappedBy = "user")
+	private List<Goal> goals;
+	
 	public User() {
 		
 	}
@@ -46,11 +49,11 @@ public class User {
 		this.email = email;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 	
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	
@@ -108,6 +111,14 @@ public class User {
 
 	public void setFoods(List<Food> foods) {
 		this.foods = foods;
+	}
+
+	public List<Goal> getGoals() {
+		return goals;
+	}
+
+	public void setGoals(List<Goal> goals) {
+		this.goals = goals;
 	}
 	
 	
