@@ -48,4 +48,20 @@ public class GoalService {
 		goalRepo.delete(goal);
 	}
 	
+	public List<Goal> getGoalsByUser(Long userId) {
+		return goalRepo.findByUserId(userId);
+	}
+	
+	public boolean isGoalAchieved(Long goalId, int currentCalories) {
+		Goal goal = getGoalById(goalId);
+		
+		return currentCalories <= goal.getTargetCalories();
+	}
+	
+	public int calculateRemainingCalories(Long goalId, int currentCalories) {
+		Goal goal = getGoalById(goalId);
+		
+		return goal.getTargetCalories() - currentCalories;
+	}
+	
 }
