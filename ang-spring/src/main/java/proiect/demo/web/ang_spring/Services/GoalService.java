@@ -64,4 +64,52 @@ public class GoalService {
 		return goal.getTargetCalories() - currentCalories;
 	}
 	
+	/* Exercises */
+	
+	//1.. Găsește toate goal-urile cu numele exact dat.
+	public List<Goal> findGoalsByName(String name) {
+		return goalRepo.findByName(name);
+	}
+	
+	//2. Găsește toate goal-urile de tip
+	public List<Goal> findGoalsByType(String type) {
+		return goalRepo.findByType(type);
+	}
+	
+	//5. Verifică dacă există un goal cu numele dat.
+	public List<Goal> goalExists(String name) {
+		return goalRepo.existsByName(name);
+	}
+	
+	//6. Numără câte goal-uri există.
+	public long goalsCount() {
+		return goalRepo.count();
+	}
+	
+	//7. Numără câte goal-uri sunt de tip dat.
+	public List<Goal> goalsCountByType(String type) {
+		return goalRepo.countByType(type);
+	}
+	
+	//8. Șterge un goal după id.
+	public void deleteGoalById(Long id) {
+		goalRepo.deleteById(id);
+	}
+	
+	//9. Șterge toate goal-urile cu un anumit type.
+	public void deleteGoalsByType(String type) {
+		goalRepo.deleteByType(type);	
+	}
+	
+	//10. Returnează toate goal-urile.
+	public List<Goal> getGoalss() {
+		return goalRepo.findAll();
+	}
+	
+	/* Comparatii */
+	
+	//11. Goal-ui cu targetCalories > 2000
+	public List<Goal> getGoalsGreaterThan(int number) {
+		return goalRepo.findByTargetCaloriesGreaterThan(number);
+	}
 }

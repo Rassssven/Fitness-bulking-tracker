@@ -70,4 +70,17 @@ public class GoalController {
 		return goalServ.calculateRemainingCalories(id, currentCalories);
 	}
 	
+	
+	/* Exercises */
+	
+	@GetMapping("/name/{name}")
+	public List<Goal> getGoalByName(@PathVariable String name) {
+		return goalServ.findGoalsByName(name);
+	}
+	
+	@GetMapping("/type/{type}")
+	public List<Goal> getGoalByType(@PathVariable String type) {
+		return goalServ.findGoalsByType(type);
+	}
+	
 }

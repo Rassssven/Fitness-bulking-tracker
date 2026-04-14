@@ -26,7 +26,6 @@ public class Goal {
 	private LocalDate startDate;
 	private LocalDate endDate;
 	
-	
 	private String name;
 	
 	@ManyToOne

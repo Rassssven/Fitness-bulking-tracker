@@ -10,4 +10,16 @@ public interface GoalRepository extends JpaRepository<Goal, Long> {
 
 	List<Goal> findByUserId(Long userId);
 	
+	List<Goal> findByName(String name);
+	
+	List<Goal> findByType(String type);
+	
+	List<Goal> existsByName(String name);
+	
+	List<Goal> countByType(String type);
+	
+	List<Goal> deleteByType(String type);
+	
+	List<Goal> findByTargetCaloriesGreaterThan(int number);
+	
 }
