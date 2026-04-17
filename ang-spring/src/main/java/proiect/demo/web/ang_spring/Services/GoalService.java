@@ -77,7 +77,7 @@ public class GoalService {
 	}
 	
 	//5. Verifică dacă există un goal cu numele dat.
-	public List<Goal> goalExists(String name) {
+	public boolean goalExists(String name) {
 		return goalRepo.existsByName(name);
 	}
 	
@@ -87,7 +87,7 @@ public class GoalService {
 	}
 	
 	//7. Numără câte goal-uri sunt de tip dat.
-	public List<Goal> goalsCountByType(String type) {
+	public long goalsCountByType(String type) {
 		return goalRepo.countByType(type);
 	}
 	
@@ -101,15 +101,21 @@ public class GoalService {
 		goalRepo.deleteByType(type);	
 	}
 	
-	//10. Returnează toate goal-urile.
-	public List<Goal> getGoalss() {
-		return goalRepo.findAll();
-	}
-	
 	/* Comparatii */
 	
 	//11. Goal-ui cu targetCalories > 2000
 	public List<Goal> getGoalsGreaterThan(int number) {
 		return goalRepo.findByTargetCaloriesGreaterThan(number);
 	}
+	
+	//Goal-uri care nu au exact 2000
+	public List<Goal> caloriesNot(int calories) {
+		return goalRepo.findByTargetCaloriesNot(calories);
+	}
+	
+	/* Text Search */
+	public List<Goal> findByNameContaining(String text) {
+		return goalRepo.findByNameContaining(text);
+	}
+	
 }

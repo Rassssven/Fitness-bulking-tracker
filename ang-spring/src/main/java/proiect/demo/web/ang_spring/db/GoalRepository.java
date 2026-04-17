@@ -14,12 +14,16 @@ public interface GoalRepository extends JpaRepository<Goal, Long> {
 	
 	List<Goal> findByType(String type);
 	
-	List<Goal> existsByName(String name);
+	boolean existsByName(String name);
 	
-	List<Goal> countByType(String type);
+	long countByType(String type);
 	
-	List<Goal> deleteByType(String type);
+	void deleteByType(String type);
 	
 	List<Goal> findByTargetCaloriesGreaterThan(int number);
+	
+	List<Goal> findByTargetCaloriesNot(int calories);
+	
+	List<Goal> findByNameContaining(String text);
 	
 }

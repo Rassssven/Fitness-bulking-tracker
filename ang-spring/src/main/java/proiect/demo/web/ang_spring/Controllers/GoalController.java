@@ -54,8 +54,8 @@ public class GoalController {
 	}
 	
 	@GetMapping("/user/{userId}")
-	public List<Goal> getGoalsByUser(@PathVariable Long id) {
-		return goalServ.getGoalsByUser(id);
+	public List<Goal> getGoalsByUser(@PathVariable Long userId) {
+		return goalServ.getGoalsByUser(userId);
 	}
 	
 	@GetMapping("/{id}/achieved")
@@ -74,13 +74,42 @@ public class GoalController {
 	/* Exercises */
 	
 	@GetMapping("/name/{name}")
-	public List<Goal> getGoalByName(@PathVariable String name) {
+	public List<Goal> getGoalsByName(@PathVariable String name) {
 		return goalServ.findGoalsByName(name);
 	}
 	
 	@GetMapping("/type/{type}")
-	public List<Goal> getGoalByType(@PathVariable String type) {
+	public List<Goal> getGoalsByType(@PathVariable String type) {
 		return goalServ.findGoalsByType(type);
 	}
 	
+	@GetMapping("/verify/{name}")
+	public Boolean verifyGoal(@PathVariable String name) {
+		return goalServ.goalExists(name);
+	}
+	
+	@GetMapping("/number")
+	public long numberOfGoals() {
+		return goalServ.goalsCount();
+	}
+	
+	@GetMapping("/types/{type}")
+	public long goalsCountByType(@PathVariable String type) {
+		return goalServ.goalsCountByType(type);
+	}
+	
+	@DeleteMapping
+	public void deleteGoalById(@PathVariable Long id) {
+		goalServ.deleteGoalById(id);
+	}
+	
+	@GetMapping("greater/{number}")
+	public List<Goal> getGoalsGreatherThan(@PathVariable int number) {
+		return goalServ.getGoalsGreaterThan(number);
+	}
+	
+	@GetMapping("not/{calories}")
+	public List<Goal> caloriesNot(@PathVariable int calories) {
+		return goalServ.caloriesNot(calories);
+	}
 }
