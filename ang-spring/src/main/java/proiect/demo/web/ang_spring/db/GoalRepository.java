@@ -1,5 +1,6 @@
 package proiect.demo.web.ang_spring.db;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -25,5 +26,17 @@ public interface GoalRepository extends JpaRepository<Goal, Long> {
 	List<Goal> findByTargetCaloriesNot(int calories);
 	
 	List<Goal> findByNameContaining(String text);
+	
+	List<Goal> findByNameStartsWith(String text);
+	
+	List<Goal> findByTypeContaining(String text);
+	
+	List<Goal> findByStartDateBefore(LocalDate date);
+	
+	List<Goal> findByStartDateAfter(LocalDate date);
+	
+	List<Goal> findByStartDateBetween(LocalDate date1, LocalDate date2);
+	
+	List<Goal> findByEndDateIsNull();
 	
 }

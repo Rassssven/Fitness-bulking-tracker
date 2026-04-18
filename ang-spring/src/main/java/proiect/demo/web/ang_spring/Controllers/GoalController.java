@@ -1,5 +1,6 @@
 package proiect.demo.web.ang_spring.Controllers;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -103,13 +104,54 @@ public class GoalController {
 		goalServ.deleteGoalById(id);
 	}
 	
-	@GetMapping("greater/{number}")
+	/* Comparatii */
+	
+	@GetMapping("/greater/{number}")
 	public List<Goal> getGoalsGreatherThan(@PathVariable int number) {
 		return goalServ.getGoalsGreaterThan(number);
 	}
 	
-	@GetMapping("not/{calories}")
-	public List<Goal> caloriesNot(@PathVariable int calories) {
+	@GetMapping("/not/{calories}")
+	public List<Goal> caloriesNot(@RequestParam int calories) {
 		return goalServ.caloriesNot(calories);
+	}
+	
+	/* Text Search */
+	
+	@GetMapping("/search")
+	public List<Goal> containingText(@RequestParam String text) {
+		return goalServ.findByNameContaining(text);
+	}
+	
+	@GetMapping("/starts")
+	public List<Goal> startingText(@RequestParam String text) {
+		return goalServ.findByStartingName(text);
+	}
+	
+	@GetMapping("/type/search")
+	public List<Goal> containingType() {
+		return goalServ.findByTypeContaining();
+	}
+	
+	/* Dates */
+	
+	@GetMapping("/today")
+	public List<Goal> todayDate() {
+		return goalServ.findByDateBefore();
+	}
+	
+	@GetMapping("/tomorrow")
+	public List<Goal> todayDateTomorrow() {
+		return goalServ.findByDateAfter();
+	}
+	
+	@GetMapping("/between")
+	public List<Goal> todayDateBetween() {
+		return goalServ.findDateBetween();
+	}
+	
+	@GetMapping("/date/no-end")
+	public List<Goal> noEndDate() {
+	    return goalServ.findDateIsNull();
 	}
 }

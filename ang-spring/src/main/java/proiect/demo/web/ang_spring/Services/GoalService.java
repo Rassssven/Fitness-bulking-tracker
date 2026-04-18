@@ -1,5 +1,6 @@
 package proiect.demo.web.ang_spring.Services;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -114,8 +115,47 @@ public class GoalService {
 	}
 	
 	/* Text Search */
+	
+	//17. Goal-uri care contin "cut"
 	public List<Goal> findByNameContaining(String text) {
 		return goalRepo.findByNameContaining(text);
+	}
+	
+	//18. Goal-uri al caror nume incepe cu "Bul"
+	public List<Goal> findByStartingName(String text) {
+		return goalRepo.findByNameStartsWith(text);
+	}
+	
+	//20. Goal-uri al caror type contine "LO"
+	public List<Goal> findByTypeContaining() {
+		return goalRepo.findByTypeContaining("LO");
+	}
+	
+	/* Dates */
+	
+	//22. Goal-uri incepute de azi
+	public List<Goal> findByDateBefore() {
+		return goalRepo.findByStartDateBefore(LocalDate.now());
+	}
+	
+	public List<Goal> findByDateAfter() {
+		return goalRepo.findByStartDateAfter(LocalDate.now());
+	}
+	
+	public List<Goal> findDateBetween() {
+		return goalRepo.findByStartDateBetween(LocalDate.now().minusDays(1), LocalDate.now().plusDays(1));
+	}
+	
+	public List<Goal> findDateIsNull() {
+		return goalRepo.findByEndDateIsNull();
+	}
+	
+	public List<Goal> findDateBetween1() {
+		return goalRepo.findByStartDateBetween(LocalDate.now().minusDays(1), LocalDate.now().plusDays(1));
+	}
+	
+	public List<Goal> findDateIsNull2() {
+		return goalRepo.findByEndDateIsNull();
 	}
 	
 }
