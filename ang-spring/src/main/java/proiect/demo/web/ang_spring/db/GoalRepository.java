@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import proiect.demo.web.ang_spring.Entities.Goal;
+import proiect.demo.web.ang_spring.Entities.User;
 
 public interface GoalRepository extends JpaRepository<Goal, Long> {
 
@@ -39,4 +40,17 @@ public interface GoalRepository extends JpaRepository<Goal, Long> {
 	
 	List<Goal> findByEndDateIsNull();
 	
+	List<Goal> findByTypeAndUserId(String type, Long userId);
+	
+	List<Goal> findByTypeAndName(String name, String type);
+	
+	List<Goal> findByTargetCaloriesAndUserId(int targetCalories, Long userId);
+	
+	List<Goal> findByUser(User user);
+	
+	List<Goal> findByUserEmail(String email);
+	
+	long countByUserId(Long userId);
+	
+	boolean existsByUserIdAndName(Long userId, String name);
 }

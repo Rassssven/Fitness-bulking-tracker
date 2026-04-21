@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import proiect.demo.web.ang_spring.Entities.Goal;
+import proiect.demo.web.ang_spring.Entities.User;
 import proiect.demo.web.ang_spring.db.GoalRepository;
 
 @Service
@@ -150,12 +151,43 @@ public class GoalService {
 		return goalRepo.findByEndDateIsNull();
 	}
 	
-	public List<Goal> findDateBetween1() {
-		return goalRepo.findByStartDateBetween(LocalDate.now().minusDays(1), LocalDate.now().plusDays(1));
+	/* AND / OR */
+	
+	//29. Goal-uri de tip LOSE ale user-ului 1.
+	public List<Goal> findByTypeAndUser(String type, Long userId) {
+		return goalRepo.findByTypeAndUserId(type, userId);
 	}
 	
-	public List<Goal> findDateIsNull2() {
-		return goalRepo.findByEndDateIsNull();
+	//30. Goal-uri cu nume dat și type dat.
+	public List<Goal> findByTypeAndName(String type, String name) {
+		return goalRepo.findByTypeAndName(type, name);
+	}
+	
+	//31. Goal-uri ale user-ului 2 cu targetCalories > 2000.
+	public List<Goal> findByTargetAndUser(int targetCalories, Long userId) {
+		return goalRepo.findByTargetCaloriesAndUserId(targetCalories, userId);
+	}
+	
+	/* Relatii */
+	
+	//34. Goal-uri după obiectul User, nu id.
+	public List<Goal> findByUser(User user) {
+		return goalRepo.findByUser(user);
+	}
+	
+	//35. Goal-uri după email-ul userului.
+	public List<Goal> findByUserEmail(String email) {
+		return goalRepo.findByUserEmail(email);
+	}
+	
+	//37. Numără goal-urile unui user
+	public long countGoalsByUser(Long userId) {
+		return goalRepo.countByUserId(userId);
+	}
+	
+	//38. Verifică dacă user-ul are goal cu numele X.
+	public boolean verifyUserGoal(Long userId, String name) {
+		return goalRepo.existsByUserIdAndName(userId, name);
 	}
 	
 }

@@ -154,4 +154,30 @@ public class GoalController {
 	public List<Goal> noEndDate() {
 	    return goalServ.findDateIsNull();
 	}
+	
+	/* And / Or */
+	
+	@GetMapping("/filter")
+	public List<Goal> getByTypeAndUser(@RequestParam String type, 
+									   @RequestParam Long UserId) {
+		return goalServ.findByTypeAndUser(type, UserId);
+	}
+	
+	@GetMapping("/filter/type")
+	public List<Goal> getByTypeAndName(@RequestParam String type,
+									   @RequestParam String name) {
+		return goalServ.findByTypeAndName(type, name);
+	}
+	
+	@GetMapping("/filter/type")
+	public List<Goal> getByTargetAndUser(@RequestParam int targetCalories,
+									   	 @RequestParam Long userId) {
+		return goalServ.findByTargetAndUser(targetCalories, userId);
+	}
+	
+	/* Relatii */
+	
+	
+	
+	
 }

@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Exercises")
-public class Exercises {
+public class Exercise {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +25,7 @@ public class Exercises {
 	@JoinColumn(name = "user_id")
 	private User user;
 
-	public Exercises(String name, int type, int caloriesPerExercise, String description) {
+	public Exercise(String name, int type, int caloriesPerExercise, String description) {
 		super();
 		this.name = name;
 		this.type = type;
