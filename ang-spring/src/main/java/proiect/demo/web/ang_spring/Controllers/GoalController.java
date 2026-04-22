@@ -14,9 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import proiect.demo.web.ang_spring.Entities.Goal;
 import proiect.demo.web.ang_spring.Services.GoalService;
 
+@Tag(name="Goals", description = "Operations related to goals")
 @RestController
 @RequestMapping("/goals")
 public class GoalController {
@@ -34,16 +38,19 @@ public class GoalController {
 		return ResponseEntity.status(201).body(created);
 	}
 	
+	@Operation(summary = "Get all goals")
 	@GetMapping
 	public List<Goal> getAllGoals() {
 		return goalServ.getGoals();
 	}
 	
+	@Operation(summary = "Get by id", description = "Get a goal by id")
 	@GetMapping("/{id}")
-	public Goal getGoalById(@PathVariable Long id) {
+	public Goal getGoalById(@Parameter(description = "Goal ID") @PathVariable Long id) {
 		return goalServ.getGoalById(id);
 	}
 	
+	@Operation(description = "update a goal")
 	@PutMapping("/{id}")
 	public Goal updateGoal(@PathVariable Long id, @RequestBody Goal goal) {
 		return goalServ.updateGoal(id, goal);
@@ -169,7 +176,7 @@ public class GoalController {
 		return goalServ.findByTypeAndName(type, name);
 	}
 	
-	@GetMapping("/filter/type")
+	@GetMapping("/filter/types")
 	public List<Goal> getByTargetAndUser(@RequestParam int targetCalories,
 									   	 @RequestParam Long userId) {
 		return goalServ.findByTargetAndUser(targetCalories, userId);
