@@ -28,6 +28,7 @@ public class User {
 	private String prenume;
 	private int tel;
 	
+	@Column(unique = true)
 	private String email;
 	
 	@OneToMany(mappedBy = "user")
