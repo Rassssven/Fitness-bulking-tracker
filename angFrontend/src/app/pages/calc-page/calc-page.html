@@ -1,1 +1,62 @@
-<p>calc-page works!</p>
+<div>
+  <div class="main-picture">
+    <div class="main-text">
+
+      <form class="calc-form">
+
+        <h2>Calorie Calculator</h2>
+
+        <div class="form-group">
+          <label for="plan">Plan</label>
+            <select
+                id="plan"
+                name="plan"
+                [(ngModel)]="selectedPlan"
+                >
+                <option value="bulk">Bulk</option>
+                <option value="cut">Cut</option>
+                <option value="maintenance">Maintenance</option>
+                <option value="custom">Custom</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+          <label for="age">Age</label>
+          <input id="age" type="number" placeholder="Enter age">
+        </div>
+
+        <div class="form-group">
+          <label for="weight">Weight (kg)</label>
+          <input id="weight" type="number" placeholder="Enter weight">
+        </div>
+
+        <div class="form-group">
+          <label for="height">Height (cm)</label>
+          <input id="height" type="number" placeholder="Enter height">
+        </div>
+
+        <div class="form-group">
+          <label for="gender">Gender</label>
+          <select id="gender">
+            <option>Male</option>
+            <option>Female</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="activity">Activity Level</label>
+          <select id="activity">
+            <option>Sedentary</option>
+            <option>Light</option>
+            <option>Moderate</option>
+            <option>High</option>
+          </select>
+        </div>
+
+        <button type="submit">Calculate</button>
+
+      </form>
+
+    </div>
+  </div>
+</div>
