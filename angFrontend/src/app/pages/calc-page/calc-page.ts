@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CalcData } from '../../models/info-gym';
 
 @Component({
   selector: 'app-calc-page',
@@ -13,14 +14,12 @@ export class CalcPage implements OnInit {
   private route = inject(ActivatedRoute);
   private router = inject(Router);
 
-  selectedPlan = 'custom';
-
-  calcData = {
+  calcData: CalcData = {
     age: 0,
     weight: 0,
     height: 0,
     activityLevel: 'sedentary',
-    plan: this.selectedPlan,
+    plan: 'custom',
     calories: 0
   }
 
@@ -29,7 +28,7 @@ export class CalcPage implements OnInit {
       const plan = params['plan'];
 
       if (plan) {
-        this.selectedPlan = plan;
+        this.calcData.plan = plan;
       }
     });
   }

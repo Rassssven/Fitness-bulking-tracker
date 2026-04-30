@@ -2,7 +2,7 @@
   <div class="main-picture">
     <div class="main-text">
 
-      <form class="calc-form">
+      <form class="calc-form" (ngSubmit)="goToResult()">
 
         <h2>Calorie Calculator</h2>
 
@@ -11,7 +11,7 @@
             <select
                 id="plan"
                 name="plan"
-                [(ngModel)]="selectedPlan"
+                [(ngModel)]="calcData.plan"
                 >
                 <option value="bulk">Bulk</option>
                 <option value="cut">Cut</option>
@@ -22,22 +22,22 @@
 
         <div class="form-group">
           <label for="age">Age</label>
-          <input id="age" type="number" placeholder="Enter age">
+          <input id="age" name="age" type="number" placeholder="Enter age" [(ngModel)]="calcData.age">
         </div>
 
         <div class="form-group">
           <label for="weight">Weight (kg)</label>
-          <input id="weight" type="number" placeholder="Enter weight">
+          <input id="weight" name="weight" type="number" placeholder="Enter weight" [(ngModel)]="calcData.weight">
         </div>
 
         <div class="form-group">
           <label for="height">Height (cm)</label>
-          <input id="height" type="number" placeholder="Enter height">
+          <input id="height" name="height" type="number" placeholder="Enter height" [(ngModel)]="calcData.height">
         </div>
 
         <div class="form-group">
           <label for="gender">Gender</label>
-          <select id="gender">
+          <select id="gender" name="gender">
             <option>Male</option>
             <option>Female</option>
           </select>
@@ -45,7 +45,7 @@
 
         <div class="form-group">
           <label for="activity">Activity Level</label>
-          <select id="activity">
+          <select id="activity" name="activity" [(ngModel)]="calcData.activityLevel">
             <option>Sedentary</option>
             <option>Light</option>
             <option>Moderate</option>
