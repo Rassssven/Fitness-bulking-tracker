@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CalcData } from '../../models/info-gym';
+import { Recommendations } from '../../services/Recommendations/recommendations';
 
 @Component({
   selector: 'app-result-page',
@@ -11,6 +12,7 @@ import { CalcData } from '../../models/info-gym';
 export class ResultPage implements OnInit {
 
   private route = inject(ActivatedRoute);  
+  private recommendations = inject(Recommendations);
 
   calcData: CalcData = {
     age: 0,
@@ -20,6 +22,8 @@ export class ResultPage implements OnInit {
     plan: '',
     calories: 0
   }
+
+  recommendationsData: string[] = [];
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -32,6 +36,8 @@ export class ResultPage implements OnInit {
         calories: Number(params['calories'])
       };
     });
+
+    this.recommendationsData = this.recommendations.getRecommendations(this.calcData);;
   }
   
 }
