@@ -24,10 +24,9 @@
         <h2>Recommendations</h2>
 
         <div class="result-text-right">
-            <p>• Eat protein-rich meals (chicken, eggs, fish)</p>
-            <p>• Train 4-5 times per week</p>
-            <p>• Stay hydrated</p>
-            <p>• Track your progress weekly</p>
+            @for(rec of recommendationsData; track rec) {
+                <p><span class="dot"></span> {{ rec }}</p>
+            }
         </div>
 
         <div class="actions">

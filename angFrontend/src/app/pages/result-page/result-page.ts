@@ -35,9 +35,9 @@ export class ResultPage implements OnInit {
         plan: params['plan'],
         calories: Number(params['calories'])
       };
+
+    this.recommendationsData = this.recommendations.getRecommendations(this.calcData);
     });
 
-    this.recommendationsData = this.recommendations.getRecommendations(this.calcData);;
   }
-  
 }
