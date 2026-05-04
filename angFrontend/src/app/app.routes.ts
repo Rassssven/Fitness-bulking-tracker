@@ -3,10 +3,16 @@ import { Home } from './pages/home/home';
 import { Shop } from './pages/shop/shop';
 import { CalcPage } from './pages/calc-page/calc-page';
 import { ResultPage } from './pages/result-page/result-page';
+import { Login } from './auth/login/login';
+import { Register } from './auth/register/register';
+import { ProfileDashboard } from './pages/profile-dashboard/profile-dashboard';
 
 export const routes: Routes = [
     { path: '', component: Home },
     { path: 'shop', component: Shop },
     { path: 'calc-page', component: CalcPage },
-    { path: 'result-page', component: ResultPage }
+    { path: 'result-page', component: ResultPage },
+    { path: 'login', component: Login },
+    { path: 'register', component: Register },
+    { path: 'profile-dashboard', component: ProfileDashboard}
 ];

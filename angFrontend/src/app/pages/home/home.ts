@@ -20,7 +20,7 @@ export class Home {
     {
       title: 'Clean Bulk',
       key: 'bulk',
-      description: 'Increase muscle mass with clean calories',
+      description: 'Increase muscle mass',
       calories: '2800 – 3200 kcal',
       difficulty: 'Medium'
     },

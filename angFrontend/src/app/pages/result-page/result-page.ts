@@ -1,11 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CalcData } from '../../models/info-gym';
 import { Recommendations } from '../../services/Recommendations/recommendations';
 
 @Component({
   selector: 'app-result-page',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './result-page.html',
   styleUrl: './result-page.css',
 })
