@@ -28,6 +28,8 @@ public class User {
 	private String prenume;
 	private int tel;
 	
+	private String role;
+	
 	@Column(unique = true)
 	private String email;
 	
@@ -44,7 +46,7 @@ public class User {
 		
 	}
 	
-	public User(String password, String nume, String prenume, int tel, String email) {
+	public User(String password, String nume, String prenume, int tel, String role, String email) {
 		super();
 		this.password = password;
 		this.nume = nume;
@@ -93,6 +95,14 @@ public class User {
 		this.tel = tel;
 	}
 	
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
 	public String getEmail() {
 		return email;
 	}

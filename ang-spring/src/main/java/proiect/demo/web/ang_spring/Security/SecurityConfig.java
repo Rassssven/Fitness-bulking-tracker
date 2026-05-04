@@ -22,9 +22,14 @@ public class SecurityConfig {
 	        .csrf(csrf -> csrf.disable())
 	        .authorizeHttpRequests(auth -> auth
 	            .requestMatchers("/auth/**").permitAll()
+	            .requestMatchers("/admin/**").hasRole("ADMIN")
 	            .anyRequest().authenticated()
 	        );
 
+	    http.httpBasic(null);
+	    
+	    http.csrf(csrf -> csrf.disable());
+	    
 	    return http.build();
 	}
 	
