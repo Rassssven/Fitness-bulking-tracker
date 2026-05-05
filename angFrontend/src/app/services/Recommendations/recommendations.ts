@@ -65,7 +65,7 @@ export class Recommendations {
       }
     }
     
-    if(plan === 'maintain') {
+    if(plan === 'maintenance') {
 
         recommendations.push('To maintain your current weight, aim to consume the same number of calories as you burn each day.');  
       

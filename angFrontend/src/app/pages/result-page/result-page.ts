@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CalcData } from '../../models/info-gym';
 import { Recommendations } from '../../services/Recommendations/recommendations';
 
@@ -11,6 +11,7 @@ import { Recommendations } from '../../services/Recommendations/recommendations'
 })
 export class ResultPage implements OnInit {
 
+  private router = inject(Router);
   private route = inject(ActivatedRoute);  
   private recommendations = inject(Recommendations);
 
@@ -38,6 +39,9 @@ export class ResultPage implements OnInit {
 
     this.recommendationsData = this.recommendations.getRecommendations(this.calcData);
     });
+  }
 
+  goToCustomizePlan() {
+    this.router.navigate(['/customize-plan-page'], {state: {data: this.calcData}});
   }
 }
