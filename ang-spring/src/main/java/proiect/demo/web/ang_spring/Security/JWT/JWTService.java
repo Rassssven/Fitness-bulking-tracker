@@ -3,18 +3,21 @@ package proiect.demo.web.ang_spring.Security.JWT;
 import java.security.Key;
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 
 @Service
 public class JWTService {
 
-	private final String SECRET = "mysecretkeymysecretkeymysecretkey123456";
+	@Value("${app.jwt.secret}")
+	private String secret;
 	
 	public String generateToken(UserDetails user) {
 		
@@ -23,18 +26,30 @@ public class JWTService {
 				.claim("role", user.getAuthorities().iterator().next().getAuthority())
 				.setIssuedAt(new Date())
 				.setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60))
-				.signWith(getSignKey(), SignatureAlgorithm.HS256)
+				.signWith(getSignKey())
 				.compact();
 		
 	}
 	
 	public Key getSignKey() {
-		return Keys.hmacShaKeyFor(SECRET.getBytes());
+		byte[] keyBytes = Decoders.BASE64.decode(secret);
+		return Keys.hmacShaKeyFor(keyBytes);
 	}
 	
 	public String extractUsername(String token) {
 		return extractClaims(token).getSubject();
 	}
+	
+	
+	public boolean isTokenValid(String token, UserDetails userDetails) {
+	    final String username = extractUsername(token);
+	    return username.equals(userDetails.getUsername()) && !isTokenExpired(token);
+	}
+
+	private boolean isTokenExpired(String token) {
+	    return extractClaims(token).getExpiration().before(new Date());
+	}
+	
 	
 	public Claims extractClaims(String token) {
 		

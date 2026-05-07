@@ -21,12 +21,10 @@ import proiect.demo.web.ang_spring.db.UserRepository;
 public class JWTFilter extends OncePerRequestFilter {
 
 	private final JWTService jwtService;
-	private final AuthenticationManager authenticationManager;
 	private final UserDetailsService userDetailsService;
 
-	public JWTFilter(UserRepository userRepo, PasswordEncoder pwdEncoder, JWTService jwtService, AuthenticationManager authenticationManager, UserDetailsService userDetailsService) {
+	public JWTFilter(JWTService jwtService, UserDetailsService userDetailsService) {
 		this.jwtService = jwtService;
-		this.authenticationManager = authenticationManager;
 		this.userDetailsService = userDetailsService;
 	}
 	
@@ -51,14 +49,17 @@ public class JWTFilter extends OncePerRequestFilter {
 
 	        UserDetails user = userDetailsService.loadUserByUsername(username);
 
-	        UsernamePasswordAuthenticationToken authToken =
-	                new UsernamePasswordAuthenticationToken(
-	                        user,
-	                        null,
-	                        user.getAuthorities()
-	                );
-
-	        SecurityContextHolder.getContext().setAuthentication(authToken);
+	        if(jwtService.isTokenValid(token, user)) {
+	        	
+		        UsernamePasswordAuthenticationToken authToken =
+		                new UsernamePasswordAuthenticationToken(
+		                        user,
+		                        null,
+		                        user.getAuthorities()
+		                );
+	
+		        SecurityContextHolder.getContext().setAuthentication(authToken);
+	        }
 	    }
 
 	    filterChain.doFilter(request, response);
