@@ -10,9 +10,9 @@
           <h2>Your Plan</h2>
 
           <div class="user-info">
-            <p><span>Goal</span> Clean Bulk</p>
-            <p><span>Calories</span> 3000 kcal</p>
-            <p><span>Activity</span> Moderate</p>
+            <p><span>Goal</span>{{ calcData.plan }}</p>
+            <p><span>Calories</span> {{ calcData.calories }} kcal</p>
+            <p><span>Activity</span> {{ calcData.activityLevel }}</p>
           </div>
         </div>
 
@@ -33,7 +33,7 @@
         </div>
 
         <div class="section-card">
-          
+
           <div class="section-header">
             <h3>Exercises</h3>
             <button>Add Exercise</button>

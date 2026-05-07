@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CalcData } from '../../models/info-gym';
 
@@ -8,7 +8,7 @@ import { CalcData } from '../../models/info-gym';
   templateUrl: './customize-plan-page.html',
   styleUrl: './customize-plan-page.css',
 })
-export class CustomizePlanPage {
+export class CustomizePlanPage implements OnInit {
 
   private route = inject(ActivatedRoute);
 

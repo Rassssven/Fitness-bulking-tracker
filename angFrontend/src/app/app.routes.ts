@@ -7,6 +7,7 @@ import { Login } from './auth/login/login';
 import { Register } from './auth/register/register';
 import { ProfileDashboard } from './pages/profile-dashboard/profile-dashboard';
 import { CustomizePlanPage } from './pages/customize-plan-page/customize-plan-page';
+import { HelpPage } from './pages/help-page/help-page';
 
 export const routes: Routes = [
     { path: '', component: Home },
@@ -18,4 +19,5 @@ export const routes: Routes = [
     { path: 'register', component: Register },
     { path: 'profile-dashboard', component: ProfileDashboard},
     { path: 'customize-plan-page', component: CustomizePlanPage},
+    { path: 'help', component: HelpPage}
 ];
