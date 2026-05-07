@@ -1,10 +1,12 @@
 .main-picture {
-  height: 800px;
+  min-height: 100vh;
+  padding: 40px 0;
+  overflow: hidden;
+
   background-image: url('/black.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  position: relative;
 
   display: flex;
   flex-direction: column;
@@ -17,3 +19,152 @@
   width: 100%;
 }
 
+.cpage-layout {
+  width: 1300px;
+  height: 750px;
+
+  display: flex;
+  gap: 25px;
+
+  background: rgba(15,15,15,0.96);
+  border-radius: 18px;
+
+  padding: 25px;
+  overflow: hidden;
+}
+
+.left-panel {
+  flex: 2;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.left-panel::-webkit-scrollbar {
+  width: 6px;
+}
+
+.left-panel::-webkit-scrollbar-thumb {
+  background: rgba(0,255,153,0.3);
+  border-radius: 10px;
+}
+
+.right-panel {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  
+  gap: 20px;
+}
+
+.section-card,
+.analytics-card,
+.small-card {
+  background: rgba(255,255,255,0.04);
+
+  border-radius: 14px;
+  padding: 20px;
+
+  color: white;
+}
+
+.section-card h2,
+.analytics-card h2 {
+  color: #00ff99;
+  margin-bottom: 15px;
+}
+
+.section-card h3,
+.small-card h3 {
+  color: #00ff99;
+  margin-bottom: 10px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.user-info p {
+  display: flex;
+  justify-content: space-between;
+
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.user-info span {
+  color: #888;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 15px;
+}
+
+.section-header button {
+  background: #00ff99;
+  border: none;
+
+  padding: 8px 14px;
+  border-radius: 8px;
+
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.list-item {
+  background: rgba(255,255,255,0.05);
+
+  padding: 12px;
+  border-radius: 10px;
+
+  margin-bottom: 10px;
+}
+
+.days {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.days span {
+  background: rgba(255,255,255,0.05);
+
+  padding: 10px;
+  border-radius: 8px;
+
+  width: 45px;
+  text-align: center;
+}
+
+.fake-chart {
+  height: 220px;
+
+  border-radius: 12px;
+  background: rgba(255,255,255,0.03);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #777;
+}
+
+.bottom-row {
+  display: flex;
+  gap: 20px;
+}
+
+.small-card {
+  flex: 1;
+}
