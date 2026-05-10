@@ -3,7 +3,6 @@
 
     <div class="cpage-layout">
 
-
       <div class="left-panel">
 
         <div class="section-card">
@@ -20,7 +19,7 @@
 
           <div class="section-header">
             <h3>Meals</h3>
-            <button>Add Meal</button>
+            <button (click)="showMealForm = true">Add Meal</button>
           </div>
 
           <div class="list-item">
@@ -36,7 +35,7 @@
 
           <div class="section-header">
             <h3>Exercises</h3>
-            <button>Add Exercise</button>
+            <button (click)="showWorkoutForm = true">Add Exercise</button>
           </div>
 
           <div class="list-item">
@@ -97,6 +96,30 @@
       </div>
 
     </div>
+
+    @if(showMealForm) {
+
+      <div class="meal-form">
+
+        <div class="form-inside">
+
+        </div>
+
+      </div>
+
+    }
+
+    @if(showWorkoutForm) {  
+      
+      <div class="workout-form">
+
+        <div class="form-inside">
+
+        </div>
+
+      </div>
+
+    }
 
   </div>
 </div>

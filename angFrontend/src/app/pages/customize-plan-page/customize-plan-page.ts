@@ -1,6 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CalcData } from '../../models/info-gym';
+import { Exercise } from '../../models/exercise';
+import { Meal } from '../../models/meal';
 
 @Component({
   selector: 'app-customize-plan-page',
@@ -10,9 +12,15 @@ import { CalcData } from '../../models/info-gym';
 })
 export class CustomizePlanPage implements OnInit {
 
+  showMealForm = false;
+  showWorkoutForm = false;
+
   private route = inject(ActivatedRoute);
 
   calcData!: CalcData;
+
+  meals: Meal[] = [];
+  exercises: Exercise[] = [];
 
   ngOnInit() {
     this.calcData = history.state.data;
