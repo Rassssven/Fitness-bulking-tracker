@@ -2,8 +2,9 @@ package proiect.demo.web.ang_spring.Entities;
 
 import java.util.List;
 
-import org.apache.logging.log4j.core.config.plugins.validation.constraints.NotBlank;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,9 +12,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 
 @Entity
-@Table(name = "users")
+@Table(name = "Users")
 public class User {
 	
 	@Id
@@ -21,38 +26,62 @@ public class User {
 	private Long id;
 	
 	@Column(nullable = false)
+	@JsonIgnore
 	private String password;
 	
-	@NotBlank
-	private String nume;
-	private String prenume;
-	private int tel;
+	@Column(nullable = false)
+	@Positive
+	@Max(100)
+	private int age;
 	
+	@NotBlank
+	private String lastName;
+	
+	@NotBlank
+	private String firstName;
+	
+	@Positive
+	private String tel;
+	
+	@Column(nullable = false)
 	private String role;
 	
-	@Column(unique = true)
+	@Column(unique = true, nullable = false)
+	@Email
 	private String email;
 	
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user",
+			   cascade = CascadeType.ALL,
+		       orphanRemoval = true)
 	private List<Workout> workouts;
 
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user",
+			   cascade = CascadeType.ALL,
+		       orphanRemoval = true)
 	private List<Food> foods;
 	
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user",
+			   cascade = CascadeType.ALL,
+		       orphanRemoval = true)
 	private List<Goal> goals;
+	
+	@OneToMany(mappedBy = "user",
+			   cascade = CascadeType.ALL,
+		       orphanRemoval = true)
+	private List<Exercise> exercises;
 	
 	public User() {
 		
 	}
 	
-	public User(String password, String nume, String prenume, int tel, String role, String email) {
+	public User(String password, String lastName, String firstName, String tel, String role, String email, int age) {
 		super();
 		this.password = password;
-		this.nume = nume;
-		this.prenume = prenume;
+		this.lastName = lastName;
+		this.firstName = firstName;
 		this.tel = tel;
 		this.email = email;
+		this.age = age;
 	}
 
 	public Long getId() {
@@ -71,27 +100,27 @@ public class User {
 		this.password = password;
 	}
 	
-	public String getNume() {
-		return nume;
+	public String getLastName() {
+		return lastName;
 	}
 	
-	public void setNume(String nume) {
-		this.nume = nume;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 	
-	public String getPrenume() {
-		return prenume;
+	public String getFirstName() {
+		return firstName;
 	}
 	
-	public void setPrenume(String prenume) {
-		this.prenume = prenume;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 	
-	public int getTel() {
+	public String getTel() {
 		return tel;
 	}
 	
-	public void setTel(int tel) {
+	public void setTel(String tel) {
 		this.tel = tel;
 	}
 	
@@ -109,6 +138,14 @@ public class User {
 	
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
 	}
 
 	public List<Workout> getWorkouts() {
@@ -134,7 +171,14 @@ public class User {
 	public void setGoals(List<Goal> goals) {
 		this.goals = goals;
 	}
-	
+
+	public List<Exercise> getExercises() {
+		return exercises;
+	}
+
+	public void setExercises(List<Exercise> exercises) {
+		this.exercises = exercises;
+	}
 	
 	
 }

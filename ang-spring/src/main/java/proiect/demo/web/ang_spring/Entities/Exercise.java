@@ -1,5 +1,8 @@
 package proiect.demo.web.ang_spring.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,16 +19,29 @@ public class Exercise {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column(nullable = false)
 	private String name;
-	private int type;
+	
+	@Column(nullable = false)
+	private String type;
+	
 	private int caloriesPerExercise;
 	private String description;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
+	@JsonIgnore
 	private User user;
+	
+	@ManyToOne
+    @JoinColumn(name = "workout_id")
+    private Workout workout;
 
-	public Exercise(String name, int type, int caloriesPerExercise, String description) {
+	public Exercise() {
+
+	}
+
+	public Exercise(String name, String type, int caloriesPerExercise, String description) {
 		super();
 		this.name = name;
 		this.type = type;
@@ -49,11 +65,11 @@ public class Exercise {
 		this.name = name;
 	}
 
-	public int getType() {
+	public String getType() {
 		return type;
 	}
 
-	public void setType(int type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 

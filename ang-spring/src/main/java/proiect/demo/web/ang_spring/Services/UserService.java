@@ -33,8 +33,8 @@ public class UserService {
 	public User updateUser(Long id, User updatedUser) {
 		User current = getUserById(id);
 		
-		current.setNume(updatedUser.getNume());
-		current.setPrenume(updatedUser.getPrenume());
+		current.setLastName(updatedUser.getLastName());
+		current.setFirstName(updatedUser.getFirstName());
 		current.setEmail(updatedUser.getEmail());
 		current.setTel(updatedUser.getTel());
 		
