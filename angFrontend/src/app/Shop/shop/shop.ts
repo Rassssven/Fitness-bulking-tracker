@@ -51,6 +51,7 @@ export class Shop {
       description: 'Calorie-dense shake designed for clean bulking.',
       image: '/products/massgainer.jpg'
     }
+
   ];
 
   private router = inject(Router);
