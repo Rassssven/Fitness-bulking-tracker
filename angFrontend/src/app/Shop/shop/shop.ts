@@ -50,6 +50,22 @@ export class Shop {
       price: 74,
       description: 'Calorie-dense shake designed for clean bulking.',
       image: '/products/massgainer.jpg'
+    },
+
+    {
+      id: 5,
+      name: 'Omega 3',
+      price: 19,
+      description: 'Supports heart health and joint recovery.',
+      image: '/products/omega3.jpg'
+    },
+
+    {
+      id: 5,
+      name: 'Mass Gainer',
+      price: 74,
+      description: 'Calorie-dense shake designed for clean bulking.',
+      image: '/products/massgainer.jpg'
     }
 
   ];
