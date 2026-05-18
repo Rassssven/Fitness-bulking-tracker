@@ -29,10 +29,10 @@ public class User {
 	@JsonIgnore
 	private String password;
 	
-	@Column(nullable = false)
-	@Positive
-	@Max(100)
-	private int age;
+	//@Column(nullable = false)
+	//@Positive
+	//@Max(100)
+	private Integer age;
 	
 	@NotBlank
 	private String lastName;
@@ -40,7 +40,6 @@ public class User {
 	@NotBlank
 	private String firstName;
 	
-	@Positive
 	private String tel;
 	
 	@Column(nullable = false)
