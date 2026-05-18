@@ -34,27 +34,10 @@
 
       @for(product of products; track product.id) {
 
-        <div class="product-card">
-
-          <div class="product-image"></div>
-
-          <div class="product-info">
-
-            <h2>{{ product.name }}</h2>
-
-            <p class="product-description">
-              {{ product.description }}
-            </p>
-
-            <div class="product-bottom">
-              <span class="price">${{ product.price }}</span>
-
-              <button>Add to Cart</button>
-            </div>
-
-          </div>
-
-        </div>
+        <app-product-card
+          [product]="product"
+          (selected)="goToProduct($event)">
+        </app-product-card>
       
       }
 

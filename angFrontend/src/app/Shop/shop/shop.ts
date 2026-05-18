@@ -2,10 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from '../../models/product';
+import { ProductCard } from "../product-card/product-card";
 
 @Component({
   selector: 'app-shop',
-  imports: [CommonModule],
+  imports: [CommonModule, ProductCard],
   templateUrl: './shop.html',
   styleUrl: './shop.css',
 })
@@ -71,7 +72,7 @@ export class Shop {
   ];
 
   private router = inject(Router);
-
+  
   goToProduct(id: number) {
     this.router.navigate(['/product', id]);
   }

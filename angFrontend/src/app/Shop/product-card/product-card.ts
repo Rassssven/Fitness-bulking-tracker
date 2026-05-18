@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, input, Output } from '@angular/core';
+import { Product } from '../../models/product';
 
 @Component({
   selector: 'app-product-card',
@@ -7,5 +8,13 @@ import { Component } from '@angular/core';
   styleUrl: './product-card.css',
 })
 export class ProductCard {
+
+  product = input.required<Product>();
+
+  @Output() selected = new EventEmitter<number>();
+
+  viewProduct() {
+    this.selected.emit(this.product().id);
+  }
 
 }
