@@ -8,6 +8,8 @@ export class Food {
 
   private http = inject(HttpClient);
 
-  private apiUrl = 'https://localhost:8080/foods'; 
+  private apiUrl = 'https://localhost:8080/foods';
+
+  
 
 }

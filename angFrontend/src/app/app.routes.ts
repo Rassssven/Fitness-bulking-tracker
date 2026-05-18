@@ -21,5 +21,7 @@ export const routes: Routes = [
     { path: 'profile-dashboard', component: ProfileDashboard},
     { path: 'customize-plan-page', component: CustomizePlanPage},
     { path: 'help', component: HelpPage},
-    { path: 'product/:id', component: ProductCard}
+    { path: 'product/:id', component: ProductCard},
+    { path: 'login', component: Login},
+    { path: 'register', component: Register}
 ];
