@@ -7,9 +7,14 @@
     </div>
 
     <div class="h-right">
-        <button routerLink="/profile-dashboard">Profile</button>
-        <button routerLink="/login">Log in</button>
-        <button routerLink="/register">Sign up</button>
+
+        @if(!auth.isLoggedIn()) {
+            <button routerLink="/profile-dashboard">Profile</button>
+        } @else {
+            <button routerLink="/login">Log in</button>
+            <button routerLink="/register">Sign up</button>
+        }
+    
     </div>
 
 </header>

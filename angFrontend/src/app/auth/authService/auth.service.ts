@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LoginRequest } from '../../models/login-request';
 import { RegisterRequest } from '../../models/register-request';
@@ -7,6 +7,8 @@ import { RegisterRequest } from '../../models/register-request';
   providedIn: 'root'
 })
 export class AuthService {
+
+  isLoggedIn = signal(false);
 
   private http = inject(HttpClient);
 
