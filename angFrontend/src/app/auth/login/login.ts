@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { AuthService } from '../authService/auth.service';
 import { FormsModule } from '@angular/forms';
+import { NotificationService } from '../../shared/notification-service';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 export class Login {
 
   private authService = inject(AuthService);
+  private notificationService = inject(NotificationService);
 
   email = '';
   password = '';
@@ -20,5 +22,7 @@ export class Login {
     this.authService.login(this.email, this.password);
 
     console.log("Logged in!");
+
+    this.notificationService.showSuccess('Login successful!');
   }
 }

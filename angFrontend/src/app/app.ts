@@ -8,18 +8,21 @@ import { RouterOutlet } from "@angular/router";
 
 import { GridModule } from '@progress/kendo-angular-grid';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { Notification } from "./shared/notification/notification";
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     CommonModule,
-    Header, 
-    Footer, 
-    Home, 
+    Header,
+    Footer,
+    Home,
     RouterOutlet,
     GridModule,
-    ButtonsModule],
+    ButtonsModule,
+    Notification
+],
   templateUrl: './app.html'
 })
 export class AppComponent {

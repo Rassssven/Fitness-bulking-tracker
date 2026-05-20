@@ -1,0 +1,12 @@
+@if(notificationService.visible | async) {
+
+  <div class="notification"
+  
+    [class.success]="(notificationService.type | async) === 'success'"
+    [class.error]="(notificationService.type | async) === 'error'"
+    >
+
+    {{ notificationService.message | async }}
+
+  </div>
+}

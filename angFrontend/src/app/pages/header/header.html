@@ -4,6 +4,7 @@
         <button routerLink="/"> Home </button>
         <button routerLink="/shop"> Shop </button>
         <button routerLink="/help"> Help </button>
+        <div> Welcome, {{ auth.getCurrentUser().email }} </div>
     </div>
 
     <div class="h-right">
