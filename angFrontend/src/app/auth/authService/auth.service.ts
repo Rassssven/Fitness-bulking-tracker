@@ -1,6 +1,5 @@
-import { Injectable, inject, signal } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { LoginRequest } from '../../models/login-request';
 import { RegisterRequest } from '../../models/register-request';
 
 @Injectable({
@@ -8,21 +7,16 @@ import { RegisterRequest } from '../../models/register-request';
 })
 export class AuthService {
 
-  isLoggedIn = signal(false);
-
   private http = inject(HttpClient);
-
   private apiUrl = 'http://localhost:8080/auth';
 
-  login(data: LoginRequest) {
+  login(email: string, password: string) {
 
-    return this.http.post(
-      `${this.apiUrl}/login`,
-      data,
-      {
-        responseType: 'text'
-      }
-    );
+    const basicAuth =
+      'Basic ' + btoa(email + ':' + password);
+
+    localStorage.setItem('auth', basicAuth);
+    localStorage.setItem('email', email);
   }
 
   register(data: RegisterRequest) {
@@ -36,15 +30,16 @@ export class AuthService {
     );
   }
 
-  saveToken(token: string) {
-    localStorage.setItem('token', token);
+  getAuthHeader(): string {
+    return localStorage.getItem('auth') || '';
   }
 
-  getToken(): string | null {
-    return localStorage.getItem('token');
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('auth');
   }
 
   logout() {
-    localStorage.removeItem('token');
+    localStorage.removeItem('auth');
+    localStorage.removeItem('email');
   }
 }

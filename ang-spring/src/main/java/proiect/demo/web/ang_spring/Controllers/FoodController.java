@@ -2,6 +2,7 @@ package proiect.demo.web.ang_spring.Controllers;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.annotation.PostConstruct;
 import proiect.demo.web.ang_spring.Entities.Food;
 import proiect.demo.web.ang_spring.Services.FoodService;
 
@@ -20,7 +22,7 @@ import proiect.demo.web.ang_spring.Services.FoodService;
 public class FoodController {
 
 	private final FoodService foodServ;
-
+	
 	public FoodController(FoodService foodServ) {
 		super();
 		this.foodServ = foodServ;

@@ -17,23 +17,8 @@ export class Login {
 
   login() {
 
-    const request = {
-      email: this.email,
-      password: this.password
-    };
+    this.authService.login(this.email, this.password);
 
-    this.authService.login(request).subscribe({
-
-      next: (token) => {
-        this.authService.saveToken(token);
-
-        console.log('LOGIN SUCCESS');
-        console.log(token);
-      },
-
-      error: (err) => {
-        console.error(err);
-      }
-    });
+    console.log("Logged in!");
   }
 }
