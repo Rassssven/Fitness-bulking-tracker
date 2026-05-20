@@ -12,7 +12,7 @@ import proiect.demo.web.ang_spring.Entities.User;
 import proiect.demo.web.ang_spring.Security.JWT.JWTService;
 import proiect.demo.web.ang_spring.db.UserRepository;
 
-@Service
+//@Service
 public class AuthService {
 	
 	private final UserRepository userRepo;

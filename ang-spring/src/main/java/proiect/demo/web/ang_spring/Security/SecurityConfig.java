@@ -16,7 +16,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import proiect.demo.web.ang_spring.Security.JWT.JWTFilter;
 
-@Configuration
+//@Configuration
 public class SecurityConfig {
 
     private final JWTFilter jwtFilter;

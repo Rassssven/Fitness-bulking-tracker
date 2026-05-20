@@ -13,7 +13,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 
-@Service
+//@Service
 public class JWTService {
 
 	@Value("${app.jwt.secret}")

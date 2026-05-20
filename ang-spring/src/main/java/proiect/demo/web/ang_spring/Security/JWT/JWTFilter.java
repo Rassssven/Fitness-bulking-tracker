@@ -17,7 +17,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import proiect.demo.web.ang_spring.db.UserRepository;
 
-@Component
+//@Component
 public class JWTFilter extends OncePerRequestFilter {
 
 	private final JWTService jwtService;

@@ -27,12 +27,12 @@ public class UserController {
 	}
 	
 	@PostMapping
-	public User createWorkout(@RequestBody User user) {
+	public User createUser(@RequestBody User user) {
 		return userServ.createUser(user);
 	}
 	
 	@GetMapping
-	public List<User> getWorkouts() {
+	public List<User> getUsers() {
 		return userServ.getUsers();
 	}
 	
@@ -42,12 +42,12 @@ public class UserController {
 	}
 	
 	@PutMapping("/{id}")
-	public User updateWorkout(@PathVariable Long id, @RequestBody User user) {
+	public User updateUser(@PathVariable Long id, @RequestBody User user) {
 		return userServ.updateUser(id, user);
 	}
 	
 	@DeleteMapping("/{id}")
-	public void deleteWorkout(@PathVariable Long id) {
+	public void deleteUser(@PathVariable Long id) {
 		userServ.deleteUser(id);
 	}
 	

@@ -1,4 +1,4 @@
-package proiect.demo.web.ang_spring.Security;
+package proiect.demo.web.ang_spring.SecurityBasic;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import proiect.demo.web.ang_spring.Entities.User;
 import proiect.demo.web.ang_spring.db.UserRepository;
 
-//@Service
+@Service
 public class CustomUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepo;
