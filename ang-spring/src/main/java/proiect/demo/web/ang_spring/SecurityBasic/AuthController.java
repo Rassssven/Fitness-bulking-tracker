@@ -17,6 +17,11 @@ public class AuthController {
         this.authService = authService;
     }
 	
+	@PostMapping("/login")
+	public String login(@RequestBody LoginRequestDTO request) {
+		return authService.loginUser(request);
+	}
+	
 	@PostMapping("/register")
 	public String register(@RequestBody RegisterRequestDTO request) {
 		return authService.registerUser(request);

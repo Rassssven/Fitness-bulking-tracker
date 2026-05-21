@@ -63,9 +63,8 @@ public class SecurityConfig {
 
                 .anyRequest()
                 .authenticated()
-            )
+            );
 
-            .httpBasic(withDefaults());
 
         return http.build();
     }

@@ -1,15 +1,12 @@
 package proiect.demo.web.ang_spring.SecurityBasic;
 
 
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import java.util.Optional;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import proiect.demo.web.ang_spring.Entities.User;
-import proiect.demo.web.ang_spring.Security.JWT.JWTService;
 import proiect.demo.web.ang_spring.db.UserRepository;
 
 @Service
@@ -22,6 +19,24 @@ public class AuthService {
 		super();
 		this.userRepo = userRepo;
 		this.pwdEncoder = pwdEncoder;
+	}
+	
+	public String loginUser(LoginRequestDTO request) throws RuntimeException {
+		
+		Optional<User> userLogin = userRepo.findByEmail(request.getEmail());
+		
+		if(userLogin.isEmpty()) {
+			throw new RuntimeException("Login invalid!");
+		} 
+			
+		User user = userLogin.get();
+			
+		if(!pwdEncoder.matches(request.getPassword(), user.getPassword())) {
+			throw new RuntimeException("Invalid Password");
+		}
+
+		
+		return "Login Successful!";
 	}
 	
 	public String registerUser(RegisterRequestDTO request) {
