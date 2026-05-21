@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RegisterRequest } from '../../models/register-request';
 import { NotificationService } from '../../shared/notification-service';
+import { LoginRequest } from '../../models/login-request';
 
 @Injectable({
   providedIn: 'root'
@@ -12,19 +13,13 @@ export class AuthService {
   private apiUrl = 'http://localhost:8080/auth';
   private notifService = inject(NotificationService);
 
-  currentUser: { email: string } | null = null;
+  currentUser: { email: string, name: string } | null = null;
 
-  login(email: string, password: string) {
-
-    const basicAuth =
-      'Basic ' + btoa(email + ':' + password);
-
-    localStorage.setItem('auth', basicAuth);
-    localStorage.setItem('email', email);
-
-    this.currentUser = {
-      email: email
-    };
+  login(data: LoginRequest) {
+    return this.http.post(
+      `${this.apiUrl}/login`,
+      data
+    );
   }
 
   register(data: RegisterRequest) {
@@ -42,7 +37,9 @@ export class AuthService {
     return {
 
       email:
-        localStorage.getItem('email')
+        localStorage.getItem('email'),
+      name:
+        localStorage.getItem('name')
     };
   }
 
@@ -57,7 +54,27 @@ export class AuthService {
   logout() {
     localStorage.removeItem('auth');
     localStorage.removeItem('email');
+    localStorage.removeItem('name');
 
     this.notifService.showSuccess('Logged out successfully');
   }
+
+  /*
+  login(email: string, password: string) {
+
+    const basicAuth =
+      'Basic ' + btoa(email + ':' + password);
+
+    const name = email.split('@')[0];
+
+    localStorage.setItem('auth', basicAuth);
+    localStorage.setItem('email', email);
+    localStorage.setItem('name', name);
+
+    this.currentUser = {
+      email: email,
+      name: name
+    };
+  }
+  */
 }

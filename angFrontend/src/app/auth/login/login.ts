@@ -19,10 +19,14 @@ export class Login {
 
   login() {
 
-    this.authService.login(this.email, this.password);
+    const request = {
+      email: this.email,
+      password: this.password
+    }
 
-    console.log("Logged in!");
-
-    this.notificationService.showSuccess('Login successful!');
+    this.authService.login(request).subscribe((response: any) => {
+      console.log("Logged in!", response);
+      this.notificationService.showSuccess('Login successful!');
+    });
   }
 }
