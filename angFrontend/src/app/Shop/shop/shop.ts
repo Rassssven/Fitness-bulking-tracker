@@ -54,7 +54,7 @@ export class Shop {
     },
 
     {
-      id: 5,
+      id: 6,
       name: 'Omega 3',
       price: 19,
       description: 'Supports heart health and joint recovery.',
@@ -62,7 +62,7 @@ export class Shop {
     },
 
     {
-      id: 5,
+      id: 7,
       name: 'Mass Gainer',
       price: 74,
       description: 'Calorie-dense shake designed for clean bulking.',

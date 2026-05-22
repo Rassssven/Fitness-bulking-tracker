@@ -3,27 +3,30 @@ import { HttpClient } from '@angular/common/http';
 import { RegisterRequest } from '../../models/register-request';
 import { NotificationService } from '../../shared/notification-service';
 import { LoginRequest } from '../../models/login-request';
+import { LoginResponse } from '../../models/login-response';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:8080/auth';
-  private notifService = inject(NotificationService);
+  http = inject(HttpClient);
+  apiUrl = 'http://localhost:8080/auth';
+  notifService = inject(NotificationService);
 
-  currentUser: { email: string, name: string } | null = null;
+  currentUser: {
+    email: string | null,
+    firstName: string | null
+  } = this.getCurrentUser();
 
   login(data: LoginRequest) {
-    return this.http.post(
+    return this.http.post<LoginResponse>(
       `${this.apiUrl}/login`,
       data
     );
   }
 
   register(data: RegisterRequest) {
-
     return this.http.post(
       `${this.apiUrl}/register`,
       data,
@@ -35,11 +38,8 @@ export class AuthService {
 
   getCurrentUser() {
     return {
-
-      email:
-        localStorage.getItem('email'),
-      name:
-        localStorage.getItem('name')
+      email: localStorage.getItem('email'),
+      firstName: localStorage.getItem('firstName')
     };
   }
 
@@ -54,7 +54,12 @@ export class AuthService {
   logout() {
     localStorage.removeItem('auth');
     localStorage.removeItem('email');
-    localStorage.removeItem('name');
+    localStorage.removeItem('firstName');
+
+    this.currentUser = {
+      email: null,
+      firstName: null
+    };
 
     this.notifService.showSuccess('Logged out successfully');
   }

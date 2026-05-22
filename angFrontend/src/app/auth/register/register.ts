@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { AuthService } from '../authService/auth.service';
 import { FormsModule } from '@angular/forms';
 import { NotificationService } from '../../shared/notification-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -11,8 +12,9 @@ import { NotificationService } from '../../shared/notification-service';
 })
 export class Register {
 
-  private authService = inject(AuthService);
-  private notificationService = inject(NotificationService);
+  authService = inject(AuthService);
+  notificationService = inject(NotificationService);
+  router = inject(Router);
 
   firstName = '';
   lastName = '';
@@ -35,9 +37,9 @@ export class Register {
     this.authService.register(request).subscribe({
 
       next: (response) => {
-        
         this.notificationService.showSuccess('User created!');
 
+        this.router.navigate(['/login']);
         console.log(response);
       },
 
