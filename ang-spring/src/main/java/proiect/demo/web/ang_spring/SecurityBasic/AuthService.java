@@ -21,7 +21,7 @@ public class AuthService {
 		this.pwdEncoder = pwdEncoder;
 	}
 	
-	public String loginUser(LoginRequestDTO request) throws RuntimeException {
+	public LoginResponseDTO loginUser(LoginRequestDTO request) throws RuntimeException {
 		
 		Optional<User> userLogin = userRepo.findByEmail(request.getEmail());
 		
@@ -36,7 +36,7 @@ public class AuthService {
 		}
 
 		
-		return "Login Successful!";
+		return new LoginResponseDTO(user.getFirstName(), user.getEmail());
 	}
 	
 	public String registerUser(RegisterRequestDTO request) {

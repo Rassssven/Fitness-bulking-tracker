@@ -17,10 +17,6 @@ public class AngController {
 
 	private static final Logger logger = LogManager.getLogger(AngController.class);
 
-    @GetMapping("/hello")
-    public String hello() {
-        return "Salut din Spring Boot!";
-    }
     
     @GetMapping("/testLog4j")
     public String test() {
