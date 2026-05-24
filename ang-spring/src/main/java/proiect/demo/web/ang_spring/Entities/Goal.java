@@ -12,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Positive;
 
@@ -27,6 +28,9 @@ public class Goal {
 	@Positive
 	private int targetCalories;
 
+	private int currentWeight;
+	private int targetWeight;
+	
 	private String type;
 	
 	private LocalDate startDate;
@@ -39,15 +43,20 @@ public class Goal {
 	@JsonIgnore
 	private User user;
 	
+	@OneToMany
+	private List<Plan> plans;
+	
 	public Goal() {}
 
-	public Goal(int targetCalories, String type, LocalDate startDate, LocalDate endDate, String name) {
+	public Goal(int targetCalories, String type, LocalDate startDate, LocalDate endDate, String name, int currentWeight, int targetWeight) {
 		super();
 		this.targetCalories = targetCalories;
 		this.type = type;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.name = name;
+		this.currentWeight = currentWeight;
+		this.targetWeight = targetWeight;
 	}
 
 	public Long getId() {
@@ -96,6 +105,22 @@ public class Goal {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public int getCurrentWeight() {
+		return currentWeight;
+	}
+
+	public void setCurrentWeight(int currentWeight) {
+		this.currentWeight = currentWeight;
+	}
+
+	public int getTargetWeight() {
+		return targetWeight;
+	}
+
+	public void setTargetWeight(int targetWeight) {
+		this.targetWeight = targetWeight;
 	}
 
 	public User getUser() {

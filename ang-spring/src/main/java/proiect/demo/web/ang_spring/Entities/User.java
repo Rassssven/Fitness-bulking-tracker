@@ -69,6 +69,11 @@ public class User {
 		       orphanRemoval = true)
 	private List<Exercise> exercises;
 	
+	@OneToMany(mappedBy = "user",
+			   cascade = CascadeType.ALL,
+			   orphanRemoval = true)
+	private List<Plan> plans;
+	
 	public User() {
 		
 	}
@@ -177,6 +182,14 @@ public class User {
 
 	public void setExercises(List<Exercise> exercises) {
 		this.exercises = exercises;
+	}
+
+	public List<Plan> getPlans() {
+		return plans;
+	}
+
+	public void setPlans(List<Plan> plans) {
+		this.plans = plans;
 	}
 	
 	
