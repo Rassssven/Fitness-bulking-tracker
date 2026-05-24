@@ -39,11 +39,12 @@ public class Plan {
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Exercise> exercises;
 	
-	@OneToMany(cascade = CascadeType.ALL,
+	@OneToMany(mappedBy = "plan",
+			   cascade = CascadeType.ALL,
 		       orphanRemoval = true)
 	private List<Workout> workouts;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "goal_id")
 	private Goal goal;
 	

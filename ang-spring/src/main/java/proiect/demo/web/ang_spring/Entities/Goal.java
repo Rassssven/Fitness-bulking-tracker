@@ -43,7 +43,7 @@ public class Goal {
 	@JsonIgnore
 	private User user;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "goal")
 	private List<Plan> plans;
 	
 	public Goal() {}

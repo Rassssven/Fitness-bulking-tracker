@@ -1,5 +1,7 @@
 package proiect.demo.web.ang_spring.Entities;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
@@ -8,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -36,6 +39,10 @@ public class Exercise {
 	@ManyToOne
     @JoinColumn(name = "workout_id")
     private Workout workout;
+	
+	@ManyToMany(mappedBy = "exercises")
+	@JsonIgnore
+	private List<Plan> plans;
 
 	public Exercise() {
 
