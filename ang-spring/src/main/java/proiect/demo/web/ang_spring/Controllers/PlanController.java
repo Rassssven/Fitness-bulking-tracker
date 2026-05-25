@@ -1,8 +1,11 @@
 package proiect.demo.web.ang_spring.Controllers;
 
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import proiect.demo.web.ang_spring.Entities.Plan;
 import proiect.demo.web.ang_spring.Services.PlanService;
 
 @RestController
@@ -16,6 +19,10 @@ public class PlanController {
 		this.planServ = planServ;
 	}
 	
+	@PostMapping
+	public Plan createGoal(@RequestBody Plan plan) {
+		return planServ.createPlan(plan);
+	}
 
 	
 }
