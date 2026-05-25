@@ -62,7 +62,7 @@ public class SecurityConfig {
                 .hasAnyRole("USER", "ADMIN")
 
                 .anyRequest()
-                .authenticated()
+                .permitAll()
             );
 
 
