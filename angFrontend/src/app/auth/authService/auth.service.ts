@@ -1,9 +1,9 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { RegisterRequest } from '../../models/register-request';
+import { RegisterRequest } from '../models/register-request';
 import { NotificationService } from '../../shared/notification-service';
-import { LoginRequest } from '../../models/login-request';
-import { LoginResponse } from '../../models/login-response';
+import { LoginRequest } from '../models/login-request';
+import { LoginResponse } from '../models/login-response';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,7 @@ export class AuthService {
   notifService = inject(NotificationService);
 
   currentUser: {
+    id: number | null,
     email: string | null,
     firstName: string | null
   } = this.getCurrentUser();
@@ -37,7 +38,10 @@ export class AuthService {
   }
 
   getCurrentUser() {
+    const id = localStorage.getItem('id');
+
     return {
+      id: id ? Number(id) : null,
       email: localStorage.getItem('email'),
       firstName: localStorage.getItem('firstName')
     };
@@ -55,8 +59,10 @@ export class AuthService {
     localStorage.removeItem('auth');
     localStorage.removeItem('email');
     localStorage.removeItem('firstName');
+    localStorage.removeItem('id');
 
     this.currentUser = {
+      id: null,
       email: null,
       firstName: null
     };

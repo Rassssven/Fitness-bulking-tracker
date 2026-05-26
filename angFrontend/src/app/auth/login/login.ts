@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { AuthService } from '../authService/auth.service';
 import { FormsModule } from '@angular/forms';
 import { NotificationService } from '../../shared/notification-service';
-import { LoginResponse } from '../../models/login-response';
+import { LoginResponse } from '../models/login-response';
 import { Router } from '@angular/router';
 
 @Component({
@@ -30,11 +30,13 @@ export class Login {
     this.authService.login(request).subscribe({
 
       next: (response: LoginResponse) => {
+        localStorage.setItem('id', response.id.toString());
         localStorage.setItem('email', response.email);
         localStorage.setItem('firstName', response.firstName);
         localStorage.setItem('auth', 'true');
 
         this.authService.currentUser = {
+          id: response.id,
           email: response.email,
           firstName: response.firstName
         }

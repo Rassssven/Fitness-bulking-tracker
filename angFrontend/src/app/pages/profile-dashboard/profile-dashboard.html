@@ -9,12 +9,17 @@
                 <h2>Your Plans</h2>
 
                 <div class="plans-container">
+
+                    @for(plan of plans; track plan.id) {
+                        <div class="plan-card">{{ plan.name }}<br><span>{{ plan.type }} kcal</span></div>
+                    }
+
                     <div class="plan-card">Clean Bulk<br><span>3000 kcal</span></div>
                     <div class="plan-card">Cut<br><span>2200 kcal</span></div>
                     <div class="plan-card">Maintenance<br><span>2600 kcal</span></div>
-                    <div class="plan-card">Custom Plan<br><span>Personal</span></div>
-                    <div class="plan-card">Custom Plan<br><span>Personal</span></div>
                 </div>
+
+
             </div>
 
             <div class="profile-section card-t">
