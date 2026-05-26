@@ -28,8 +28,9 @@ public class FoodController {
 	
 	@PostMapping
 	@PreAuthorize("hasRole('USER')")
-	public Food createFood(@RequestBody Food food) {
-		return foodServ.createFood(food);
+	public Food createFood(@RequestBody Food food,
+						   @PathVariable Long id) {
+		return foodServ.createFood(food, id);
 	}
 	
 	@GetMapping

@@ -2,6 +2,7 @@ package proiect.demo.web.ang_spring.SecurityBasic;
 
 public class LoginResponseDTO {
 
+	private Long id;
 	private String firstName;
 	private String email;
 	
@@ -9,8 +10,9 @@ public class LoginResponseDTO {
 		
 	}
 
-	public LoginResponseDTO(String firstName, String email) {
+	public LoginResponseDTO(Long id, String firstName, String email) {
 		super();
+		this.id = id;
 		this.firstName = firstName;
 		this.email = email;
 	}
@@ -29,6 +31,14 @@ public class LoginResponseDTO {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 }

@@ -36,7 +36,7 @@ public class AuthService {
 		}
 
 		
-		return new LoginResponseDTO(user.getFirstName(), user.getEmail());
+		return new LoginResponseDTO(user.getId(), user.getFirstName(), user.getEmail());
 	}
 	
 	public String registerUser(RegisterRequestDTO request) {

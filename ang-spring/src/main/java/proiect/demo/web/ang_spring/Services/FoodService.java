@@ -5,19 +5,30 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import proiect.demo.web.ang_spring.Entities.Food;
+import proiect.demo.web.ang_spring.Entities.User;
 import proiect.demo.web.ang_spring.db.FoodRepository;
+import proiect.demo.web.ang_spring.db.UserRepository;
 
 @Service
 public class FoodService {
 	
 	private final FoodRepository foodRepo;
+	private final UserRepository userRepo;
 
-	public FoodService(FoodRepository foodRepo) {
+	public FoodService(UserRepository userRepo, FoodRepository foodRepo) {
 		super();
+		this.userRepo = userRepo;
 		this.foodRepo = foodRepo;
 	}
 	
-	public Food createFood(Food food) {
+	public Food createFood(Food food, Long id) {
+		
+		User user = userRepo.findById(id)
+				.orElseThrow();
+		
+		food.setUser(user);
+		user.getFoods().add(food);
+		
 		return foodRepo.save(food);
 	}
 	
