@@ -2,6 +2,7 @@ package proiect.demo.web.ang_spring.Controllers;
 
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,15 +27,15 @@ public class PlanController {
 		this.planServ = planServ;
 	}
 	
-	@PostMapping("/{userId}")
+	@PostMapping
 	public Plan createPlan(@RequestBody Plan plan,
-						   @PathVariable Long userId) {
-		return planServ.createPlan(plan, userId);
+						   Authentication auth) {
+		return planServ.createPlan(plan, auth);
 	}
 	
-	@GetMapping("/{userId}")
-	public List<Plan> getAllPlans(@PathVariable Long userId) {
-		return planServ.getAllPlans(userId);
+	@GetMapping
+	public List<Plan> getAllPlans(Authentication auth) {
+		return planServ.getAllPlans(auth);
 	}
 	
 	@DeleteMapping

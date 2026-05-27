@@ -2,6 +2,7 @@ package proiect.demo.web.ang_spring.Services;
 
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import proiect.demo.web.ang_spring.Entities.Plan;
@@ -21,9 +22,11 @@ public class PlanService {
 		this.planRepo = planRepo;
 	}
 	
-	public Plan createPlan(Plan plan, Long userId) {
+	public Plan createPlan(Plan plan, Authentication auth) {
 		
-		User user = userRepo.findById(userId)
+		String email = auth.getName();
+		
+		User user = userRepo.findByEmail(email)
 				.orElseThrow(() -> new RuntimeException("User not found!"));
 		
 		plan.setUser(user);
@@ -31,8 +34,14 @@ public class PlanService {
 		return planRepo.save(plan);
 	}
 	
-	public List<Plan> getAllPlans(Long userId) {
-		return planRepo.findByUserId(userId);
+	public List<Plan> getAllPlans(Authentication auth) {
+		
+		String email = auth.getName();
+		
+		User user = userRepo.findByEmail(email)
+				.orElseThrow(() -> new RuntimeException("User not found!"));
+		
+		return planRepo.findByUserId(user.getId());
 	}
 	
 	public void deletePlan(Long userId) {

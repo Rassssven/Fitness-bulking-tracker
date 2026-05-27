@@ -12,7 +12,7 @@ import proiect.demo.web.ang_spring.Entities.User;
 import proiect.demo.web.ang_spring.Security.JWT.JWTService;
 import proiect.demo.web.ang_spring.db.UserRepository;
 
-//@Service
+@Service
 public class AuthService {
 	
 	private final UserRepository userRepo;
@@ -41,7 +41,8 @@ public class AuthService {
 			)
 		);
 		
-		UserDetails user = userDetailsService.loadUserByUsername(request.getEmail());
+		User user = userRepo.findByEmail(request.getEmail())
+				.orElseThrow(() -> new RuntimeException("User not found!"));
 		
 		return jwtService.generateToken(user);
 	}

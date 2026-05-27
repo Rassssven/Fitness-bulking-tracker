@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import proiect.demo.web.ang_spring.Entities.User;
 import proiect.demo.web.ang_spring.db.UserRepository;
 
-//@Service
+@Service
 public class CustomUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepo;

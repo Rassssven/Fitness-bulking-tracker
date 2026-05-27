@@ -12,18 +12,21 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import proiect.demo.web.ang_spring.Entities.User;
 
-//@Service
+@Service
 public class JWTService {
 
 	@Value("${app.jwt.secret}")
 	private String secret;
 	
-	public String generateToken(UserDetails user) {
+	public String generateToken(User user) {
 		
 		return Jwts.builder()
-				.setSubject(user.getUsername())
-				.claim("role", user.getAuthorities().iterator().next().getAuthority())
+				.setSubject(user.getEmail())
+				.claim("id", user.getId())
+				.claim("firstName", user.getFirstName())
+				.claim("role", user.getRole())
 				.setIssuedAt(new Date())
 				.setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60))
 				.signWith(getSignKey())
