@@ -1,0 +1,86 @@
+.main-picture {
+  height: 800px;
+  background-image: url('/black-image-login.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-items: center;
+
+  gap: 20px;
+
+  width: 100%;
+}
+
+.login-form {
+  width: 420px;
+  background: rgba(20, 20, 20, 0.92);
+  padding: 30px;
+  border-radius: 18px;
+  border: 2px solid #0aa064;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  color: white;
+}
+
+.login-form h2 {
+  text-align: center;
+  color: #00ff99;
+
+  margin-bottom: 25px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 15px;
+  gap: 15px;
+}
+
+.form-group label {
+  font-size: 14px;
+  color: #ccc;
+}
+
+.form-group input,
+.form-group select {
+  padding: 10px;
+  border: 1px solid #333;
+  border-radius: 8px;
+  background: #111;
+  color: white;
+  font-size: 15px;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #00ff99;
+}
+
+.login-form button {
+  margin-top: 80px;
+  padding: 12px;
+  border: none;
+
+  border-radius: 10px;
+  background: #00ff99;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login-form button:hover {
+  background: #00cc77;
+}
