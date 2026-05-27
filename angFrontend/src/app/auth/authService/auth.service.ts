@@ -3,7 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { RegisterRequest } from '../models/register-request';
 import { NotificationService } from '../../shared/notification-service';
 import { LoginRequest } from '../models/login-request';
-import { LoginResponse } from '../models/login-response';
+import { jwtDecode } from 'jwt-decode';
+import { CurrentUser } from '../models/current-user';
 
 @Injectable({
   providedIn: 'root'
@@ -14,16 +15,13 @@ export class AuthService {
   apiUrl = 'http://localhost:8080/auth';
   notifService = inject(NotificationService);
 
-  currentUser: {
-    id: number | null,
-    email: string | null,
-    firstName: string | null
-  } = this.getCurrentUser();
-
   login(data: LoginRequest) {
-    return this.http.post<LoginResponse>(
+    return this.http.post(
       `${this.apiUrl}/login`,
-      data
+      data,
+      {
+        responseType: 'text'
+      }
     );
   }
 
@@ -37,35 +35,24 @@ export class AuthService {
     );
   }
 
-  getCurrentUser() {
-    const id = localStorage.getItem('id');
-
-    return {
-      id: id ? Number(id) : null,
-      email: localStorage.getItem('email'),
-      firstName: localStorage.getItem('firstName')
-    };
-  }
-
-  getAuthHeader(): string {
-    return localStorage.getItem('auth') || '';
+  getToken(): string | null {
+    return localStorage.getItem('token');
   }
 
   isLoggedIn(): boolean {
-    return !!localStorage.getItem('auth');
+    return !!localStorage.getItem('token');
+  }
+
+  getCurrentUser(): CurrentUser | null {
+    const token = this.getToken();
+
+    if(!token) return null;
+
+    return jwtDecode<CurrentUser>(token);
   }
 
   logout() {
-    localStorage.removeItem('auth');
-    localStorage.removeItem('email');
-    localStorage.removeItem('firstName');
-    localStorage.removeItem('id');
-
-    this.currentUser = {
-      id: null,
-      email: null,
-      firstName: null
-    };
+    localStorage.removeItem('token');
 
     this.notifService.showSuccess('Logged out successfully');
   }

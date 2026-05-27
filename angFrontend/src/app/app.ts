@@ -1,6 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { Component} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HelloService } from './services/item';
 import { Header } from "./pages/header/header";
 import { Footer } from "./pages/footer/footer";
 import { Home } from "./pages/home/home";
@@ -27,11 +26,4 @@ import { Notification } from "./shared/notification/notification";
 })
 export class AppComponent {
 
-  message = signal('');
-
-  constructor(private helloService: HelloService) {
-    this.helloService.getHello().subscribe(data => {
-      this.message.set(data);
-    });
-  }
 }

@@ -4,14 +4,14 @@
         <button routerLink="/"> Home </button>
         <button routerLink="/shop"> Shop </button>
         <button routerLink="/help"> Help </button>
-        <div> Welcome, {{ auth.currentUser.firstName }} </div>
+        <div> Welcome, {{ currentUser()?.firstName }} </div>
     </div>
 
     <div class="h-right">
 
-        @if(auth.isLoggedIn()) {
+        @if(isLoggedIn()) {
             <button routerLink="/profile-dashboard">Profile</button>
-            <button routerLink="/" (click)="auth.logout()">Logout</button>
+            <button routerLink="/" (click)="logout()">Logout</button>
         } @else {
             <button routerLink="/login">Log in</button>
             <button routerLink="/register">Sign up</button>

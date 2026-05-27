@@ -12,4 +12,16 @@ export class Header {
 
   auth = inject(AuthService);
 
+  currentUser() {
+    return this.auth.getCurrentUser();
+  }
+
+  isLoggedIn() {
+    return this.auth.isLoggedIn();
+  }
+
+  logout() {
+    this.auth.logout();
+  }
+
 }

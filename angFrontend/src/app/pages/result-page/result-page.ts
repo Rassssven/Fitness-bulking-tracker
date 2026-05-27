@@ -42,7 +42,7 @@ export class ResultPage implements OnInit {
   savePlan() {
     this.planData.type = this.calcData.plan;
   
-    this.planService.createPlan(this.authService.currentUser.id!, this.planData).subscribe({
+    this.planService.createPlan(this.planData).subscribe({
   
       next: (response) => {
         console.log('Plan saved successfully:', response);

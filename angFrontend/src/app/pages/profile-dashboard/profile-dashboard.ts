@@ -2,10 +2,11 @@ import { Component, inject, OnInit } from '@angular/core';
 import { AuthService } from '../../auth/authService/auth.service';
 import { PlanService } from '../../services/HTTP/plan-service';
 import { Plan } from '../../models/plan';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-profile-dashboard',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './profile-dashboard.html',
   styleUrl: './profile-dashboard.css',
 })
@@ -18,11 +19,11 @@ export class ProfileDashboard implements OnInit {
 
   ngOnInit() {
 
-    const userId = this.authService.currentUser.id;
-
-    this.planService.getPlans(userId!).subscribe({
+    this.planService.getPlans().subscribe({
 
       next: (response) => {
+        console.log(response);
+
         this.plans = response;
       }
 

@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { AuthService } from '../authService/auth.service';
 import { FormsModule } from '@angular/forms';
 import { NotificationService } from '../../shared/notification-service';
-import { LoginResponse } from '../models/login-response';
 import { Router } from '@angular/router';
 
 @Component({
@@ -25,26 +24,16 @@ export class Login {
     const request = {
       email: this.email,
       password: this.password
-    }
+    };
 
     this.authService.login(request).subscribe({
 
-      next: (response: LoginResponse) => {
-        localStorage.setItem('id', response.id.toString());
-        localStorage.setItem('email', response.email);
-        localStorage.setItem('firstName', response.firstName);
-        localStorage.setItem('auth', 'true');
-
-        this.authService.currentUser = {
-          id: response.id,
-          email: response.email,
-          firstName: response.firstName
-        }
+      next: (token: string) => {
+        localStorage.setItem('token', token);
 
         this.notificationService.showSuccess('Logged in successfully');
 
-        this.router.navigate(['']);
-        console.log(response);
+        this.router.navigate(['/profile-dashboard']);
       },
 
       error: (err) => {
