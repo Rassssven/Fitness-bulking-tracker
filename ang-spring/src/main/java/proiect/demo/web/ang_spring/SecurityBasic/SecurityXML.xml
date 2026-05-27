@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:sec="http://www.springframework.org/schema/security"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+         http://www.springframework.org/schema/beans
+         https://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/security
+         https://www.springframework.org/schema/security/spring-security.xsd">
+
+    <!-- Password encoder -->
+    <bean id="passwordEncoder"
+          class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+
+    <!-- UserDetailsService custom -->
+    <bean id="customUserDetailsService"
+          class="proiect.demo.web.ang_spring.SecurityBasic.CustomUserDetailsService">
+        <constructor-arg ref="userRepository"/>
+    </bean>
+
+    <!-- Authentication Provider -->
+    <bean id="authenticationProvider"
+          class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+        <constructor-arg ref="customUserDetailsService"/>
+        <property name="passwordEncoder" ref="passwordEncoder"/>
+    </bean>
+
+    <sec:authentication-manager>
+        <sec:authentication-provider ref="authenticationProvider"/>
+    </sec:authentication-manager>
+
+    <!-- Security rules -->
+    <sec:http use-expressions="true">
+        <sec:csrf disabled="true"/>
+
+        <sec:intercept-url pattern="/auth/**" access="permitAll"/>
+        <sec:intercept-url pattern="/admin/**" access="hasRole('ADMIN')"/>
+        <sec:intercept-url pattern="/user/**" access="hasAnyRole('USER','ADMIN')"/>
+        <sec:intercept-url pattern="/**" access="permitAll"/>
+
+        <sec:http-basic/>
+    </sec:http>
+
+</beans>
