@@ -10,8 +10,8 @@
 
                 <div class="plans-container">
 
-                    @for(plan of plans; track $index) {
-                        <div class="plan-card">{{ plan.name }}<br><span>{{ plan.type }} kcal</span></div>
+                    @for(plan of plans(); track plan.id) {
+                        <div class="plan-card" (click)="goToPlan(plan.id)">{{ plan.name }}<br><span>{{ plan.type }} kcal</span></div>
                     }
 
                     <!-- <div class="plan-card">Clean Bulk<br><span>3000 kcal</span></div>
@@ -35,7 +35,7 @@
 
                 <div class="account-stats">
                     <div class="stat">
-                        <span class="stat-value">3</span>
+                        <span class="stat-value">{{ plans().length }}</span>
                         <span class="stat-label">Plans</span>
                     </div>
                 </div>

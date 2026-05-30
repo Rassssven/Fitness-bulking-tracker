@@ -3,6 +3,8 @@ import { AuthService } from '../authService/auth.service';
 import { FormsModule } from '@angular/forms';
 import { NotificationService } from '../../shared/notification-service';
 import { Router } from '@angular/router';
+import { CurrentUser } from '../models/current-user';
+import { jwtDecode } from 'jwt-decode';
 
 @Component({
   selector: 'app-login',
@@ -31,9 +33,12 @@ export class Login {
       next: (token: string) => {
         localStorage.setItem('token', token);
 
+        const user = jwtDecode<CurrentUser>(token);
+        this.authService.currentUser.set(user);
+
         this.notificationService.showSuccess('Logged in successfully');
 
-        this.router.navigate(['/profile-dashboard']);
+        this.router.navigate(['/']);
       },
 
       error: (err) => {

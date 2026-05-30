@@ -200,3 +200,128 @@
 
   box-shadow: 0 0 25px rgba(0,0,0,0.5);
 }
+
+.del-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 4px;
+  background-color: #00ff99;
+  border-radius: 8px;
+  border: none;
+
+  cursor: pointer;
+  font-weight: 600;
+}
+
+
+/* Update Form */
+
+.update-plan-overlay {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.75);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 1000;
+  }
+
+.update-plan-form {
+  position: relative;
+
+  width: 450px;
+  background: rgba(20, 20, 20, 0.98);
+  border: 2px solid #00ff99;
+  border-radius: 18px;
+
+  padding: 30px;
+  box-shadow:
+    0 0 20px rgba(0, 255, 153, 0.15),
+    0 0 40px rgba(0, 255, 153, 0.05);
+}
+
+.update-plan-form h2 {
+  text-align: center;
+  color: #00ff99;
+
+  margin-bottom: 25px;
+}
+
+.update-plan-form form {
+  display: flex;
+  flex-direction: column;
+
+  gap: 18px;
+}
+
+.update-plan-form label {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+  color: white;
+  font-size: 14px;
+}
+
+.update-plan-form input,
+.update-plan-form select {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #333;
+
+  background: #111;
+  color: white;
+
+  font-size: 14px;
+}
+
+.update-plan-form input:focus,
+.update-plan-form select:focus {
+  outline: none;
+  border-color: #00ff99;
+}
+
+.update-btn {
+  margin-top: 10px;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+
+  background: #00ff99;
+  color: black;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.update-btn:hover {
+  transform: translateY(-2px);
+}
+
+.close-btn {
+  position: absolute;
+
+  top: 12px;
+  right: 12px;
+
+  width: 34px;
+  height: 34px;
+
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: #00ff99;
+
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  background: rgba(0, 255, 153, 0.15);
+}

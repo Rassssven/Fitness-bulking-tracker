@@ -18,4 +18,21 @@ export class PlanService {
     return this.http.get<Plan[]>(this.apiUrl);
   }
 
+  getPlanById(id: number) {
+    return this.http.get<Plan>(`${this.apiUrl}/${id}`);
+  }
+
+  deletePlan(id: number) {
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }
+
+  updatePlan(
+    id: number, 
+    plan: {
+      name: string;
+      type: string;
+    }) {
+    return this.http.put<Plan>(`${this.apiUrl}/${id}`, plan);
+  }
+
 }

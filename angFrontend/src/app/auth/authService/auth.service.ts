@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RegisterRequest } from '../models/register-request';
 import { NotificationService } from '../../shared/notification-service';
@@ -14,6 +14,16 @@ export class AuthService {
   http = inject(HttpClient);
   apiUrl = 'http://localhost:8080/auth';
   notifService = inject(NotificationService);
+
+  currentUser = signal<CurrentUser | null>(null);
+
+  constructor() {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      this.currentUser.set(jwtDecode<CurrentUser>(token));
+    }
+  }
 
   login(data: LoginRequest) {
     return this.http.post(

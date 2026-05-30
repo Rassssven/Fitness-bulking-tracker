@@ -9,9 +9,9 @@
           <h2>Your Plan</h2>
 
           <div class="user-info">
-            <p><span>Goal</span>{{ calcData.plan }}</p>
-            <p><span>Calories</span> {{ calcData.calories }} kcal</p>
-            <p><span>Activity</span> {{ calcData.activityLevel }}</p>
+            <p><span>Goal</span> {{ plan()?.type }}</p>
+            <p><span>Calories</span> {{ plan()?.id }}kcal</p>
+            <p><span>Activity</span> </p>
           </div>
         </div>
 
@@ -93,9 +93,55 @@
 
         </div>
 
+        <button class="del-button" (click)="deletePlan()"> Delete Plan </button>
+
+        <button class="del-button" (click)="updatePlanForm = true"> Update Plan </button>
+
       </div>
 
     </div>
+
+    @if(updatePlanForm) {
+
+      <div class="update-plan-overlay">
+
+        <div class="update-plan-form">
+
+          <button type="button" class="close-btn" (click)="updatePlanForm = false">
+            ✕
+          </button>
+
+          <form (ngSubmit)="updatePlan()">
+
+            <h2>Update Plan</h2>
+
+            <label>
+              Name
+              <input [(ngModel)]="updateName" type="text" name="planName" placeholder="My Plan">
+            </label>
+
+            <label>
+              Type
+
+              <select [(ngModel)]="updateType" name="planType">
+                <option value="Bulk">Bulk</option>
+                <option value="Cut">Cut</option>
+                <option value="Maintenance">Maintenance</option>
+                <option value="Custom">Custom</option>
+              </select>
+
+            </label>
+
+            <button class="update-btn"> Update Plan </button>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    }
+
 
     @if(showMealForm) {
 

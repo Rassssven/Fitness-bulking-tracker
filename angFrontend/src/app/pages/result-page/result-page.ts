@@ -47,7 +47,7 @@ export class ResultPage implements OnInit {
       next: (response) => {
         console.log('Plan saved successfully:', response);
 
-        this.router.navigate(['/customize-plan-page'], {state: {data: this.calcData}});
+        this.router.navigate(['/customize-plan-page', response.id], {state: {data: this.calcData}});
 
         this.notifService.showSuccess('Plan saved successfully!');
       },
