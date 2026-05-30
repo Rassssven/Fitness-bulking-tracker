@@ -25,7 +25,6 @@ public class Plan {
 	private long id;
 	
 	private String name;
-	
 	private String type;
 	
 	@ManyToOne

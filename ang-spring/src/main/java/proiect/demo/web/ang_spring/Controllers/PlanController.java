@@ -1,5 +1,6 @@
 package proiect.demo.web.ang_spring.Controllers;
 
+import java.nio.file.AccessDeniedException;
 import java.util.List;
 
 import org.springframework.security.core.Authentication;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,9 +40,19 @@ public class PlanController {
 		return planServ.getAllPlans(auth);
 	}
 	
-	@DeleteMapping
-	public void deletePlan(@PathVariable Long userId) {
-		planServ.deletePlan(userId);
+	@GetMapping("/{id}")
+	public Plan getPlanById(@PathVariable Long id, Authentication auth) throws AccessDeniedException {
+		return planServ.getPlan(id, auth);
+	}
+	
+	@DeleteMapping("/{id}")
+	public void deletePlan(@PathVariable Long id, Authentication auth) throws AccessDeniedException {
+		planServ.deletePlan(id, auth);
+	}
+	
+	@PutMapping("/{id}")
+	public Plan updatePlan(@PathVariable Long id, Authentication auth, @RequestBody Plan plan) throws AccessDeniedException {
+		return planServ.updatePlan(id, auth, plan);
 	}
 
 	

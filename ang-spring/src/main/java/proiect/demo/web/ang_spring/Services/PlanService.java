@@ -1,6 +1,8 @@
 package proiect.demo.web.ang_spring.Services;
 
+import java.nio.file.AccessDeniedException;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
@@ -44,8 +46,50 @@ public class PlanService {
 		return planRepo.findByUserId(user.getId());
 	}
 	
-	public void deletePlan(Long userId) {
-		planRepo.deleteById(userId);
+	public Plan getPlan(Long id, Authentication auth) throws AccessDeniedException {
+		
+		String email = auth.getName();
+
+		Plan plan = planRepo.findById(id)
+				.orElseThrow(() -> new RuntimeException("No plan found!"));
+		
+		if(!plan.getUser().getEmail().equals(email)) {
+			throw new AccessDeniedException("Forbidden");
+		}
+		
+		return plan;
+	}
+	
+	public void deletePlan(Long id, Authentication auth) throws AccessDeniedException {
+		
+		String email = auth.getName();
+		
+		Plan plan = planRepo.findById(id)
+				.orElseThrow(() -> new RuntimeException("No plan found!"));
+				
+		if(!plan.getUser().getEmail().equals(email)) {
+			throw new AccessDeniedException("Forbidden");
+		}
+		
+		planRepo.deleteById(id);
+	}
+	
+	public Plan updatePlan(Long id, Authentication auth, Plan updatedPlan) throws AccessDeniedException {
+		
+		String email = auth.getName();
+		
+		Plan plan = planRepo.findById(id)
+				.orElseThrow(() -> new RuntimeException("No plan found!"));
+				
+		if(!plan.getUser().getEmail().equals(email)) {
+			throw new AccessDeniedException("Forbidden");
+		}
+		
+		plan.setName(updatedPlan.getName());
+		plan.setType(updatedPlan.getType());
+		
+		return planRepo.save(plan);
+		
 	}
 	
 }
