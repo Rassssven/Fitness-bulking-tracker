@@ -41,6 +41,7 @@ export class CustomizePlanPage implements OnInit {
 
       this.planServ.getPlanById(planId).subscribe(
         plan => {
+          console.log(plan);
           this.plan.set(plan);
         }
       );

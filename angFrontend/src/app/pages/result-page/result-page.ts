@@ -2,7 +2,6 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CalcData } from '../../models/info-gym';
 import { Recommendations } from '../../services/Recommendations/recommendations';
-import { Plan } from '../../models/plan';
 import { NotificationService } from '../../shared/notification-service';
 import { PlanService } from '../../services/HTTP/plan-service';
 import { AuthService } from '../../auth/authService/auth.service';
@@ -33,14 +32,14 @@ export class ResultPage implements OnInit {
 
   recommendationsData: string[] = [];
 
-  planData: Plan = {
-    id: 0,
+  planData = {
     name: 'MyPlan',
-    type: ''
+    type: this.calcData.plan
   }
   
   savePlan() {
     this.planData.type = this.calcData.plan;
+    console.log(this.planData);
   
     this.planService.createPlan(this.planData).subscribe({
   

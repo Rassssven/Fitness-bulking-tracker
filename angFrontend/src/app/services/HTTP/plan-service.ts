@@ -10,7 +10,10 @@ export class PlanService {
   private http = inject(HttpClient);
   private apiUrl = 'http://localhost:8080/plans';
 
-  createPlan(plan: Plan) {
+  createPlan(plan: {
+    name: string;
+    type: string;
+  }) {
     return this.http.post<Plan>(this.apiUrl, plan);
   }
 
