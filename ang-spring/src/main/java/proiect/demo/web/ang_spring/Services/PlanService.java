@@ -74,13 +74,13 @@ public class PlanService {
 		planRepo.deleteById(id);
 	}
 	
-	public Plan updatePlan(Long id, Authentication auth, Plan updatedPlan) throws AccessDeniedException {
+	public Plan updatePlan(Long id, Plan updatedPlan, Authentication auth) throws AccessDeniedException {
 		
 		String email = auth.getName();
 		
 		Plan plan = planRepo.findById(id)
 				.orElseThrow(() -> new RuntimeException("No plan found!"));
-				
+		
 		if(!plan.getUser().getEmail().equals(email)) {
 			throw new AccessDeniedException("Forbidden");
 		}

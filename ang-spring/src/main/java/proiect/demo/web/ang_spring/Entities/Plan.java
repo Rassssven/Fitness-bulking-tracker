@@ -22,7 +22,7 @@ public class Plan {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Long id;
 	
 	private String name;
 	private String type;
@@ -49,18 +49,17 @@ public class Plan {
 	
 	public Plan() { }
 
-	public Plan(long id, String name, String type) {
+	public Plan(String name, String type) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.type = type;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

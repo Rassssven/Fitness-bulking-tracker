@@ -3,6 +3,7 @@ package proiect.demo.web.ang_spring.Controllers;
 import java.nio.file.AccessDeniedException;
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,29 +31,32 @@ public class PlanController {
 	}
 	
 	@PostMapping
-	public Plan createPlan(@RequestBody Plan plan,
-						   Authentication auth) {
-		return planServ.createPlan(plan, auth);
+	public ResponseEntity<Plan> createPlan(@RequestBody Plan plan, Authentication auth) {
+		Plan plaan = planServ.createPlan(plan, auth);
+
+		return ResponseEntity.status(201).body(plaan);
 	}
 	
 	@GetMapping
-	public List<Plan> getAllPlans(Authentication auth) {
-		return planServ.getAllPlans(auth);
+	public ResponseEntity<List<Plan>> getAllPlans(Authentication auth) {
+		return ResponseEntity.ok(planServ.getAllPlans(auth));
 	}
 	
 	@GetMapping("/{id}")
-	public Plan getPlanById(@PathVariable Long id, Authentication auth) throws AccessDeniedException {
-		return planServ.getPlan(id, auth);
+	public ResponseEntity<Plan> getPlanById(@PathVariable Long id, Authentication auth) throws AccessDeniedException {
+		return ResponseEntity.ok(planServ.getPlan(id, auth));
 	}
 	
 	@DeleteMapping("/{id}")
-	public void deletePlan(@PathVariable Long id, Authentication auth) throws AccessDeniedException {
+	public ResponseEntity<Void> deletePlan(@PathVariable Long id, Authentication auth) throws AccessDeniedException {
 		planServ.deletePlan(id, auth);
+		
+		return ResponseEntity.noContent().build();
 	}
 	
 	@PutMapping("/{id}")
-	public Plan updatePlan(@PathVariable Long id, Authentication auth, @RequestBody Plan plan) throws AccessDeniedException {
-		return planServ.updatePlan(id, auth, plan);
+	public Plan updatePlan(@PathVariable Long id, @RequestBody Plan plan, Authentication auth) throws AccessDeniedException {
+		return planServ.updatePlan(id, plan, auth);
 	}
 
 	
