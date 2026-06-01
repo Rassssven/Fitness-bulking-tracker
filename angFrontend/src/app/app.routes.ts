@@ -9,6 +9,7 @@ import { ProfileDashboard } from './pages/profile-dashboard/profile-dashboard';
 import { CustomizePlanPage } from './pages/customize-plan-page/customize-plan-page';
 import { HelpPage } from './pages/help-page/help-page';
 import { ProductCard } from './Shop/product-card/product-card';
+import { DiagramPage } from './pages/diagram-page/diagram-page';
 
 export const routes: Routes = [
     { path: '', component: Home },
@@ -23,5 +24,6 @@ export const routes: Routes = [
     { path: 'help', component: HelpPage},
     { path: 'product/:id', component: ProductCard},
     { path: 'login', component: Login},
-    { path: 'register', component: Register}
+    { path: 'register', component: Register},
+    { path: 'diagram', component: DiagramPage }
 ];
