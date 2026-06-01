@@ -10,6 +10,7 @@ import { CustomizePlanPage } from './pages/customize-plan-page/customize-plan-pa
 import { HelpPage } from './pages/help-page/help-page';
 import { ProductCard } from './Shop/product-card/product-card';
 import { DiagramPage } from './pages/diagram-page/diagram-page';
+import { authGuard } from './core/guards/auth-guard';
 
 export const routes: Routes = [
     { path: '', component: Home },
@@ -21,7 +22,7 @@ export const routes: Routes = [
     { path: 'register', component: Register },
     { path: 'profile-dashboard', component: ProfileDashboard},
     { path: 'customize-plan-page/:id', component: CustomizePlanPage},
-    { path: 'help', component: HelpPage},
+    { path: 'help', component: HelpPage, canActivate: [authGuard]},
     { path: 'product/:id', component: ProductCard},
     { path: 'login', component: Login},
     { path: 'register', component: Register},

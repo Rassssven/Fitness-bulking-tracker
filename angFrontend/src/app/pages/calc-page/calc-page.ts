@@ -23,6 +23,7 @@ export class CalcPage implements OnInit {
     weight: 0,
     height: 0,
     activityLevel: 'sedentary',
+    gender: '',
     plan: 'custom',
     calories: 0
   }
@@ -43,6 +44,7 @@ export class CalcPage implements OnInit {
       weight: this.calcData.weight,
       height: this.calcData.height,
       activityLevel: this.calcData.activityLevel,
+      gender: this.calcData.gender,
       plan: this.calcData.plan,
       calories: this.calcData.calories
      } 

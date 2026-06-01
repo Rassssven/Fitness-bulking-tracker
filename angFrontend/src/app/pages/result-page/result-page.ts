@@ -5,6 +5,7 @@ import { Recommendations } from '../../services/Recommendations/recommendations'
 import { NotificationService } from '../../shared/notification-service';
 import { PlanService } from '../../services/HTTP/plan-service';
 import { AuthService } from '../../auth/authService/auth.service';
+import { UserService } from '../../services/HTTP/user-service';
 
 @Component({
   selector: 'app-result-page',
@@ -19,6 +20,7 @@ export class ResultPage implements OnInit {
   private recommendations = inject(Recommendations);
   private planService = inject(PlanService);
   private notifService = inject(NotificationService);
+  private userService = inject(UserService);
   private authService = inject(AuthService);
 
   calcData: CalcData = {
@@ -26,6 +28,7 @@ export class ResultPage implements OnInit {
     weight: 0,
     height: 0,
     activityLevel: '',
+    gender: '',
     plan: '',
     calories: 0
   }
@@ -64,6 +67,7 @@ export class ResultPage implements OnInit {
         age: Number(params['age']),
         weight: Number(params['weight']),
         height: Number(params['height']),
+        gender: params['gender'],
         activityLevel: params['activityLevel'],
         plan: params['plan'],
         calories: Number(params['calories'])
@@ -71,6 +75,26 @@ export class ResultPage implements OnInit {
 
     this.recommendationsData = this.recommendations.getRecommendations(this.calcData);
     });
+  }
+
+  updateUser() {
+
+    const updatedUserData = {
+      age: this.calcData.age,
+      gender: this.calcData.gender,
+      height: this.calcData.height,
+      activityLevel: this.calcData.activityLevel
+    };
+
+    this.userService.updateUser(updatedUserData).subscribe({
+      next: () => {
+        this.notifService.showSuccess("User data updated successfully");
+      },
+      error: () => {
+        this.notifService.showError("Error updating user data");
+      }
+    });
+
   }
 
 }
