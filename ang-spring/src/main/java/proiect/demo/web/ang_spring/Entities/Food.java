@@ -29,6 +29,10 @@ public class Food {
 	@Column(nullable = false)
 	@Positive
 	private int calories;
+	
+	private int protein;
+	private int carbs;
+	private int fat;
 	private String description;
 	
 	@ManyToOne
@@ -40,14 +44,15 @@ public class Food {
 	@JsonIgnore
 	private List<Plan> plans;
 	
-	public Food() {
-		
-	}
+	public Food() {	}
 
-	public Food(String name, int calories, String description) {
+	public Food(String name, @Positive int calories, int protein, int carbs, int fat, String description) {
 		super();
 		this.name = name;
 		this.calories = calories;
+		this.protein = protein;
+		this.carbs = carbs;
+		this.fat = fat;
 		this.description = description;
 	}
 
@@ -90,9 +95,38 @@ public class Food {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
-	
-	
+
+	public int getProtein() {
+		return protein;
+	}
+
+	public void setProtein(int protein) {
+		this.protein = protein;
+	}
+
+	public int getCarbs() {
+		return carbs;
+	}
+
+	public void setCarbs(int carbs) {
+		this.carbs = carbs;
+	}
+
+	public int getFat() {
+		return fat;
+	}
+
+	public void setFat(int fat) {
+		this.fat = fat;
+	}
+
+	public List<Plan> getPlans() {
+		return plans;
+	}
+
+	public void setPlans(List<Plan> plans) {
+		this.plans = plans;
+	}
 	
 	
 }

@@ -24,11 +24,7 @@ public class Goal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(nullable = false)
-	@Positive
 	private int targetCalories;
-
-	private int currentWeight;
 	private int targetWeight;
 	
 	private String type;
@@ -48,14 +44,13 @@ public class Goal {
 	
 	public Goal() {}
 
-	public Goal(int targetCalories, String type, LocalDate startDate, LocalDate endDate, String name, int currentWeight, int targetWeight) {
+	public Goal(int targetCalories, String type, LocalDate startDate, LocalDate endDate, String name, int targetWeight) {
 		super();
 		this.targetCalories = targetCalories;
 		this.type = type;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.name = name;
-		this.currentWeight = currentWeight;
 		this.targetWeight = targetWeight;
 	}
 
@@ -107,13 +102,6 @@ public class Goal {
 		this.name = name;
 	}
 
-	public int getCurrentWeight() {
-		return currentWeight;
-	}
-
-	public void setCurrentWeight(int currentWeight) {
-		this.currentWeight = currentWeight;
-	}
 
 	public int getTargetWeight() {
 		return targetWeight;

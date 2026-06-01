@@ -33,13 +33,15 @@ public class User {
 	//@Positive
 	//@Max(100)
 	private Integer age;
+	private String sex;
+	private int height;
+	private String activityLevel;
 	
 	@NotBlank
 	private String lastName;
 	
 	@NotBlank
 	private String firstName;
-	
 	private String tel;
 	
 	@Column(nullable = false)
@@ -74,18 +76,24 @@ public class User {
 			   orphanRemoval = true)
 	private List<Plan> plans;
 	
-	public User() {
-		
-	}
+	@OneToMany(mappedBy = "user",
+			   cascade = CascadeType.ALL,
+			   orphanRemoval = true)
+	private List<DailyTracker> dailyTracker;
 	
-	public User(String password, String lastName, String firstName, String tel, String role, String email, int age) {
+	public User() {	}
+	
+	public User(String password, Integer age, String sex, int height, String activityLevel, String lastName, String firstName, String tel, String email) {
 		super();
 		this.password = password;
+		this.age = age;
+		this.sex = sex;
+		this.height = height;
+		this.activityLevel = activityLevel;
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.tel = tel;
 		this.email = email;
-		this.age = age;
 	}
 
 	public Long getId() {
@@ -149,6 +157,42 @@ public class User {
 	}
 
 	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
+	public String getActivityLevel() {
+		return activityLevel;
+	}
+
+	public void setActivityLevel(String activityLevel) {
+		this.activityLevel = activityLevel;
+	}
+
+	public List<DailyTracker> getDailyTracker() {
+		return dailyTracker;
+	}
+
+	public void setDailyTracker(List<DailyTracker> dailyTracker) {
+		this.dailyTracker = dailyTracker;
+	}
+
+	public void setAge(Integer age) {
 		this.age = age;
 	}
 

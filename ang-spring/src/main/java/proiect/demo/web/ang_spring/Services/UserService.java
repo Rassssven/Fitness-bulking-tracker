@@ -2,6 +2,7 @@ package proiect.demo.web.ang_spring.Services;
 
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import proiect.demo.web.ang_spring.Entities.User;
@@ -30,13 +31,17 @@ public class UserService {
 				.orElseThrow(() -> new RuntimeException("User not found!"));
 	}
 	
-	public User updateUser(Long id, User updatedUser) {
-		User current = getUserById(id);
+	public User updateUser(User updatedUser, Authentication auth) {
 		
-		current.setLastName(updatedUser.getLastName());
-		current.setFirstName(updatedUser.getFirstName());
-		current.setEmail(updatedUser.getEmail());
-		current.setTel(updatedUser.getTel());
+		String email = auth.getName();
+		
+		User current = userRepo.findByEmail(email)
+				.orElseThrow(() -> new RuntimeException("User not found!"));
+				
+		current.setAge(updatedUser.getAge());
+		current.setSex(updatedUser.getSex());
+		current.setHeight(updatedUser.getHeight());
+		current.setActivityLevel(updatedUser.getActivityLevel());
 		
 		return userRepo.save(current);
 	}

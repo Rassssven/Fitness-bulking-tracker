@@ -2,6 +2,7 @@ package proiect.demo.web.ang_spring.Controllers;
 
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,9 +42,9 @@ public class UserController {
 		return userServ.getUserById(id);
 	}
 	
-	@PutMapping("/{id}")
-	public User updateUser(@PathVariable Long id, @RequestBody User user) {
-		return userServ.updateUser(id, user);
+	@PutMapping("/me")
+	public User updateUser(@RequestBody User user, Authentication auth) {
+		return userServ.updateUser(user, auth);
 	}
 	
 	@DeleteMapping("/{id}")
