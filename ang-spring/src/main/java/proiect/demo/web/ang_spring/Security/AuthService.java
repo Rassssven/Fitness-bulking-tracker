@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import proiect.demo.web.ang_spring.Entities.Role;
 import proiect.demo.web.ang_spring.Entities.User;
 import proiect.demo.web.ang_spring.Security.JWT.JWTService;
 import proiect.demo.web.ang_spring.db.UserRepository;
@@ -64,7 +65,7 @@ public class AuthService {
 			us.setLastName(request.getLastName());
 			us.setEmail(request.getEmail());
 			us.setPassword(encodedPassword);
-			us.setRole("USER");
+			us.setRole(Role.USER);
 			
 			userRepo.save(us);
 			

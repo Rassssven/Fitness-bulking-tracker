@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import proiect.demo.web.ang_spring.Entities.Role;
 import proiect.demo.web.ang_spring.Entities.User;
 import proiect.demo.web.ang_spring.db.UserRepository;
 
@@ -49,6 +50,20 @@ public class UserService {
 	public void deleteUser(Long id) {
 		User User = getUserById(id);
 		userRepo.delete(User);
+	}
+	
+	public User updateRole(Long id, Role role) {
+		
+		User user = userRepo.findById(id)
+	            .orElseThrow(() -> new RuntimeException("User not found"));
+		
+		user.setRole(role);
+		
+		return userRepo.save(user);
+	}
+	
+	public List<User> findUsers(String name) {
+		return userRepo.findByFirstNameContainingIgnoreCase(name);
 	}
 	
 }

@@ -7,6 +7,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -44,38 +46,44 @@ public class User {
 	private String firstName;
 	private String tel;
 	
-	@Column(nullable = false)
-	private String role;
+	@Enumerated(EnumType.STRING)
+	private Role role;
 	
 	@Column(unique = true, nullable = false)
 	@Email
 	private String email;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "user",
 			   cascade = CascadeType.ALL,
 		       orphanRemoval = true)
 	private List<Workout> workouts;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "user",
 			   cascade = CascadeType.ALL,
 		       orphanRemoval = true)
 	private List<Food> foods;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "user",
 			   cascade = CascadeType.ALL,
 		       orphanRemoval = true)
 	private List<Goal> goals;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "user",
 			   cascade = CascadeType.ALL,
 		       orphanRemoval = true)
 	private List<Exercise> exercises;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "user",
 			   cascade = CascadeType.ALL,
 			   orphanRemoval = true)
 	private List<Plan> plans;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "user",
 			   cascade = CascadeType.ALL,
 			   orphanRemoval = true)
@@ -99,64 +107,24 @@ public class User {
 	public Long getId() {
 		return id;
 	}
-	
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public String getPassword() {
 		return password;
 	}
-	
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	public String getLastName() {
-		return lastName;
-	}
-	
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	
-	public String getFirstName() {
-		return firstName;
-	}
-	
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	
-	public String getTel() {
-		return tel;
-	}
-	
-	public void setTel(String tel) {
-		this.tel = tel;
-	}
-	
-	public String getRole() {
-		return role;
-	}
 
-	public void setRole(String role) {
-		this.role = role;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-	
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public int getAge() {
+	public Integer getAge() {
 		return age;
 	}
 
-	public void setAge(int age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
 
@@ -184,16 +152,44 @@ public class User {
 		this.activityLevel = activityLevel;
 	}
 
-	public List<DailyTracker> getDailyTracker() {
-		return dailyTracker;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setDailyTracker(List<DailyTracker> dailyTracker) {
-		this.dailyTracker = dailyTracker;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
-	public void setAge(Integer age) {
-		this.age = age;
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public List<Workout> getWorkouts() {
@@ -235,6 +231,15 @@ public class User {
 	public void setPlans(List<Plan> plans) {
 		this.plans = plans;
 	}
+
+	public List<DailyTracker> getDailyTracker() {
+		return dailyTracker;
+	}
+
+	public void setDailyTracker(List<DailyTracker> dailyTracker) {
+		this.dailyTracker = dailyTracker;
+	}
+
 	
 	
 }
