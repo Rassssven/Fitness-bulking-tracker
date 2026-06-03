@@ -31,7 +31,12 @@
 
         <div class="actions">
             <button routerLink="/" class="btn cancel">Cancel Plan</button>
-            <button (click)="savePlan()" class="btn save">Create Plan</button>
+
+            @if(isLoggedIn()) {
+                <button (click)="savePlan()" class="btn save">Create Plan</button>
+            } @else {
+                <button routerLink="/login" class="btn save">Login to create plan</button>
+            }
         </div>
 
     </div>

@@ -4,9 +4,11 @@
 
     <div class="dashboard-header">
 
-      <h1>User Management</h1>
+        <h1>User Management</h1>
 
-      <input type="text" placeholder="Search users..." class="search-bar">
+        <input type="text" placeholder="Search users..." class="search-bar" #searchInput>
+        
+        <button (click)="searchUsers(searchInput.value)" class="search-btn">Search</button>
 
     </div>
 

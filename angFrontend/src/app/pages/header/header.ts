@@ -24,4 +24,8 @@ export class Header {
     this.auth.logout();
   }
 
+  isAdmin() {
+    return this.auth.getCurrentUser()?.role === 'ADMIN';
+  }
+
 }

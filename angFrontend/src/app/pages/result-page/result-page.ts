@@ -97,4 +97,8 @@ export class ResultPage implements OnInit {
 
   }
 
+  isLoggedIn() {
+    return this.authService.isLoggedIn();
+  }
+
 }

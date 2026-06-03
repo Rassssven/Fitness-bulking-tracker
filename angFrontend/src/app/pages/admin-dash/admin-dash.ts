@@ -36,7 +36,15 @@ export class AdminDash implements OnInit {
         console.log(`User with id ${userId} updated to ${role}`);
       }
     });
+  }
 
+  searchUsers(name: string) {
+
+    this.userService.searchUser(name).subscribe({
+      next: users => {
+        this.userData.set(users);
+      }
+    });
   }
 
 }

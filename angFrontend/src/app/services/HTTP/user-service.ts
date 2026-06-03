@@ -27,4 +27,8 @@ export class UserService {
         return this.http.put(`${this.apiUrl}/${id}/role?role=${Role}`, {});
     }
 
+    searchUser(name: string) {
+        return this.http.get<User[]>(`${this.apiUrl}/search?name=${name}`);
+    }
+
 }
