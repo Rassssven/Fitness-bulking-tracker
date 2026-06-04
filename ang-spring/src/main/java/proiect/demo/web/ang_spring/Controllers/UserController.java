@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import proiect.demo.web.ang_spring.DTO.UpdateProfileDTO;
 import proiect.demo.web.ang_spring.Entities.Role;
 import proiect.demo.web.ang_spring.Entities.User;
 import proiect.demo.web.ang_spring.Entities.Workout;
@@ -66,6 +67,11 @@ public class UserController {
 	@GetMapping("/search")
 	public List<User> findUsers(@RequestParam String name) {
 		return userServ.findUsers(name);
+	}
+	
+	@PutMapping("/update")
+	public User updateProfile(@RequestBody UpdateProfileDTO dto, Authentication auth) {
+		return userServ.updateProfile(dto, auth);
 	}
 	
 }

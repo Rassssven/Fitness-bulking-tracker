@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import proiect.demo.web.ang_spring.DTO.UpdateProfileDTO;
 import proiect.demo.web.ang_spring.Entities.Role;
 import proiect.demo.web.ang_spring.Entities.User;
 import proiect.demo.web.ang_spring.db.UserRepository;
@@ -65,5 +66,32 @@ public class UserService {
 	public List<User> findUsers(String name) {
 		return userRepo.findByFirstNameContainingIgnoreCase(name);
 	}
+	
+	public User updateProfile(UpdateProfileDTO dto, Authentication auth) {
+		
+		String email = auth.getName();
+		
+		User current = userRepo.findByEmail(email)
+				.orElseThrow(() -> new RuntimeException("User not found!"));
+		
+		if(dto.getAge() != null) {
+		    current.setAge(dto.getAge());
+		}
+
+		if(dto.getSex() != null) {
+		    current.setSex(dto.getSex());
+		}
+
+		if(dto.getHeight() != null) {
+		    current.setHeight(dto.getHeight());
+		}
+
+		if(dto.getActivityLevel() != null) {
+		    current.setActivityLevel(dto.getActivityLevel());
+		}
+
+	    return userRepo.save(current);
+	}
+	
 	
 }

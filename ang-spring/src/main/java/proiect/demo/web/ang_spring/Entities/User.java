@@ -36,7 +36,7 @@ public class User {
 	//@Max(100)
 	private Integer age;
 	private String sex;
-	private int height;
+	private Integer height;
 	private String activityLevel;
 	
 	@NotBlank
@@ -136,11 +136,11 @@ public class User {
 		this.sex = sex;
 	}
 
-	public int getHeight() {
+	public Integer getHeight() {
 		return height;
 	}
 
-	public void setHeight(int height) {
+	public void setHeight(Integer height) {
 		this.height = height;
 	}
 
