@@ -9,70 +9,112 @@ export class Recommendations {
   getRecommendations(calcData: CalcData): string[] {
   
     const plan = calcData.plan;
-    //const calories = calcData.calories;
-    //const activity = calcData.activityLevel;
-
-    const age = calcData.age;
     const weight = calcData.weight;
-    const height = calcData.height;
+    const targetWeight = calcData.targetWeight;
+    const duration = calcData.duration;
 
     const recommendations: string[] = [];
 
     if(plan === 'bulk') {
-      
-      if(age < 18) {
-        recommendations.push('As you are under 18, it is recommended to focus on a balanced diet and regular exercise rather than bulking.');
-      } else {
-        recommendations.push('To bulk effectively, aim for a calorie surplus of 250-500 calories per day.');
-      }
+
+      recommendations.push(
+        `To reach ${targetWeight}kg in ${duration} weeks, aim for a moderate calorie surplus and consistent training.`
+      );
 
       if(weight < 65) {
-        recommendations.push('Focus on consuming nutrient-dense foods to support muscle growth.');
-      } else if (weight > 65 && weight < 90) {
-        recommendations.push('Consider incorporating more protein into your diet to support muscle development.');
-      } else {
-        recommendations.push('Monitor your calorie intake closely to avoid excessive fat gain while bulking.');
-      }
 
-      if(height < 160) {
-        recommendations.push('Incorporate strength training exercises to maximize muscle growth.');
-      } else {
-        recommendations.push('Ensure you are getting enough rest and recovery to support muscle growth.');
-      }
+        recommendations.push(
+          'Prioritize calorie-dense foods such as rice, oats, nuts and healthy fats.'
+        );
 
+        recommendations.push(
+          'Focus on progressive overload in compound exercises such as squats, bench press and deadlifts.'
+        );
+
+      } else if(weight < 90) {
+
+        recommendations.push(
+          'Consume at least 1.6 - 2.2g of protein per kg of body weight daily.'
+        );
+
+        recommendations.push(
+          'Aim to gain 0.25 - 0.5kg per week for lean muscle growth.'
+        );
+
+      } else {
+
+        recommendations.push(
+          'Monitor weekly weight gain carefully to minimize unnecessary fat accumulation.'
+        );
+
+        recommendations.push(
+          'Keep cardio sessions in your routine to maintain cardiovascular health.'
+        );
+      }
     }
 
     if(plan === 'cut') {
 
-      if(age < 18) {
-        recommendations.push('As you are under 18, it is recommended to focus on a balanced diet and regular exercise rather than cutting.');
-      } else {
-        recommendations.push('To cut effectively, aim for a calorie deficit of 500-750 calories per day.');
-      }
+      recommendations.push(
+        `To reach ${targetWeight}kg in ${duration} weeks, maintain a sustainable calorie deficit.`
+      );
 
       if(weight < 65) {
-        recommendations.push('Focus on consuming nutrient-dense foods to support fat loss while maintaining muscle mass.');
-      } else if (weight > 65 && weight < 90) {
-        recommendations.push('Consider incorporating more protein into your diet to support muscle retention while cutting.');
-      } else {
-        recommendations.push('Monitor your calorie intake closely to ensure you are in a calorie deficit while cutting.');
-      }
 
-      if(height < 160) {
-        recommendations.push('Incorporate a mix of cardio and strength training exercises to maximize fat loss while maintaining muscle mass.');
+        recommendations.push(
+          'Avoid aggressive calorie restriction and focus on preserving muscle mass.'
+        );
+
+      } else if(weight < 90) {
+
+        recommendations.push(
+          'Consume plenty of protein and continue resistance training during the cut.'
+        );
+
+        recommendations.push(
+          'Aim to lose approximately 0.5 - 1% of body weight per week.'
+        );
+
       } else {
-        recommendations.push('Ensure you are getting enough rest and recovery to support fat loss while cutting.');
+
+        recommendations.push(
+          'Increase daily activity and prioritize high-volume, low-calorie foods.'
+        );
+
+        recommendations.push(
+          'Track weight trends weekly rather than focusing on daily fluctuations.'
+        );
       }
     }
-    
+
     if(plan === 'maintenance') {
 
-        recommendations.push('To maintain your current weight, aim to consume the same number of calories as you burn each day.');  
-      
-      }
+      recommendations.push(
+        'Match calorie intake to daily energy expenditure.'
+      );
+
+      recommendations.push(
+        'Continue strength training to maintain muscle mass and performance.'
+      );
+
+      recommendations.push(
+        'Monitor body weight weekly and adjust calories if necessary.'
+      );
+    }
 
     if(plan === 'custom') {
-      recommendations.push('For a custom plan, it is recommended to consult with a nutritionist or fitness professional to create a personalized plan based on your specific goals and needs.');
+
+      recommendations.push(
+        'Define a clear goal before creating a custom plan.'
+      );
+
+      recommendations.push(
+        'Adjust calories, training volume and cardio based on your individual needs.'
+      );
+
+      recommendations.push(
+        'Track progress consistently and make small adjustments over time.'
+      );
     }
 
     return recommendations;

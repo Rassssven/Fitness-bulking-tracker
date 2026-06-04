@@ -8,11 +8,7 @@
 
         <div class="form-group">
           <label for="plan">Plan</label>
-            <select
-                id="plan"
-                name="plan"
-                [(ngModel)]="calcData.plan"
-                >
+            <select id="plan" name="plan" [(ngModel)]="calcData.plan">
                 <option value="bulk">Bulk</option>
                 <option value="cut">Cut</option>
                 <option value="maintenance">Maintenance</option>
@@ -21,10 +17,21 @@
         </div>
 
         <div class="form-group">
-          <label for="age">Age</label>
-          <input id="age" name="age" type="number" placeholder="Enter age" [(ngModel)]="calcData.age">
+          <label for="weight">Current Weight (kg)</label>
+          <input id="weight" name="weight" type="number" placeholder="Enter weight" [(ngModel)]="calcData.weight">
         </div>
 
+        <div class="form-group">
+          <label for="targetWeight">Target Weight (kg)</label>
+          <input id="targetWeight" name="targetWeight" type="number" placeholder="Enter target weight" [(ngModel)]="calcData.targetWeight">
+        </div>
+
+        <div class="form-group">
+          <label for="duration">Duration (weeks)</label>
+          <input id="duration" name="duration" type="number" placeholder="Enter duration" [(ngModel)]="calcData.duration">
+        </div>
+
+        <!--
         <div class="form-group">
           <label for="weight">Weight (kg)</label>
           <input id="weight" name="weight" type="number" placeholder="Enter weight" [(ngModel)]="calcData.weight">
@@ -51,7 +58,7 @@
             <option>Moderate</option>
             <option>High</option>
           </select>
-        </div>
+        </div> -->
 
         <button type="submit">Calculate</button>
 

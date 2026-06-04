@@ -24,13 +24,10 @@ export class ResultPage implements OnInit {
   private authService = inject(AuthService);
 
   calcData: CalcData = {
-    age: 0,
+    plan: 'custom',
     weight: 0,
-    height: 0,
-    activityLevel: '',
-    gender: '',
-    plan: '',
-    calories: 0
+    targetWeight: 0,
+    duration: 0
   }
 
   recommendationsData: string[] = [];
@@ -64,20 +61,17 @@ export class ResultPage implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.calcData = {
-        age: Number(params['age']),
-        weight: Number(params['weight']),
-        height: Number(params['height']),
-        gender: params['gender'],
-        activityLevel: params['activityLevel'],
         plan: params['plan'],
-        calories: Number(params['calories'])
+        weight: Number(params['weight']),
+        targetWeight: Number(params['targetWeight']),
+        duration: Number(params['duration'])
       };
 
     this.recommendationsData = this.recommendations.getRecommendations(this.calcData);
     });
   }
 
-  updateUser() {
+  /*updateUser() {
 
     const updatedUserData = {
       age: this.calcData.age,
@@ -95,7 +89,7 @@ export class ResultPage implements OnInit {
       }
     });
 
-  }
+  }*/
 
   isLoggedIn() {
     return this.authService.isLoggedIn();

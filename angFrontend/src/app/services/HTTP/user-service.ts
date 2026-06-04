@@ -2,6 +2,16 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { User } from '../../models/user';
 
+export interface CurrentUserProfile {
+    age: number;
+    weight: number;
+    height: number;
+    activityLevel: string;
+    firstName: string;
+    lastName: string;
+    tel: number;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -12,6 +22,10 @@ export class UserService {
 
     getUsers() {
         return this.http.get<User[]>(this.apiUrl);
+    }
+
+    getCurrentUserLogged() {
+        return this.http.get<CurrentUserProfile>(`${this.apiUrl}/me`);
     }
 
     updateUser(userData: {
@@ -29,6 +43,15 @@ export class UserService {
 
     searchUser(name: string) {
         return this.http.get<User[]>(`${this.apiUrl}/search?name=${name}`);
+    }
+
+    updateAccountInfo(userData: {
+        age: number | null;
+        weight: number | null;
+        height: number | null;
+        activityLevel: string | null;
+    }) {
+        return this.http.put(this.apiUrl + '/update', userData);
     }
 
 }

@@ -29,8 +29,8 @@
                 <div class="profile-info">
                     <p><span class="label">Name</span><span class="value">John Doe</span></p>
                     <p><span class="label">Email</span><span class="value">john.doe@example.com</span></p>
-                    <p><span class="label">Age</span><span class="value">Muscle Gain</span></p>
-                    <p><span class="label">Member Since</span><span class="value">2024</span></p>
+                    <p><span class="label">Age</span><span class="value">{{ currentUser.age }}</span></p>
+                    <p><span class="label">Activity Level</span><span class="value">Moderate</span></p>
                 </div>
 
                 <div class="account-stats">
@@ -40,6 +40,40 @@
                     </div>
                 </div>
 
+            </div>
+
+        </div>
+
+        <div class="update-profile">
+
+            <button (click)="updateInfo()" class="btn update-btn">Update Info</button>
+
+            <div class="prof-update">
+
+                <div class="up-field">
+                    <label for="age"> Age </label>
+                    <input id="age" name="age" type="number" placeholder="Enter age" [(ngModel)]="userData.age">
+                </div>
+                
+                <div class="up-field">
+                    <label for="weight"> Weight </label>
+                    <input id="weight" name="weight" type="number" placeholder="Enter weight" [(ngModel)]="userData.weight">
+                </div>
+
+                <div class="up-field">
+                    <label for="height"> Height </label>
+                    <input id="height" name="height" type="number" placeholder="Enter height" [(ngModel)]="userData.height">
+                </div>
+
+                <div class="up-field">
+                    <label for="activity-level"> Activity Level </label>
+                    <select id="activity-level" name="activity-level" [(ngModel)]="userData.activityLevel">
+                        <option value="Sedentary">Sedentary</option>
+                        <option value="Light">Light</option>
+                        <option value="Moderate">Moderate</option>
+                        <option value="Active">High</option>
+                    </select>
+                </div>
             </div>
 
         </div>

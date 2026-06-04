@@ -19,13 +19,10 @@ export class CalcPage implements OnInit {
   private notifService = inject(NotificationService);
 
   calcData: CalcData = {
-    age: 0,
-    weight: 0,
-    height: 0,
-    activityLevel: 'sedentary',
-    gender: '',
     plan: 'custom',
-    calories: 0
+    weight: 0,
+    targetWeight: 0,
+    duration: 0
   }
 
   ngOnInit() {
@@ -40,13 +37,10 @@ export class CalcPage implements OnInit {
 
   goToResult() {
     this.router.navigate(['/result-page'], { queryParams: { 
-      age: this.calcData.age,
       weight: this.calcData.weight,
-      height: this.calcData.height,
-      activityLevel: this.calcData.activityLevel,
-      gender: this.calcData.gender,
       plan: this.calcData.plan,
-      calories: this.calcData.calories
+      targetWeight: this.calcData.targetWeight,
+      duration: this.calcData.duration
      } 
     });
   }
