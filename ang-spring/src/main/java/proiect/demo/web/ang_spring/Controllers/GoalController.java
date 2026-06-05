@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,8 +34,8 @@ public class GoalController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Goal> createGoal(@RequestBody Goal goal) {
-		Goal created = goalServ.createGoal(goal);
+	public ResponseEntity<Goal> createGoal(@RequestBody Goal goal, Authentication auth) {
+		Goal created = goalServ.createGoal(goal, auth);
 		return ResponseEntity.status(201).body(created);
 	}
 	
@@ -81,19 +82,9 @@ public class GoalController {
 	
 	/* Exercises */
 	
-	@GetMapping("/name/{name}")
-	public List<Goal> getGoalsByName(@PathVariable String name) {
-		return goalServ.findGoalsByName(name);
-	}
-	
 	@GetMapping("/type/{type}")
 	public List<Goal> getGoalsByType(@PathVariable String type) {
 		return goalServ.findGoalsByType(type);
-	}
-	
-	@GetMapping("/verify/{name}")
-	public Boolean verifyGoal(@PathVariable String name) {
-		return goalServ.goalExists(name);
 	}
 	
 	@GetMapping("/number")
@@ -124,16 +115,6 @@ public class GoalController {
 	}
 	
 	/* Text Search */
-	
-	@GetMapping("/search")
-	public List<Goal> containingText(@RequestParam String text) {
-		return goalServ.findByNameContaining(text);
-	}
-	
-	@GetMapping("/starts")
-	public List<Goal> startingText(@RequestParam String text) {
-		return goalServ.findByStartingName(text);
-	}
 	
 	@GetMapping("/type/search")
 	public List<Goal> containingType() {
@@ -170,11 +151,6 @@ public class GoalController {
 		return goalServ.findByTypeAndUser(type, UserId);
 	}
 	
-	@GetMapping("/filter/type")
-	public List<Goal> getByTypeAndName(@RequestParam String type,
-									   @RequestParam String name) {
-		return goalServ.findByTypeAndName(type, name);
-	}
 	
 	@GetMapping("/filter/types")
 	public List<Goal> getByTargetAndUser(@RequestParam int targetCalories,

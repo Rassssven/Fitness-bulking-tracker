@@ -12,11 +12,9 @@ public interface GoalRepository extends JpaRepository<Goal, Long> {
 
 	List<Goal> findByUserId(Long userId);
 	
-	List<Goal> findByName(String name);
-	
 	List<Goal> findByType(String type);
 	
-	boolean existsByName(String name);
+	//boolean existsByName(String name);
 	
 	long countByType(String type);
 	
@@ -26,9 +24,9 @@ public interface GoalRepository extends JpaRepository<Goal, Long> {
 	
 	List<Goal> findByTargetCaloriesNot(int calories);
 	
-	List<Goal> findByNameContaining(String text);
+	//List<Goal> findByNameContaining(String text);
 	
-	List<Goal> findByNameStartsWith(String text);
+	//List<Goal> findByNameStartsWith(String text);
 	
 	List<Goal> findByTypeContaining(String text);
 	
@@ -42,7 +40,7 @@ public interface GoalRepository extends JpaRepository<Goal, Long> {
 	
 	List<Goal> findByTypeAndUserId(String type, Long userId);
 	
-	List<Goal> findByTypeAndName(String name, String type);
+	//List<Goal> findByTypeAndName(String name, String type);
 	
 	List<Goal> findByTargetCaloriesAndUserId(int targetCalories, Long userId);
 	
@@ -52,5 +50,5 @@ public interface GoalRepository extends JpaRepository<Goal, Long> {
 	
 	long countByUserId(Long userId);
 	
-	boolean existsByUserIdAndName(Long userId, String name);
+	//boolean existsByUserIdAndName(Long userId, String name);
 }

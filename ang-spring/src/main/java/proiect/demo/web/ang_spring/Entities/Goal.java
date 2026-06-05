@@ -24,15 +24,13 @@ public class Goal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private int targetCalories;
-	private int targetWeight;
+	private Integer targetCalories;
+	private Integer targetWeight;
 	
 	private String type;
 	
 	private LocalDate startDate;
 	private LocalDate endDate;
-	
-	private String name;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
@@ -40,17 +38,17 @@ public class Goal {
 	private User user;
 	
 	@OneToMany(mappedBy = "goal")
+	@JsonIgnore
 	private List<Plan> plans;
 	
 	public Goal() {}
 
-	public Goal(int targetCalories, String type, LocalDate startDate, LocalDate endDate, String name, int targetWeight) {
+	public Goal(Integer targetCalories, String type, LocalDate startDate, LocalDate endDate, Integer targetWeight) {
 		super();
 		this.targetCalories = targetCalories;
 		this.type = type;
 		this.startDate = startDate;
 		this.endDate = endDate;
-		this.name = name;
 		this.targetWeight = targetWeight;
 	}
 
@@ -62,11 +60,11 @@ public class Goal {
 		this.id = id;
 	}
 
-	public int getTargetCalories() {
+	public Integer getTargetCalories() {
 		return targetCalories;
 	}
 
-	public void setTargetCalories(int targetCalories) {
+	public void setTargetCalories(Integer targetCalories) {
 		this.targetCalories = targetCalories;
 	}
 
@@ -94,20 +92,11 @@ public class Goal {
 		this.endDate = endDate;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-
-	public int getTargetWeight() {
+	public Integer getTargetWeight() {
 		return targetWeight;
 	}
 
-	public void setTargetWeight(int targetWeight) {
+	public void setTargetWeight(Integer targetWeight) {
 		this.targetWeight = targetWeight;
 	}
 

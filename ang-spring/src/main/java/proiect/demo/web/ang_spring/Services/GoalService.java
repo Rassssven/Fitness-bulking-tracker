@@ -4,23 +4,35 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import proiect.demo.web.ang_spring.Entities.Goal;
 import proiect.demo.web.ang_spring.Entities.User;
 import proiect.demo.web.ang_spring.db.GoalRepository;
+import proiect.demo.web.ang_spring.db.UserRepository;
 
 @Service
 public class GoalService {
 	
 	private final GoalRepository goalRepo;
-
-	public GoalService(GoalRepository goalRepo) {
+	private final UserRepository userRepo;
+	
+	public GoalService(GoalRepository goalRepo, UserRepository userRepo) {
 		super();
 		this.goalRepo = goalRepo;
+		this.userRepo = userRepo;
 	}
-	
-	public Goal createGoal(Goal goal) {
+
+	public Goal createGoal(Goal goal, Authentication auth) {
+		
+		String email = auth.getName();
+		
+		User current = userRepo.findByEmail(email)
+				.orElseThrow(() -> new RuntimeException("User not found!"));
+				
+		goal.setUser(current);
+		
 		return goalRepo.save(goal);
 	}
 	
@@ -37,7 +49,6 @@ public class GoalService {
 		
 		Goal existing = getGoalById(id);
 		
-		existing.setName(updatedGoal.getName());
 		existing.setTargetCalories(updatedGoal.getTargetCalories());
 		existing.setType(updatedGoal.getType());
 		
@@ -69,9 +80,9 @@ public class GoalService {
 	/* Exercises */
 	
 	//1.. Găsește toate goal-urile cu numele exact dat.
-	public List<Goal> findGoalsByName(String name) {
-		return goalRepo.findByName(name);
-	}
+	//public List<Goal> findGoalsByName(String name) {
+	//	return goalRepo.findByName(name);
+	//}
 	
 	//2. Găsește toate goal-urile de tip
 	public List<Goal> findGoalsByType(String type) {
@@ -79,9 +90,9 @@ public class GoalService {
 	}
 	
 	//5. Verifică dacă există un goal cu numele dat.
-	public boolean goalExists(String name) {
-		return goalRepo.existsByName(name);
-	}
+	//public boolean goalExists(String name) {
+	//	return goalRepo.existsByName(name);
+	//}
 	
 	//6. Numără câte goal-uri există.
 	public long goalsCount() {
@@ -118,14 +129,14 @@ public class GoalService {
 	/* Text Search */
 	
 	//17. Goal-uri care contin "cut"
-	public List<Goal> findByNameContaining(String text) {
-		return goalRepo.findByNameContaining(text);
-	}
+	//public List<Goal> findByNameContaining(String text) {
+	//	return goalRepo.findByNameContaining(text);
+	//}
 	
 	//18. Goal-uri al caror nume incepe cu "Bul"
-	public List<Goal> findByStartingName(String text) {
-		return goalRepo.findByNameStartsWith(text);
-	}
+	//public List<Goal> findByStartingName(String text) {
+	//	return goalRepo.findByNameStartsWith(text);
+	//}
 	
 	//20. Goal-uri al caror type contine "LO"
 	public List<Goal> findByTypeContaining() {
@@ -159,9 +170,9 @@ public class GoalService {
 	}
 	
 	//30. Goal-uri cu nume dat și type dat.
-	public List<Goal> findByTypeAndName(String type, String name) {
-		return goalRepo.findByTypeAndName(type, name);
-	}
+	//public List<Goal> findByTypeAndName(String type, String name) {
+	//	return goalRepo.findByTypeAndName(type, name);
+	//}
 	
 	//31. Goal-uri ale user-ului 2 cu targetCalories > 2000.
 	public List<Goal> findByTargetAndUser(int targetCalories, Long userId) {
@@ -186,8 +197,8 @@ public class GoalService {
 	}
 	
 	//38. Verifică dacă user-ul are goal cu numele X.
-	public boolean verifyUserGoal(Long userId, String name) {
-		return goalRepo.existsByUserIdAndName(userId, name);
-	}
+	//public boolean verifyUserGoal(Long userId, String name) {
+	//	return goalRepo.existsByUserIdAndName(userId, name);
+	//}
 	
 }

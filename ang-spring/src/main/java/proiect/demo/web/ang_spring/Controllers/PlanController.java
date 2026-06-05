@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import proiect.demo.web.ang_spring.DTO.CreatePlanRequest;
 import proiect.demo.web.ang_spring.Entities.Plan;
 import proiect.demo.web.ang_spring.Services.PlanService;
 
@@ -35,6 +36,11 @@ public class PlanController {
 		Plan plaan = planServ.createPlan(plan, auth);
 
 		return ResponseEntity.status(201).body(plaan);
+	}
+	
+	@PostMapping("/create-full-plan")
+	public Plan createFullPlan(@RequestBody CreatePlanRequest dto, Authentication auth) {
+		return planServ.createFullPlan(dto, auth);
 	}
 	
 	@GetMapping
