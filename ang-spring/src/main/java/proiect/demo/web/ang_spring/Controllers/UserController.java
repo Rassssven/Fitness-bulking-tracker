@@ -40,13 +40,18 @@ public class UserController {
 	@GetMapping
 	public List<User> getUsers() {
 		System.out.println("GET USERS HIT");
-		
+	
 		return userServ.getUsers();
 	}
 	
 	@GetMapping("/{id}")
 	public User getUserById(@PathVariable Long id) {
 		return userServ.getUserById(id);
+	}
+	
+	@GetMapping("/me")
+	public User getUserByEmail(Authentication Auth) {
+		return userServ.getUserByEmail(Auth);
 	}
 	
 	@PutMapping("/me")

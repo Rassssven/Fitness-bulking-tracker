@@ -33,6 +33,16 @@ public class UserService {
 				.orElseThrow(() -> new RuntimeException("User not found!"));
 	}
 	
+	public User getUserByEmail(Authentication auth) {
+		
+		String email = auth.getName();
+		
+		User current = userRepo.findByEmail(email)
+				.orElseThrow(() -> new RuntimeException("User not found!"));
+		
+		return current;
+	}
+	
 	public User updateUser(User updatedUser, Authentication auth) {
 		
 		String email = auth.getName();
