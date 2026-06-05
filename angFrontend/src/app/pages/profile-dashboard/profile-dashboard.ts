@@ -6,12 +6,13 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/HTTP/user-service';
 import { FormsModule } from '@angular/forms';
+import { NotificationService } from '../../shared/notification-service';
 
 interface UpdateUserDTO {
-  age: number;
-  weight: number;
-  height: number;
-  activityLevel: string;
+  age: number | null;
+  weight: number | null;
+  height: number | null;
+  activityLevel: string | null;
 }
 
 @Component({
@@ -23,6 +24,7 @@ interface UpdateUserDTO {
 export class ProfileDashboard implements OnInit {
 
   private authService = inject(AuthService);
+  private notifService = inject(NotificationService);
   private planService = inject(PlanService);
   private userService = inject(UserService);
   private router = inject(Router);
@@ -31,10 +33,10 @@ export class ProfileDashboard implements OnInit {
   //private cdr = inject(ChangeDetectorRef); 
   
   userData: UpdateUserDTO = {
-    age: 0,
-    weight: 0,
-    height: 0,
-    activityLevel: ''
+    age: null,
+    weight: null,
+    height: null,
+    activityLevel: null
   }
 
   currentUser = {
@@ -74,16 +76,36 @@ export class ProfileDashboard implements OnInit {
 
   updateInfo() {
 
-    const userData = {
-      age: this.userData.age,
-      weight: this.userData.weight,
-      height: this.userData.height,
-      activityLevel: this.userData.activityLevel
+    const dto: Partial<UpdateUserDTO> = {};
+
+    if(this.userData.age !== null) {
+      dto.age = this.userData.age;
     }
 
-    this.userService.updateAccountInfo(userData).subscribe({
+    if(this.userData.weight !== null) {
+      dto.weight = this.userData.weight;
+    }
+
+    if(this.userData.height !== null) {
+      dto.height = this.userData.height;
+    }
+
+    if(this.userData.activityLevel) {
+      dto.activityLevel = this.userData.activityLevel;
+    }
+
+    this.userService.updateAccountInfo(dto).subscribe({
       next: (response) => {
         console.log('User info updated successfully:', response);
+
+        this.notifService.showSuccess("User updated!");
+
+        this.userData = {
+          age: null,
+          weight: null,
+          height: null,
+          activityLevel: null
+        };
       }
     });
   }

@@ -31,31 +31,32 @@ export class ResultPage implements OnInit {
   }
 
   recommendationsData: string[] = [];
+  
+  savePlanAndGoal() {
 
-  planData = {
-    name: 'MyPlan',
-    type: this.calcData.plan
-  }
-  
-  savePlan() {
-    this.planData.type = this.calcData.plan;
-    console.log(this.planData);
-  
-    this.planService.createPlan(this.planData).subscribe({
-  
-      next: (response) => {
+    const goalData = {
+      type: this.calcData.plan,
+      targetWeight: this.calcData.targetWeight,
+      duration: this.calcData.duration
+    }
+
+    console.log(goalData);
+
+    this.planService.createFullPlan(goalData).subscribe({
+      next: response => {
         console.log('Plan saved successfully:', response);
-
         this.router.navigate(['/customize-plan-page', response.id], {state: {data: this.calcData}});
 
         this.notifService.showSuccess('Plan saved successfully!');
       },
-        
+
       error: (error) => {
         console.error('Error saving plan:', error);
         this.notifService.showError('Error saving plan.');
       }
+
     });
+
   }
 
   ngOnInit() {
@@ -70,26 +71,6 @@ export class ResultPage implements OnInit {
     this.recommendationsData = this.recommendations.getRecommendations(this.calcData);
     });
   }
-
-  /*updateUser() {
-
-    const updatedUserData = {
-      age: this.calcData.age,
-      gender: this.calcData.gender,
-      height: this.calcData.height,
-      activityLevel: this.calcData.activityLevel
-    };
-
-    this.userService.updateUser(updatedUserData).subscribe({
-      next: () => {
-        this.notifService.showSuccess("User data updated successfully");
-      },
-      error: () => {
-        this.notifService.showError("Error updating user data");
-      }
-    });
-
-  }*/
 
   isLoggedIn() {
     return this.authService.isLoggedIn();

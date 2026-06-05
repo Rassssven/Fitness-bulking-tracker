@@ -10,6 +10,14 @@ export class PlanService {
   private http = inject(HttpClient);
   private apiUrl = 'http://localhost:8080/plans';
 
+  createFullPlan(goalData: {
+    type: string,
+    targetWeight: number,
+    duration: number
+  }) {
+    return this.http.post<Plan>(`${this.apiUrl}/create-full-plan`, goalData);
+  }
+
   createPlan(plan: {
     name: string;
     type: string;

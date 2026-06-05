@@ -45,12 +45,12 @@ export class UserService {
         return this.http.get<User[]>(`${this.apiUrl}/search?name=${name}`);
     }
 
-    updateAccountInfo(userData: {
+    updateAccountInfo(userData: Partial<{
         age: number | null;
         weight: number | null;
         height: number | null;
         activityLevel: string | null;
-    }) {
+    }>) {
         return this.http.put(this.apiUrl + '/update', userData);
     }
 
