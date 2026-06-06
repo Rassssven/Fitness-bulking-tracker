@@ -26,7 +26,7 @@
                 <h2>Account Info</h2>
 
                 <div class="profile-info">
-                    <p><span class="label">Name</span><span class="value">{{ currentUser.firstName }}</span></p>
+                    <p><span class="label">Name</span><span class="value">{{ currentUser.firstName | titlecase}}</span></p>
                     <p><span class="label">Email</span><span class="value">john.doe@example.com</span></p>
                     <p><span class="label">Age</span><span class="value">{{ currentUser.age }}</span></p>
                     <p><span class="label">Activity Level</span><span class="value"> {{ currentUser.activityLevel }} </span></p>

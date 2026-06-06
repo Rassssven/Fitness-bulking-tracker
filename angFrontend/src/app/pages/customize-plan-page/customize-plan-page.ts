@@ -6,10 +6,13 @@ import { Plan } from '../../models/plan';
 import { PlanService } from '../../services/HTTP/plan-service';
 import { NotificationService } from '../../shared/notification-service';
 import { FormsModule } from '@angular/forms';
+import { Goal } from '../../models/goal';
+import { GoalService } from '../../services/HTTP/goal-service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-customize-plan-page',
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './customize-plan-page.html',
   styleUrl: './customize-plan-page.css',
 })
@@ -26,25 +29,27 @@ export class CustomizePlanPage implements OnInit {
   private route = inject(ActivatedRoute);
   private notifService = inject(NotificationService);
   private planServ = inject(PlanService);
+  private goalServ = inject(GoalService);
 
   meals: Meal[] = [];
   exercises: Exercise[] = [];
 
   plan = signal<Plan | null>(null);
+  goal = signal<Goal | null>(null);
   
 
   ngOnInit() {
 
     this.route.paramMap.subscribe(params => {
       const planId = Number(params.get('id'));
-      console.log(params);
 
       this.planServ.getPlanById(planId).subscribe(
         plan => {
           console.log(plan);
           this.plan.set(plan);
-        }
-      );
+          this.goal.set(plan.goal);
+        });
+
     });
   }
 

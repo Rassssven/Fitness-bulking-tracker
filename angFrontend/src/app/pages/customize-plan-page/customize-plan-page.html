@@ -10,8 +10,8 @@
 
           <div class="user-info">
             <p><span>Goal</span> {{ plan()?.type }}</p>
-            <p><span>Calories</span> {{ plan()?.id }}kcal</p>
-            <p><span>Activity</span> </p>
+            <p><span>Calories</span> {{ goal()?.targetCalories }} kcal</p>
+            <p><span>Start date</span> {{ goal()?.startDate | date:'medium'}}</p>
           </div>
         </div>
 

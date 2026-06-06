@@ -27,10 +27,10 @@ export class CalcPage implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      const plan = params['plan'];
+      const planType = params['planType'];
 
-      if (plan) {
-        this.calcData.plan = plan;
+      if (planType) {
+        this.calcData.plan = planType;
       }
     });
   }

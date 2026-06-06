@@ -49,8 +49,8 @@ export class Home {
 
   private router = inject(Router);
 
-  goToCalc(plan: string) {
-    this.router.navigate(['/calc-page'], { queryParams: { plan } });
+  goToCalc(planType: string) {
+    this.router.navigate(['/calc-page'], { queryParams: { planType } });
   }
 
 
