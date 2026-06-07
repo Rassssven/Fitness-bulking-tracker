@@ -2,6 +2,7 @@ package proiect.demo.web.ang_spring.Services;
 
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import proiect.demo.web.ang_spring.Entities.Food;
@@ -21,10 +22,12 @@ public class FoodService {
 		this.foodRepo = foodRepo;
 	}
 	
-	public Food createFood(Food food, Long id) {
+	public Food createFood(Food food, Authentication auth) {
 		
-		User user = userRepo.findById(id)
-				.orElseThrow();
+		String email = auth.getName();
+		
+		User user = userRepo.findByEmail(email)
+				.orElseThrow(() -> new RuntimeException("Food can't be created!"));
 		
 		food.setUser(user);
 		user.getFoods().add(food);
@@ -32,7 +35,7 @@ public class FoodService {
 		return foodRepo.save(food);
 	}
 	
-	public List<Food> getFoods() {
+	public List<Food> getFoods(Authentication auth) {
 		return foodRepo.findAll();
 	}
 	
