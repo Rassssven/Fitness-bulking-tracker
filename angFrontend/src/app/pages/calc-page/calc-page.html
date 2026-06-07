@@ -8,7 +8,7 @@
 
         <div class="form-group">
           <label for="plan">Plan</label>
-            <select id="plan" name="plan" [(ngModel)]="calcData.plan">
+            <select id="plan" name="plan" #planType="ngModel" [(ngModel)]="calcData.plan">
                 <option value="bulk">Bulk</option>
                 <option value="cut">Cut</option>
                 <option value="maintenance">Maintenance</option>
@@ -18,20 +18,25 @@
 
         <div class="form-group">
           <label for="weight">Current Weight (kg)</label>
-          <input id="weight" name="weight" type="number" placeholder="Enter weight" [(ngModel)]="calcData.weight">
+          <input id="weight" name="weight" type="number" min="40" #weightInput="ngModel" placeholder="Enter weight" [(ngModel)]="calcData.weight">
         </div>
+
+        @if(weightInput.invalid) {
+          <span> Weight is invalid </span>
+        }
 
         <div class="form-group">
           <label for="targetWeight">Target Weight (kg)</label>
-          <input id="targetWeight" name="targetWeight" type="number" placeholder="Enter target weight" [(ngModel)]="calcData.targetWeight">
+          <input id="targetWeight"  name="targetWeight" required #targetWeight="ngModel" type="number" placeholder="Enter target weight" [(ngModel)]="calcData.targetWeight">
         </div>
+
 
         <div class="form-group">
           <label for="duration">Duration (weeks)</label>
           <input id="duration" name="duration" type="number" placeholder="Enter duration" [(ngModel)]="calcData.duration">
         </div>
 
-        <button type="submit">Calculate</button>
+        <button [disabled]="weightInput.invalid && targetWeight.invalid" type="submit">Calculate</button>
 
       </form>
 
