@@ -22,6 +22,12 @@
             <button (click)="showMealForm = true">Add Meal</button>
           </div>
 
+          @for(meal of meals(); track meal.name) {
+            <div class="list-item">
+              {{ meal.name }} - {{ meal.calories }}
+            </div>
+          }
+
           <div class="list-item">
             Chicken Rice Bowl - 650 kcal
           </div>
@@ -154,15 +160,35 @@
 
             <label>
               Meal Name
-              <input type="text" placeholder="Chicken Salad">
+              <input type="text" placeholder="Chicken Salad" name="name" [(ngModel)]="mealData.name">
+            </label>
+
+            <label>
+              Protein
+              <input type="number" placeholder="200" name="protein" [(ngModel)]="mealData.protein">
             </label>
 
             <label>
               Calories
-              <input type="number" placeholder="450">
+              <input type="number" placeholder="450" name="calories" [(ngModel)]="mealData.calories">
             </label>
 
-            <button type="submit">Add Meal</button>
+            <label>
+              Carbs
+              <input type="number" placeholder="50" name="carbs" [(ngModel)]="mealData.carbs">
+            </label>
+
+            <label>
+              Fat
+              <input type="number" placeholder="20" name="fat" [(ngModel)]="mealData.fat">
+            </label>
+
+            <label>
+              Description
+              <input type="text" placeholder="Lovely meal." name="description" [(ngModel)]="mealData.description">
+            </label>
+
+            <button type="submit" (click)="addFood()" >Add Meal</button>
           </form>
 
         </div>

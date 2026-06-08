@@ -3,6 +3,7 @@ package proiect.demo.web.ang_spring.Controllers;
 import java.util.List;
 
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,16 +28,16 @@ public class FoodController {
 	}
 	
 	@PostMapping
-	@PreAuthorize("hasRole('USER')")
+	//@PreAuthorize("hasRole('USER')")
 	public Food createFood(@RequestBody Food food,
-						   @PathVariable Long id) {
-		return foodServ.createFood(food, id);
+						   Authentication auth) {
+		return foodServ.createFood(food, auth);
 	}
 	
 	@GetMapping
 	@PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-	public List<Food> getFoods() {
-		return foodServ.getFoods();
+	public List<Food> getFoods(Authentication auth) {
+		return foodServ.getFoods(auth);
 	}
 	
 	@GetMapping("/{id}")

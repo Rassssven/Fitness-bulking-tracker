@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { Goal } from '../../models/goal';
 import { GoalService } from '../../services/HTTP/goal-service';
 import { CommonModule } from '@angular/common';
+import { FoodService } from '../../services/HTTP/food-service';
 
 @Component({
   selector: 'app-customize-plan-page',
@@ -29,15 +30,24 @@ export class CustomizePlanPage implements OnInit {
   private route = inject(ActivatedRoute);
   private notifService = inject(NotificationService);
   private planServ = inject(PlanService);
+  private foodServ = inject(FoodService);
   private goalServ = inject(GoalService);
 
-  meals: Meal[] = [];
   exercises: Exercise[] = [];
 
   plan = signal<Plan | null>(null);
   goal = signal<Goal | null>(null);
-  
+  meals = signal<Meal[]>([]);
 
+  mealData: Meal = {
+    name: '',
+    protein: 0,
+    calories: 0,
+    carbs: 0,
+    fat: 0,
+    description: ''
+  }
+  
   ngOnInit() {
 
     this.route.paramMap.subscribe(params => {
@@ -49,8 +59,9 @@ export class CustomizePlanPage implements OnInit {
           this.plan.set(plan);
           this.goal.set(plan.goal);
         });
-
     });
+
+
   }
 
   deletePlan() {
@@ -90,6 +101,26 @@ export class CustomizePlanPage implements OnInit {
       }
     });
     
+  }
+
+  addFood() {
+
+    const mealData = {
+      name: this.mealData.name,
+      protein: this.mealData.protein,
+      calories: this.mealData.calories,
+      carbs: this.mealData.carbs,
+      fat: this.mealData.fat,
+      description: this.mealData.description
+    }
+
+    this.foodServ.createFood(mealData).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.notifService.showSuccess("Food added!");
+      }
+    });
+
   }
 
 }
