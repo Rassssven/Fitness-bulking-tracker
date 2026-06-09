@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import proiect.demo.web.ang_spring.Entities.Workout;
+import proiect.demo.web.ang_spring.Entities.Workout.Workout;
 import proiect.demo.web.ang_spring.Services.WorkoutService;
 
 @RestController

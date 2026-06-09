@@ -1,4 +1,4 @@
-package proiect.demo.web.ang_spring.Services;
+package proiect.demo.web.ang_spring.Services.ExerciseServices;
 
 import proiect.demo.web.ang_spring.db.ExerciseRepository;
 

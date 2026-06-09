@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import proiect.demo.web.ang_spring.Entities.Workout;
+import proiect.demo.web.ang_spring.Entities.Workout.Workout;
 import proiect.demo.web.ang_spring.db.WorkoutRepository;
 
 @Service

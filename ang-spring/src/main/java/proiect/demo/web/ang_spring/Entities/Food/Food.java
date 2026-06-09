@@ -1,4 +1,4 @@
-package proiect.demo.web.ang_spring.Entities;
+package proiect.demo.web.ang_spring.Entities.Food;
 
 import java.util.List;
 
@@ -12,8 +12,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Positive;
+import proiect.demo.web.ang_spring.Entities.Plan;
+import proiect.demo.web.ang_spring.Entities.User;
 
 @Entity
 @Table(name="Foods")
@@ -40,9 +43,9 @@ public class Food {
 	@JsonIgnore
 	private User user;
 	
-	@ManyToMany(mappedBy = "foods")
+	@OneToMany(mappedBy = "food")
 	@JsonIgnore
-	private List<Plan> plans;
+	private List<PlanFood> planFoods;
 	
 	public Food() {	}
 
@@ -120,13 +123,6 @@ public class Food {
 		this.fat = fat;
 	}
 
-	public List<Plan> getPlans() {
-		return plans;
-	}
-
-	public void setPlans(List<Plan> plans) {
-		this.plans = plans;
-	}
 	
 	
 }

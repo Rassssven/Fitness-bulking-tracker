@@ -1,4 +1,4 @@
-package proiect.demo.web.ang_spring.Controllers;
+package proiect.demo.web.ang_spring.Controllers.FoodControllers;
 
 import java.util.List;
 
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import proiect.demo.web.ang_spring.Entities.Food;
-import proiect.demo.web.ang_spring.Services.FoodService;
+import proiect.demo.web.ang_spring.Entities.Food.Food;
+import proiect.demo.web.ang_spring.Services.FoodServices.FoodService;
 
 @RestController
 @RequestMapping("/foods")
@@ -29,10 +29,10 @@ public class FoodController {
 	
 	@PostMapping
 	//@PreAuthorize("hasRole('USER')")
-	public Food createFood(@RequestBody Food food,
-						   Authentication auth) {
-		return foodServ.createFood(food, auth);
-	}
+//	public Food createFood(@RequestBody Food food,
+//						   Authentication auth) {
+//		return foodServ.createFood(food, auth);
+//	}
 	
 	@GetMapping
 	@PreAuthorize("hasAnyRole('USER', 'ADMIN')")

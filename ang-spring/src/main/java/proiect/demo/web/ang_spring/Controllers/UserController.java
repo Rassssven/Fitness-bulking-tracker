@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import proiect.demo.web.ang_spring.DTO.UpdateProfileDTO;
 import proiect.demo.web.ang_spring.Entities.Role;
 import proiect.demo.web.ang_spring.Entities.User;
-import proiect.demo.web.ang_spring.Entities.Workout;
+import proiect.demo.web.ang_spring.Entities.Workout.Workout;
 import proiect.demo.web.ang_spring.Services.UserService;
 
 @RestController

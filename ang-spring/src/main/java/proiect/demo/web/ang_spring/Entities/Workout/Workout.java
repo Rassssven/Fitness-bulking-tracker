@@ -1,4 +1,4 @@
-package proiect.demo.web.ang_spring.Entities;
+package proiect.demo.web.ang_spring.Entities.Workout;
 
 import java.util.List;
 
@@ -13,6 +13,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import proiect.demo.web.ang_spring.Entities.Plan;
+import proiect.demo.web.ang_spring.Entities.User;
+import proiect.demo.web.ang_spring.Entities.Exercise.Exercise;
 
 @Entity
 @Table(name="Workouts")

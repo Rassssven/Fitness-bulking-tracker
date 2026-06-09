@@ -1,4 +1,4 @@
-package proiect.demo.web.ang_spring.Entities;
+package proiect.demo.web.ang_spring.Entities.Exercise;
 
 import java.util.List;
 
@@ -12,7 +12,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import proiect.demo.web.ang_spring.Entities.Plan;
+import proiect.demo.web.ang_spring.Entities.User;
+import proiect.demo.web.ang_spring.Entities.Workout.Workout;
 
 @Entity
 @Table(name = "Exercises")
@@ -40,9 +44,9 @@ public class Exercise {
     @JoinColumn(name = "workout_id")
     private Workout workout;
 	
-	@ManyToMany(mappedBy = "exercises")
+	@OneToMany(mappedBy = "exercise")
 	@JsonIgnore
-	private List<Plan> plans;
+	private List<PlanExercise> planExercises;
 
 	public Exercise() {
 
@@ -103,6 +107,24 @@ public class Exercise {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	public Workout getWorkout() {
+		return workout;
+	}
+
+	public void setWorkout(Workout workout) {
+		this.workout = workout;
+	}
+
+	public List<PlanExercise> getPlanExercises() {
+		return planExercises;
+	}
+
+	public void setPlanExercises(List<PlanExercise> planExercises) {
+		this.planExercises = planExercises;
+	}
+
+	
 	
 	
 	
