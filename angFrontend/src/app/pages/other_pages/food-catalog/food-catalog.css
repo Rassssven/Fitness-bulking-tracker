@@ -1,0 +1,173 @@
+.main-picture {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 40px;
+
+    background-image: url('/black.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.food-layout {
+    width: 1400px;
+
+    padding: 35px;
+
+    border: 1px solid #00ff99;
+    border-radius: 20px;
+
+    background: rgba(22, 22, 22, 0.88);
+}
+
+.food-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 30px;
+}
+
+.food-header h1 {
+    color: #00ff99;
+    font-size: 2.2rem;
+}
+
+.food-search {
+    display: flex;
+    gap: 12px;
+}
+
+.food-search input {
+    width: 320px;
+
+    padding: 12px;
+
+    background: #0a0a0a;
+
+    border: 1px solid #00ff99;
+    border-radius: 10px;
+
+    color: white;
+}
+
+.food-search button {
+    padding: 12px 20px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #00ff99;
+
+    color: black;
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.food-content {
+    display: flex;
+    gap: 30px;
+}
+
+.filters {
+    width: 250px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+.filters h3 {
+    color: #00ff99;
+}
+
+.filters select {
+    padding: 10px;
+
+    background: #111;
+
+    border: 1px solid #333;
+
+    color: white;
+
+    border-radius: 8px;
+}
+
+.foods-grid {
+    flex: 1;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.food-card {
+    padding: 18px;
+
+    background: #111;
+
+    border: 1px solid #222;
+
+    border-radius: 12px;
+}
+
+.food-card h3 {
+    color: #00ff99;
+
+    margin-bottom: 10px;
+}
+
+.food-card p {
+    color: #bdbdbd;
+
+    font-size: 0.9rem;
+
+    margin-bottom: 15px;
+}
+
+.food-macros {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-bottom: 15px;
+}
+
+.food-macros span {
+    padding: 5px 8px;
+
+    border-radius: 6px;
+
+    background: #1a1a1a;
+
+    color: #d9d9d9;
+
+    font-size: 0.8rem;
+}
+
+.food-card button {
+    width: 100%;
+
+    padding: 10px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #00ff99;
+
+    color: black;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
