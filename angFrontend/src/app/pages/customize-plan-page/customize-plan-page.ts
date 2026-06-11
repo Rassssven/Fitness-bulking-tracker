@@ -10,6 +10,7 @@ import { Goal } from '../../models/goal';
 import { GoalService } from '../../services/HTTP/goal-service';
 import { CommonModule } from '@angular/common';
 import { FoodService } from '../../services/HTTP/food-service';
+import { PlanFood } from '../../models/planFood';
 
 @Component({
   selector: 'app-customize-plan-page',
@@ -35,9 +36,11 @@ export class CustomizePlanPage implements OnInit {
 
   exercises: Exercise[] = [];
 
+  planId!: number;
+
   plan = signal<Plan | null>(null);
   goal = signal<Goal | null>(null);
-  meals = signal<Meal[]>([]);
+  planFoods = signal<PlanFood[]>([]);
 
   mealData: Meal = {
     name: '',
@@ -51,17 +54,22 @@ export class CustomizePlanPage implements OnInit {
   ngOnInit() {
 
     this.route.paramMap.subscribe(params => {
-      const planId = Number(params.get('id'));
+      this.planId = Number(params.get('id'));
 
-      this.planServ.getPlanById(planId).subscribe(
+      this.planServ.getPlanById(this.planId).subscribe(
         plan => {
           console.log(plan);
           this.plan.set(plan);
           this.goal.set(plan.goal);
         });
+
+      this.foodServ.getFoods(this.planId).subscribe(
+        foods => {
+          console.log(foods);
+          this.planFoods.set(foods);
+        });
+
     });
-
-
   }
 
   deletePlan() {
@@ -91,8 +99,8 @@ export class CustomizePlanPage implements OnInit {
       type: this.updateType
     };
 
-    this.planServ.updatePlan(plan.id, updatedPlan).subscribe({
-      next: (updatedPlan) => {
+    this.planServ.updatePlan(plan.id, updatedPlan).subscribe({ //Ce trimitem
+      next: (updatedPlan) => { //Datele pe care le primim
         this.plan.set(updatedPlan);
 
         this.notifService.showSuccess("Plan updated successfully");
@@ -103,7 +111,9 @@ export class CustomizePlanPage implements OnInit {
     
   }
 
-  addFood() {
+  /* ----------------- Meals -------------------------- */
+
+  addPlanFood() {
 
     const mealData = {
       name: this.mealData.name,
@@ -114,7 +124,7 @@ export class CustomizePlanPage implements OnInit {
       description: this.mealData.description
     }
 
-    this.foodServ.createFood(mealData).subscribe({
+    this.foodServ.createPlanFood(this.planId, mealData).subscribe({
       next: (response) => {
         console.log(response);
         this.notifService.showSuccess("Food added!");
@@ -122,5 +132,20 @@ export class CustomizePlanPage implements OnInit {
     });
 
   }
+
+  deletePlanFood(planFoodId: number) {
+
+    this.foodServ.deleteFood(planFoodId).subscribe({
+      next: () => {
+        console.log("Food deleted successfully");
+        this.notifService.showSuccess("Food deleted successfully");
+      }
+    })
+
+  }
+
+  /* ----------------- Exercise -------------------------- */
+
+  
 
 }

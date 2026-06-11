@@ -22,19 +22,12 @@
             <button (click)="showMealForm = true">Add Meal</button>
           </div>
 
-          @for(meal of meals(); track meal.name) {
+          @for(meal of planFoods(); track meal.id) {
             <div class="list-item">
-              {{ meal.name }} - {{ meal.calories }}
+              {{ meal.food.name }} - {{ meal.food.calories }}
             </div>
           }
 
-          <div class="list-item">
-            Chicken Rice Bowl - 650 kcal
-          </div>
-
-          <div class="list-item">
-            Protein Shake - 350 kcal
-          </div>
         </div>
 
         <div class="section-card">
@@ -188,7 +181,7 @@
               <input type="text" placeholder="Lovely meal." name="description" [(ngModel)]="mealData.description">
             </label>
 
-            <button type="submit" (click)="addFood()" >Add Meal</button>
+            <button type="submit" (click)="addPlanFood()" >Add Meal</button>
           </form>
 
         </div>
