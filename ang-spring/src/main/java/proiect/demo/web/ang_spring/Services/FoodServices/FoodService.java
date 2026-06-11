@@ -51,24 +51,6 @@ public class FoodService {
 				.orElseThrow(() -> new RuntimeException("Food not found!"));
 	}
 	
-	public Food updateFood(Long id, Food updatedFood) {
-		Food current = getFoodById(id);
-		
-		current.setName(updatedFood.getName());
-		current.setCalories(updatedFood.getCalories());
-		current.setDescription(updatedFood.getDescription());
-		
-		return foodRepo.save(current);
-	}
-	
-	public void deleteFood(Long id) {
-		Food food = getFoodById(id);
-		foodRepo.delete(food);
-	}
-	
-	public int getFoodCalories(Long foodId) {
-		Food food = getFoodById(foodId);
-		return food.getCalories();
-	}
+
 	
 }

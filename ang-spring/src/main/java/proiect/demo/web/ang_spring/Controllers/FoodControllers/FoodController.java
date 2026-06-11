@@ -44,20 +44,6 @@ public class FoodController {
 	public Food getFoodById(@PathVariable Long id) {
 		return foodServ.getFoodById(id);
 	}
-	
-	@PutMapping("/{id}")
-	public Food updateFood(@PathVariable Long id, @RequestBody Food food) {
-		return foodServ.updateFood(id, food);
-	}
-	
-	@DeleteMapping("/{id}")
-	public void deleteFood(@PathVariable Long id) {
-		foodServ.deleteFood(id);
-	}
-	
-	@GetMapping("/calories/{id}")
-	public int getCalories(@PathVariable Long id) {
-		return foodServ.getFoodCalories(id);
-	}
+
 	
 }
