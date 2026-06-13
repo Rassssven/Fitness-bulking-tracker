@@ -182,6 +182,16 @@
               <input type="text" placeholder="Lovely meal." name="description" [(ngModel)]="mealData.description">
             </label>
 
+            <label>
+              Quantity
+              <input type="number" placeholder="200" name="quantity" [(ngModel)]="mealData.quantity">
+            </label>
+
+            <label>
+              Meal Type
+              <input type="text" placeholder="Lunch" name="mealType" [(ngModel)]="mealData.mealType">
+            </label>
+
             <button type="submit" (click)="addPlanFood()" >Add Meal</button>
           </form>
 

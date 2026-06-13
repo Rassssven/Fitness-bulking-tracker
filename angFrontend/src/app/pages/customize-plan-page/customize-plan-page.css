@@ -325,3 +325,109 @@
 .close-btn:hover {
   background: rgba(0, 255, 153, 0.15);
 }
+
+
+
+
+/* Meal form and Exercise form */
+
+.meal-form,
+.workout-form {
+    position: fixed;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.65);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 1000;
+}
+
+.form-inside {
+    width: 480px;
+    max-height: 90vh;
+
+    padding: 28px;
+
+    background: rgba(10, 10, 10, 0.96);
+
+    border: 1px solid #00ff99;
+    border-radius: 16px;
+
+    overflow-y: auto;
+}
+
+.form-inside form {
+    display: flex;
+    flex-direction: column;
+
+    gap: 16px;
+}
+
+.form-inside h2 {
+    color: #00ff99;
+
+    font-size: 1.8rem;
+
+    margin-bottom: 8px;
+}
+
+.form-inside label {
+    display: flex;
+    flex-direction: column;
+
+    gap: 7px;
+
+    color: white;
+
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.form-inside input {
+    padding: 11px 13px;
+
+    background: #111;
+
+    border: 1px solid #333;
+    border-radius: 9px;
+
+    color: white;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+.form-inside input:focus {
+    border-color: #00ff99;
+}
+
+.form-inside input::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.form-inside button {
+    margin-top: 10px;
+
+    padding: 12px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #00ff99;
+
+    color: black;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.form-inside button:hover {
+    background: #00e68a;
+}
