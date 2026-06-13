@@ -6,6 +6,9 @@ public class CreatePlanExerciseRequest {
 	private String type;
 	private int caloriesPerExercise;
 	private String description;
+	private String muscleGroup;
+	private Integer reps;
+	private Integer sets;
 	
 	public String getName() {
 		return name;
@@ -38,7 +41,29 @@ public class CreatePlanExerciseRequest {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	
+
+	public String getMuscleGroup() {
+		return muscleGroup;
+	}
+
+	public void setMuscleGroup(String muscleGroup) {
+		this.muscleGroup = muscleGroup;
+	}
+
+	public Integer getReps() {
+		return reps;
+	}
+
+	public void setReps(Integer reps) {
+		this.reps = reps;
+	}
+
+	public Integer getSets() {
+		return sets;
+	}
+
+	public void setSets(Integer sets) {
+		this.sets = sets;
+	}
 	
 }

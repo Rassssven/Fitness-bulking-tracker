@@ -1,7 +1,6 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Exercise } from '../../models/exercise';
-import { Meal } from '../../models/meal';
+import { PlanExercise } from '../../models/planExercise';
 import { Plan } from '../../models/plan';
 import { PlanService } from '../../services/HTTP/plan-service';
 import { NotificationService } from '../../shared/notification-service';
@@ -11,6 +10,9 @@ import { GoalService } from '../../services/HTTP/goal-service';
 import { CommonModule } from '@angular/common';
 import { FoodService } from '../../services/HTTP/food-service';
 import { PlanFood } from '../../models/planFood';
+import { ExerciseService } from '../../services/HTTP/exercise-service';
+import { CreatePlanExerciseRequest } from '../../models/DTO/CreatePlanExerciseRequest';
+import { CreatePlanMealRequest } from '../../models/DTO/CreatePlanFoodRequest';
 
 @Component({
   selector: 'app-customize-plan-page',
@@ -32,23 +34,35 @@ export class CustomizePlanPage implements OnInit {
   private notifService = inject(NotificationService);
   private planServ = inject(PlanService);
   private foodServ = inject(FoodService);
+  private exServ = inject(ExerciseService);
   private goalServ = inject(GoalService);
-
-  exercises: Exercise[] = [];
 
   planId!: number;
 
   plan = signal<Plan | null>(null);
   goal = signal<Goal | null>(null);
   planFoods = signal<PlanFood[]>([]);
+  planExercise = signal<PlanExercise[]>([]);
 
-  mealData: Meal = {
+  exerciseData: CreatePlanExerciseRequest = {
+    name: '',
+    type: '',
+    caloriesPerExercise: 0,
+    description: '',
+    muscleGroup: '',
+    sets: 0,
+    reps: 0
+  }
+
+  mealData: CreatePlanMealRequest = {
     name: '',
     protein: 0,
     calories: 0,
     carbs: 0,
     fat: 0,
-    description: ''
+    description: '',
+    quantity: 0,
+    mealType: ''
   }
   
   ngOnInit() {
@@ -65,9 +79,16 @@ export class CustomizePlanPage implements OnInit {
 
       this.foodServ.getFoods(this.planId).subscribe(
         foods => {
-          console.log(foods);
+          console.log("Meals: " + foods);
           this.planFoods.set(foods);
         });
+
+      this.exServ.getPlanExercises(this.planId).subscribe(
+        exercises => {
+          console.log("Exercises: " + exercises);
+          this.planExercise.set(exercises);
+        }
+      )
 
     });
   }
@@ -121,7 +142,9 @@ export class CustomizePlanPage implements OnInit {
       calories: this.mealData.calories,
       carbs: this.mealData.carbs,
       fat: this.mealData.fat,
-      description: this.mealData.description
+      description: this.mealData.description,
+      quantity: 0,
+      mealType: ''
     }
 
     this.foodServ.createPlanFood(this.planId, mealData).subscribe({
@@ -146,6 +169,35 @@ export class CustomizePlanPage implements OnInit {
 
   /* ----------------- Exercise -------------------------- */
 
+  addPlanExercise() {
+
+    const exerciseData = {
+      name: this.exerciseData.name,
+      type: this.exerciseData.type,
+      caloriesPerExercise: this.exerciseData.caloriesPerExercise,
+      description: this.exerciseData.description,
+      muscleGroup: this.exerciseData.muscleGroup,
+      sets: this.exerciseData.sets,
+      reps: this.exerciseData.reps
+    }
+
+    this.exServ.createPlanExercise(this.planId, exerciseData).subscribe({
+      next: (response) => {
+        console.log(response);
+        this.notifService.showSuccess("Exercise added!");
+      }
+    });
+
+  }
+
+  deletePlanExercise(planExId: number) {
+    this.exServ.deletePlanExercise(planExId).subscribe({
+      next: () => {
+        console.log("Plan deleted successfully");
+        this.notifService.showSuccess("Plan deleted successfully");
+      }
+    });
+  }
   
 
 }

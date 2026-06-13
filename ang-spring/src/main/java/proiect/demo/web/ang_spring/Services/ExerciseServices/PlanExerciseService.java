@@ -52,6 +52,7 @@ public class PlanExerciseService {
 		ex.setType(dto.getType());
 		ex.setCaloriesPerExercise(dto.getCaloriesPerExercise());
 		ex.setDescription(dto.getDescription());
+		ex.setMuscleGroup(dto.getMuscleGroup());
 		
 		ex.setUser(user);
 		
@@ -61,6 +62,9 @@ public class PlanExerciseService {
 		
 		planEx.setExercise(ex);
 		planEx.setPlan(plan);
+		
+		planEx.setReps(dto.getReps());
+		planEx.setSets(dto.getSets());
 		
 		return planExRepo.save(planEx);
 	}

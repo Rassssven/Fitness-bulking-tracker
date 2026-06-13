@@ -34,6 +34,7 @@ public class Exercise {
 	
 	private int caloriesPerExercise;
 	private String description;
+	private String muscleGroup;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
@@ -52,12 +53,13 @@ public class Exercise {
 
 	}
 
-	public Exercise(String name, String type, int caloriesPerExercise, String description) {
+	public Exercise(String name, String type, int caloriesPerExercise, String description, String muscleGroup) {
 		super();
 		this.name = name;
 		this.type = type;
 		this.caloriesPerExercise = caloriesPerExercise;
 		this.description = description;
+		this.muscleGroup = muscleGroup;
 	}
 
 	public Long getId() {
@@ -124,8 +126,13 @@ public class Exercise {
 		this.planExercises = planExercises;
 	}
 
-	
-	
-	
-	
+	public String getMuscleGroup() {
+		return muscleGroup;
+	}
+
+	public void setMuscleGroup(String muscleGroup) {
+		this.muscleGroup = muscleGroup;
+	}
+
+
 }

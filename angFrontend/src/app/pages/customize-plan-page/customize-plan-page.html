@@ -25,6 +25,7 @@
           @for(meal of planFoods(); track meal.id) {
             <div class="list-item">
               {{ meal.food.name }} - {{ meal.food.calories }}
+              <button> Delete </button>
             </div>
           }
 
@@ -37,13 +38,13 @@
             <button (click)="showWorkoutForm = true">Add Exercise</button>
           </div>
 
-          <div class="list-item">
-            Bench Press - 4x10
-          </div>
+          @for(ex of planExercise(); track ex.id) {
+            <div class="list-item">
+              {{ ex.exercise.name }}: Reps {{ ex.reps }}, Sets: {{ ex.sets }};
+              <button> Delete </button>
+            </div>
+          }
 
-          <div class="list-item">
-            Squats - 5x5
-          </div>
         </div>
 
         <div class="section-card">
@@ -200,15 +201,40 @@
 
             <label>
               Exercise Name
-              <input type="text" placeholder="Deadlift">
+              <input type="text" placeholder="Chicken Salad" name="name" [(ngModel)]="exerciseData.name">
             </label>
 
             <label>
-              Sets x Reps
-              <input type="text" placeholder="4x8">
+              Exercise Type
+              <input type="text" placeholder="Bench Squat" name="type" [(ngModel)]="exerciseData.type">
             </label>
 
-            <button type="submit">Add Exercise</button>
+            <label>
+              Calories Per Exercise
+              <input type="number" placeholder="150" name="calories" [(ngModel)]="exerciseData.caloriesPerExercise">
+            </label>
+
+            <label>
+              Description
+              <input type="text" placeholder="Lovely exercise" name="description" [(ngModel)]="exerciseData.description">
+            </label>
+
+            <label>
+              Targeted Muscle Group
+              <input type="text" placeholder="Shoulders" name="muscleGroup" [(ngModel)]="exerciseData.muscleGroup">
+            </label>
+
+            <label>
+              Sets
+              <input type="number" placeholder="4" name="Sets" [(ngModel)]="exerciseData.sets">
+            </label>
+
+            <label>
+              Reps
+              <input type="number" placeholder="12" name="Reps" [(ngModel)]="exerciseData.reps">
+            </label>
+
+            <button (click)="addPlanExercise()" type="submit">Add Exercise</button>
           </form>
         </div>
 

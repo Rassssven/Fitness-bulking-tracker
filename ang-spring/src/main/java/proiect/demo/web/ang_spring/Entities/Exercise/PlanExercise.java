@@ -16,7 +16,10 @@ public class PlanExercise {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-		
+	
+	private Integer reps;
+	private Integer sets;
+	
 	@ManyToOne
 	@JoinColumn(name = "exercise_id")
 	private Exercise exercise;
@@ -26,6 +29,14 @@ public class PlanExercise {
 	private Plan plan;
 
 	public PlanExercise() {}
+	
+	public PlanExercise(Integer reps, Integer sets, Exercise exercise, Plan plan) {
+		super();
+		this.reps = reps;
+		this.sets = sets;
+		this.exercise = exercise;
+		this.plan = plan;
+	}
 
 	public Long getId() {
 		return id;
@@ -50,6 +61,23 @@ public class PlanExercise {
 	public void setPlan(Plan plan) {
 		this.plan = plan;
 	}
+
+	public Integer getReps() {
+		return reps;
+	}
+
+	public void setReps(Integer reps) {
+		this.reps = reps;
+	}
+
+	public Integer getSets() {
+		return sets;
+	}
+
+	public void setSets(Integer sets) {
+		this.sets = sets;
+	}
+
 
 	
 }
