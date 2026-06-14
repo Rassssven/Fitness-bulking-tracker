@@ -12,6 +12,12 @@ export class ExerciseService {
     private apiUrl = 'http://localhost:8080/exercise';
     private apiUrlPlan = 'http://localhost:8080/plan-exercise';
 
+    createExercise(exerciseData: any) {
+        return this.http.post(this.apiUrl, exerciseData);
+    }
+
+    /* Plan Exercise */
+
     createPlanExercise(planId: number, exerciseData: CreatePlanExerciseRequest) {
         return this.http.post<PlanExercise>(`${this.apiUrlPlan}/${planId}`, exerciseData);
     }
