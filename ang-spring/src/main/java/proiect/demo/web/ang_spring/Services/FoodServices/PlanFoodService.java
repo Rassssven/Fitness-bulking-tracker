@@ -57,7 +57,7 @@ public class PlanFoodService {
 	    
 	    food.setUser(user);
 	    
-	    // Explicit, farantam ca lucram cu entitatea salvata
+	    // Explicit, garantam ca lucram cu entitatea salvata
 	    food = foodRepo.save(food);
 	    
 	    //Setam relatiile deoarece Food nu exista inainte !!
