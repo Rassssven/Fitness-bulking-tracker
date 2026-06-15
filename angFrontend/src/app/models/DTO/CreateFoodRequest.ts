@@ -1,5 +1,4 @@
-export interface Meal {
-    id: number;
+export interface CreateFoodRequest {
     name: string;
     calories: number;
     protein: number;

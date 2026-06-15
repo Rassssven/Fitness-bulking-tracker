@@ -77,7 +77,7 @@ export class CustomizePlanPage implements OnInit {
           this.goal.set(plan.goal);
         });
 
-      this.foodServ.getFoods(this.planId).subscribe(
+      this.foodServ.getPlanFoods(this.planId).subscribe(
         foods => {
           console.log("Meals: " + foods);
           this.planFoods.set(foods);
@@ -132,7 +132,7 @@ export class CustomizePlanPage implements OnInit {
     
   }
 
-  /* ----------------- Meals -------------------------- */
+  /* ----------------- Plan Meals -------------------------- */
 
   addPlanFood() {
 
@@ -149,7 +149,24 @@ export class CustomizePlanPage implements OnInit {
 
     this.foodServ.createPlanFood(this.planId, mealData).subscribe({
       next: (response) => {
-        console.log(response);
+        
+        this.planFoods.update(foods => [
+          ...foods, response
+        ]);
+
+        this.showMealForm = false;
+
+        this.mealData = {
+          name: '',
+          protein: 0,
+          calories: 0,
+          carbs: 0,
+          fat: 0,
+          description: '',
+          quantity: 0,
+          mealType: ''
+        };
+
         this.notifService.showSuccess("Food added!");
       }
     });
@@ -158,16 +175,21 @@ export class CustomizePlanPage implements OnInit {
 
   deletePlanFood(planFoodId: number) {
 
-    this.foodServ.deleteFood(planFoodId).subscribe({
+    this.foodServ.deletePlanFood(planFoodId).subscribe({
       next: () => {
         console.log("Food deleted successfully");
+
+        this.planFoods.update(foods => 
+          foods.filter(food => food.id !== planFoodId)
+        )
+
         this.notifService.showSuccess("Food deleted successfully");
       }
     })
 
   }
 
-  /* ----------------- Exercise -------------------------- */
+  /* ----------------- Plan Exercise -------------------------- */
 
   addPlanExercise() {
 
@@ -183,7 +205,23 @@ export class CustomizePlanPage implements OnInit {
 
     this.exServ.createPlanExercise(this.planId, exerciseData).subscribe({
       next: (response) => {
-        console.log(response);
+        
+        this.planExercise.update(exercises => [
+          ...exercises, response
+        ])
+
+        this.showWorkoutForm = false;
+
+        this.exerciseData = {
+          name: '',
+          type: '',
+          caloriesPerExercise: 0,
+          description: '',
+          muscleGroup: '',
+          sets: 0,
+          reps: 0
+        }
+
         this.notifService.showSuccess("Exercise added!");
       }
     });
@@ -193,7 +231,11 @@ export class CustomizePlanPage implements OnInit {
   deletePlanExercise(planExId: number) {
     this.exServ.deletePlanExercise(planExId).subscribe({
       next: () => {
-        console.log("Plan deleted successfully");
+        
+        this.planExercise.update(exercises => 
+          exercises.filter(exercises => exercises.id !== planExId)
+        )
+
         this.notifService.showSuccess("Plan deleted successfully");
       }
     });

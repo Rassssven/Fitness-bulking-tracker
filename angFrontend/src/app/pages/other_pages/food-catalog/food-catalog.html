@@ -13,6 +13,8 @@
                     placeholder="Search meals..."
                 >
 
+                <button (click)="showFoodForm = true" > Add food </button>
+
                 <button>
                     Search
                 </button>
@@ -44,6 +46,30 @@
             </aside>
 
             <section class="foods-grid">
+
+                @for(food of foods(); track food.id) {
+
+                    <div class="food-card">
+
+                        <h3>{{food.name}}</h3>
+
+                        <p> {{food.description}} </p>
+
+                        <div class="food-macros">
+
+                            <span>{{food.protein}} protein</span>
+                            <span>{{food.carbs}} carbs</span>
+                            <span>{{food.fat}} fat</span>
+
+                        </div>
+
+                        <button>
+                            Add To Plan
+                        </button>
+
+                    </div>
+
+                }
 
                 <div class="food-card">
 
@@ -104,112 +130,50 @@
 
                 </div>
 
-                <div class="food-card">
-
-                    <h3>Eggs</h3>
-
-                    <p> Complete protein source. </p>
-
-                    <div class="food-macros">
-                        <span>155 kcal</span>
-                        <span>13g protein</span>
-                        <span>1g carbs</span>
-                        <span>11g fat</span>
-                    </div>
-
-                    <button> Add To Plan </button>
-
-                </div>
-
-                <div class="food-card">
-
-                    <h3>Eggs</h3>
-
-                    <p> Complete protein source. </p>
-
-                    <div class="food-macros">
-                        <span>155 kcal</span>
-                        <span>13g protein</span>
-                        <span>1g carbs</span>
-                        <span>11g fat</span>
-                    </div>
-
-                    <button> Add To Plan </button>
-
-                </div>
-
-                <div class="food-card">
-
-                    <h3>Eggs</h3>
-
-                    <p> Complete protein source. </p>
-
-                    <div class="food-macros">
-                        <span>155 kcal</span>
-                        <span>13g protein</span>
-                        <span>1g carbs</span>
-                        <span>11g fat</span>
-                    </div>
-
-                    <button> Add To Plan </button>
-
-                </div>
-
-                <div class="food-card">
-
-                    <h3>Eggs</h3>
-
-                    <p> Complete protein source. </p>
-
-                    <div class="food-macros">
-                        <span>155 kcal</span>
-                        <span>13g protein</span>
-                        <span>1g carbs</span>
-                        <span>11g fat</span>
-                    </div>
-
-                    <button> Add To Plan </button>
-
-                </div>
-
-                <div class="food-card">
-
-                    <h3>Eggs</h3>
-
-                    <p> Complete protein source. </p>
-
-                    <div class="food-macros">
-                        <span>155 kcal</span>
-                        <span>13g protein</span>
-                        <span>1g carbs</span>
-                        <span>11g fat</span>
-                    </div>
-
-                    <button> Add To Plan </button>
-
-                </div>
-
-                <div class="food-card">
-
-                    <h3>Eggs</h3>
-
-                    <p> Complete protein source. </p>
-
-                    <div class="food-macros">
-                        <span>155 kcal</span>
-                        <span>13g protein</span>
-                        <span>1g carbs</span>
-                        <span>11g fat</span>
-                    </div>
-
-                    <button> Add To Plan </button>
-
-                </div>
 
             </section>
 
         </div>
 
     </div>
+
+    @if(showFoodForm) {
+
+        <div class="food-form">
+
+            <form>
+
+                <label>
+                    Meal name
+                    <input type="text" placeholder="Chicken Rice" name="name" [(ngModel)]="foodData.name">
+                </label>
+
+                <label>
+                    Calories
+                    <input type="number" placeholder="120" name="protein" [(ngModel)]="foodData.calories">
+                </label>
+
+                <label>
+                    Carbs
+                    <input type="number" placeholder="70" name="carbs" [(ngModel)]="foodData.carbs">
+                </label>
+
+                <label>
+                    Fat
+                    <input type="number" placeholder="20" name="fat" [(ngModel)]="foodData.fat">
+                </label>
+
+                <label>
+                    Description
+                    <input type="text" placeholder="Lovely meal" name="description" [(ngModel)]="foodData.name">
+                </label>
+
+                <button (click)="createFood()">Add food</button>
+
+            </form>
+
+        </div>
+
+    }
 
 </div>

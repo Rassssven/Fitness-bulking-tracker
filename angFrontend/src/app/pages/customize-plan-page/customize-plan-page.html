@@ -25,7 +25,7 @@
           @for(meal of planFoods(); track meal.id) {
             <div class="list-item">
               {{ meal.food.name }} - {{ meal.food.calories }}
-              <button> Delete </button>
+              <button (click)="deletePlanFood(meal.id)"> Delete </button>
             </div>
           }
 
@@ -41,7 +41,7 @@
           @for(ex of planExercise(); track ex.id) {
             <div class="list-item">
               {{ ex.exercise.name }}: Reps {{ ex.reps }}, Sets: {{ ex.sets }};
-              <button> Delete </button>
+              <button (click)="deletePlanExercise(ex.id)"> Delete </button>
             </div>
           }
 

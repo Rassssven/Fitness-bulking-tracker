@@ -11,6 +11,8 @@
                     type="text"
                     placeholder="Search exercises..."
                 >
+                
+                <button (click)="showExerciseForm = true"> Add exercise </button>
 
                 <button>
                     Search
@@ -45,6 +47,28 @@
             </aside>
 
             <section class="exercise-list">
+
+                @for(ex of exercises(); track ex.id) {
+                   
+                    <div class="exercise-card">
+
+                        <h3>{{ex.name}}</h3>
+
+                        <span class="exercise-type">
+                            {{ex.type}}
+                        </span>
+
+                        <p>
+                            {{ex.description}}
+                        </p>
+
+                        <button>
+                            Add To Plan
+                        </button>
+
+                    </div>
+
+                }
 
                 <div class="exercise-card">
 
@@ -105,4 +129,44 @@
         </div>
 
     </div>
+
+    @if(showExerciseForm) {
+
+        <div class="exercise-form">
+
+            <form>
+
+                <label>
+                    Exercise name
+                    <input type="text" placeholder="Bench Press" name="name" [(ngModel)]="exData.name">
+                </label>
+
+                <label>
+                    Exercise type
+                    <input type="text" placeholder="Squat" name="type" [(ngModel)]="exData.type">
+                </label>
+
+                <label>
+                    Calories Per Exercise
+                    <input type="number" placeholder="40" name="caloriesPerExercise" [(ngModel)]="exData.caloriesPerExercise">
+                </label>
+
+                <label>
+                    Description
+                    <input type="text" placeholder="Lovely Exercise" name="description" [(ngModel)]="exData.description">
+                </label>
+
+                <label>
+                    Muscle Group
+                    <input type="text" placeholder="Legs" name="muscleGroup" [(ngModel)]="exData.muscleGroup">
+                </label>
+
+                <button (click)="createExercise()">Add Exercise</button>
+
+            </form>
+
+        </div>
+
+    }
+
 </div>

@@ -1,5 +1,4 @@
-export interface Exercise {
-    id: number;
+export interface CreateExerciseRequest {
     name: string;
     type: string;
     caloriesPerExercise: number;
