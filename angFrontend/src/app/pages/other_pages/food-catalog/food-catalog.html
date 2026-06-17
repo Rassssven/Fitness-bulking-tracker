@@ -141,34 +141,52 @@
 
         <div class="food-form">
 
-            <form>
+            <form [formGroup]="foodForm" (ngSubmit)="createFood()">
 
                 <label>
                     Meal name
-                    <input type="text" placeholder="Chicken Rice" name="name" [(ngModel)]="foodData.name">
+                    <input type="text" placeholder="Chicken Rice" name="name" 
+                    formControlName="name">
                 </label>
 
                 <label>
                     Calories
-                    <input type="number" placeholder="120" name="protein" [(ngModel)]="foodData.calories">
+                    <input type="number" placeholder="120" name="calories" 
+                    formControlName="calories">
+                </label>
+
+                <label>
+                    Protein
+                    <input type="number" placeholder="30" name="protein" 
+                    formControlName="protein">
                 </label>
 
                 <label>
                     Carbs
-                    <input type="number" placeholder="70" name="carbs" [(ngModel)]="foodData.carbs">
+                    <input type="number" placeholder="70" name="carbs" 
+                    formControlName="carbs">
                 </label>
 
                 <label>
                     Fat
-                    <input type="number" placeholder="20" name="fat" [(ngModel)]="foodData.fat">
+                    <input type="number" placeholder="20" name="fat" 
+                    formControlName="fat">
                 </label>
 
                 <label>
                     Description
-                    <input type="text" placeholder="Lovely meal" name="description" [(ngModel)]="foodData.name">
+                    <input type="text" placeholder="Lovely meal" name="description" 
+                    formControlName="description">
                 </label>
 
-                <button (click)="createFood()">Add food</button>
+                @if(foodForm.get('name')?.hasError('required')
+                    &&
+                    foodForm.get('name')?.touched) {
+
+                        <span class="error"> Name is Required </span>
+                }
+
+                <button type="submit" [disabled]="foodForm.invalid">Add food</button>
 
             </form>
 
