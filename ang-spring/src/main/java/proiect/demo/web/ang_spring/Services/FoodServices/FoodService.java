@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import proiect.demo.web.ang_spring.DTO.CreateFoodRequest;
 import proiect.demo.web.ang_spring.Entities.Plan;
 import proiect.demo.web.ang_spring.Entities.User;
+import proiect.demo.web.ang_spring.Entities.Enums.FoodStatus;
 import proiect.demo.web.ang_spring.Entities.Food.Food;
 import proiect.demo.web.ang_spring.db.FoodRepository;
 import proiect.demo.web.ang_spring.db.PlanRepository;
@@ -40,6 +41,7 @@ public class FoodService {
 		food.setCarbs(dto.getCarbs());
 		food.setFat(dto.getFat());
 		food.setDescription(dto.getDescription());
+		food.setStatus(FoodStatus.PRIVATE);
 		
 		food.setUser(user);
 		
@@ -87,7 +89,5 @@ public class FoodService {
 		
 		foodRepo.delete(food);
 	}
-	
-
-	
+		
 }

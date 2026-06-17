@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,6 +19,7 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.Positive;
 import proiect.demo.web.ang_spring.Entities.Plan;
 import proiect.demo.web.ang_spring.Entities.User;
+import proiect.demo.web.ang_spring.Entities.Enums.FoodStatus;
 
 @Entity
 @Table(name="Foods")
@@ -37,6 +40,9 @@ public class Food {
 	private int carbs;
 	private int fat;
 	private String description;
+	
+	@Enumerated(EnumType.STRING)
+	private FoodStatus status;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
@@ -123,6 +129,20 @@ public class Food {
 		this.fat = fat;
 	}
 
-	
+	public FoodStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(FoodStatus status) {
+		this.status = status;
+	}
+
+	public List<PlanFood> getPlanFoods() {
+		return planFoods;
+	}
+
+	public void setPlanFoods(List<PlanFood> planFoods) {
+		this.planFoods = planFoods;
+	}
 	
 }
