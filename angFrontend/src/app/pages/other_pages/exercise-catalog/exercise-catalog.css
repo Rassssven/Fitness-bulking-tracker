@@ -172,3 +172,141 @@
 
     cursor: pointer;
 }
+
+/* Exercise Form */
+
+.exercise-form {
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0, 0, 0, 0.75);
+
+    z-index: 1000;
+}
+
+.exercise-form form {
+    width: 500px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    padding: 30px;
+
+    border-radius: 16px;
+    background: #111111;
+    border: 1px solid #2f2f2f;
+}
+
+.exercise-form h2 {
+    color: white;
+
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.exercise-form label {
+    display: flex;
+    flex-direction: column;
+
+    gap: 6px;
+
+    color: white;
+
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.exercise-form input {
+    padding: 12px;
+
+    border: 1px solid #333;
+    border-radius: 8px;
+
+    background: #1b1b1b;
+
+    color: white;
+    outline: none;
+    transition: 0.2s;
+}
+
+.exercise-form input:focus {
+    border-color: #27c26c;
+}
+
+.exercise-form input::placeholder {
+    color: #777;
+}
+
+.ex-form-errors {
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+
+    padding: 12px;
+    border-radius: 8px;
+
+    background: rgba(255, 92, 92, 0.08);
+    border: 1px solid rgba(255, 92, 92, 0.25);
+}
+
+.ex-form-errors span {
+    color: #ff6b6b;
+    font-size: 0.9rem;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 10px;
+}
+
+.cancel-btn {
+    padding: 12px 20px;
+
+    border: 1px solid #444;
+    border-radius: 8px;
+    background: transparent;
+
+    color: white;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.cancel-btn:hover {
+    background: #222;
+}
+
+.submit-btn {
+    padding: 12px 20px;
+
+    border: none;
+    border-radius: 8px;
+    background: #27c26c;
+
+    color: white;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.submit-btn:hover:not(:disabled) {
+    background: #1fa75c;
+}
+
+.submit-btn:disabled {
+    background: #444;
+
+    opacity: 0.6;
+    cursor: not-allowed;
+}

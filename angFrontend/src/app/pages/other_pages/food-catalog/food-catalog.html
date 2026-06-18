@@ -186,7 +186,10 @@
                         <span class="error"> Name is Required </span>
                 }
 
-                <button type="submit" [disabled]="foodForm.invalid">Add food</button>
+                <div class="form-buttons">
+                    <button type="button" class="cancel-food" (click)="showFoodForm = false">Cancel</button>
+                    <button type="submit" [disabled]="foodForm.invalid">Add food</button>
+                </div>
 
             </form>
 

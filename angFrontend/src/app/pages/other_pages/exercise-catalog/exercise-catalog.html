@@ -184,8 +184,10 @@
 
                 }
 
-                <button type="submit" [disabled]="exerciseForm.invalid">Add Exercise</button>
-
+                <div class="form-buttons">
+                    <button type="button" class="cancel-btn" (click)="showExerciseForm = false">Cancel</button>
+                    <button type="submit" [disabled]="exerciseForm.invalid">Add Exercise</button>
+                </div>
             </form>
 
         </div>
