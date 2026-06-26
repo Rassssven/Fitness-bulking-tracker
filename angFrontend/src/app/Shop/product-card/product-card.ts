@@ -10,6 +10,7 @@ import { Product } from '../../models/product';
 export class ProductCard {
 
   product = input.required<Product>();
+  //@Input() product!: Product;
 
   @Output() selected = new EventEmitter<number>();
 

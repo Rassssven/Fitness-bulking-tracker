@@ -3,14 +3,17 @@ import { GridModule } from '@progress/kendo-angular-grid';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { CardModule, GridLayoutModule } from '@progress/kendo-angular-layout';
 import { Router } from '@angular/router';
+import { InfoCard } from "../../shared/info-card/info-card";
 
 @Component({
   selector: 'app-home',
-  imports: [    
+  imports: [
     GridModule,
     ButtonsModule,
     GridLayoutModule,
-    CardModule],
+    CardModule,
+    InfoCard
+],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
