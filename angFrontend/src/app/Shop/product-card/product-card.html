@@ -1,30 +1,27 @@
-<div class="main-picture">
+<div class="product-card">
 
-    <div class="product-card">
+    <!--<img [src]="product().image" alt="{{ product().name }}">-->
+    <div class="product-image"></div>
 
-        <!--<img [src]="product().image" alt="{{ product().name }}">-->
-        <div class="product-image"></div>
+    <div class="product-info">
 
-        <div class="product-info">
+        <h2>{{ product().name }}</h2>
 
-            <h2>{{ product().name }}</h2>
+        <p class="product-description">
+            {{ product().description }}
+        </p>
 
-            <p class="product-description">
-                {{ product().description }}
-            </p>
+        <div class="product-bottom">
 
-            <div class="product-bottom">
-
-                <span class="price">
+            <span class="price">
                 ${{ product().price }}
-                </span>
+            </span>
 
-                <button (click)="viewProduct()">View Product</button>
-
-            </div>
+            <button (click)="viewProduct()">View Product</button>
 
         </div>
 
     </div>
-    
+
 </div>
+    

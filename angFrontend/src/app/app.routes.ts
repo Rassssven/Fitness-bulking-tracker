@@ -14,6 +14,7 @@ import { authGuard } from './core/guards/auth-guard';
 import { AdminDash } from './pages/admin-dash/admin-dash';
 import { FoodCatalog } from './pages/other_pages/food-catalog/food-catalog';
 import { ExerciseCatalog } from './pages/other_pages/exercise-catalog/exercise-catalog';
+import { Cart } from './Shop/cart/cart';
 
 export const routes: Routes = [
     { path: '', component: Home },
@@ -32,5 +33,6 @@ export const routes: Routes = [
     { path: 'diagram', component: DiagramPage },
     { path: 'admin', component: AdminDash },
     { path: 'food-catalog', component: FoodCatalog },
-    { path: 'exercise-catalog', component: ExerciseCatalog }
+    { path: 'exercise-catalog', component: ExerciseCatalog },
+    { path: 'cart', component: Cart}
 ];

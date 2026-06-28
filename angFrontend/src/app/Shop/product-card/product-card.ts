@@ -1,5 +1,6 @@
-import { Component, EventEmitter, input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, input, Output } from '@angular/core';
 import { Product } from '../../models/product';
+import { CartService } from '../../services/CartService';
 
 @Component({
   selector: 'app-product-card',
@@ -9,6 +10,8 @@ import { Product } from '../../models/product';
 })
 export class ProductCard {
 
+  cartServ = inject(CartService);
+
   product = input.required<Product>();
   //@Input() product!: Product;
 
@@ -17,5 +20,9 @@ export class ProductCard {
   viewProduct() {
     this.selected.emit(this.product().id);
   }
+
+  // addToCart(prod: Product) {
+  //   this.cartServ.addProduct();
+  // }
 
 }
