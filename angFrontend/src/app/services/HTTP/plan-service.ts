@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Plan } from '../../models/plan';
+import { map } from 'rxjs';
+import { Goal } from '../../models/goal';
 
 @Injectable({
   providedIn: 'root',
@@ -44,6 +46,27 @@ export class PlanService {
       type: string;
     }) {
     return this.http.put<Plan>(`${this.apiUrl}/${id}`, plan);
+  }
+
+  /* Exercises */
+
+  transformPlan() {
+    return this.http.get<Plan[]>(this.apiUrl)
+      .pipe(
+        map(
+          plans => 
+            plans.filter(plans => plans.type === "BULK")
+                 .map(plans => ({...plans, name: "Bulk" + plans.name}))
+        )
+      )
+  }
+
+  sortByTargetWeight() {
+    return this.http.get<Goal[]>(this.apiUrl)
+      .pipe(
+        map(goals => 
+            [...goals].sort((a, b) => a.targetWeight - b.targetWeight))
+      )
   }
 
 }
