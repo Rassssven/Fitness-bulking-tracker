@@ -26,7 +26,7 @@ export const routes: Routes = [
     { path: 'register', component: Register },
     { path: 'profile-dashboard', component: ProfileDashboard},
     { path: 'customize-plan-page/:id', component: CustomizePlanPage},
-    { path: 'help', component: HelpPage, canActivate: [authGuard]},
+    { path: 'help', component: HelpPage/*, canActivate: [authGuard]*/},
     { path: 'product/:id', component: ProductCard},
     { path: 'login', component: Login},
     { path: 'register', component: Register},

@@ -79,7 +79,7 @@
               <p><span>Status</span> Online</p>
             </div>
 
-            <button class="support-btn">
+            <button class="support-btn" (click)="isFormOpen = true">
               Contact Support
             </button>
           </div>
@@ -101,6 +101,58 @@
       </div>
 
     </div>
+
+    @if (isFormOpen) {
+
+      <div class="overlay">
+          <div class="formWindow">
+
+            <h2>Need Help?</h2>
+
+            <form [formGroup]="helpForm" (ngSubmit)="submitForm()">
+
+              <label>
+                Name
+                <input type="text" formControlName="name">
+              </label>
+
+              <label>
+                Email
+                <input type="email" formControlName="email">
+              </label>
+
+              <label>
+
+                Category
+                <select formControlName="category">
+
+                  <option>Bug</option>
+                  <option>Question</option>
+                  <option>Feature</option>
+
+                </select>
+              </label>
+
+              <label>
+                Description
+                <textarea formControlName="description"></textarea>
+              </label>
+
+              <button>
+                Send
+              </button>
+
+              <button (click)="isFormOpen = false">
+                Close
+              </button>
+
+            </form>
+
+          </div>
+      </div>
+
+    }
+
 
   </div>
 </div>
