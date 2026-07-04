@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-help-page',
@@ -9,14 +9,44 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 })
 export class HelpPage {
 
+  private fb = inject(FormBuilder);
+
   isFormOpen = false;
 
-  helpForm = new FormGroup({
-    name: new FormControl(''),
-    email: new FormControl(''),
-    category: new FormControl(''),
-    description: new FormControl('')
+  // helpForm = new FormGroup({
+  //   name: new FormControl(''),
+  //   email: new FormControl(''),
+  //   category: new FormControl(''),
+  // });
+
+  helpForm = this.fb.group({
+    name: [''],
+    email: [''],
+    issues: this.fb.array([this.createIssue])
   });
+
+  createIssue(): FormGroup {
+
+    return this.fb.group({
+      category: ['Bug'],
+      description: ['']
+    });
+
+  }
+
+  get issues(): FormArray {
+    return this.helpForm.get('issues') as FormArray;
+  }
+
+  addIssue() {
+    this.issues.push(
+      this.createIssue()
+    );
+  }
+
+  removeIssue(index: number) {
+    this.issues.removeAt(index);
+  }
 
   submitForm() {
     return;

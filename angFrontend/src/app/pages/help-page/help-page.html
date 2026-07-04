@@ -133,13 +133,32 @@
                 </select>
               </label>
 
-              <label>
-                Description
-                <textarea formControlName="description"></textarea>
-              </label>
+              <div formArrayName="issues">
+                @for (issue of issues.controls; track $index) {
 
-              <button>
-                Send
+                  <div [formGroupName]="$index">
+
+                    <select formControlName="category">
+
+                      <option>Bug</option>
+                      <option>Question</option>
+                      <option>Feature</option>
+
+                    </select>
+
+                    <textarea
+                        formControlName="description">
+                    </textarea>
+
+                    <button type="button" (click)="removeIssue($index)">
+                        Remove
+                    </button>
+                  </div>
+                }
+              </div>
+
+              <button type="button" (click)="addIssue()">
+                Add Issue
               </button>
 
               <button (click)="isFormOpen = false">
