@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-help-page',
@@ -20,7 +20,10 @@ export class HelpPage {
   // });
 
   helpForm = this.fb.group({
-    name: [''],
+    name: ['', [
+      Validators.required,
+      Validators.minLength(3)
+    ]],
     email: [''],
     issues: this.fb.array([this.createIssue])
   });

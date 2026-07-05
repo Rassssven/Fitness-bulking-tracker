@@ -15,6 +15,7 @@ import { AdminDash } from './pages/admin-dash/admin-dash';
 import { FoodCatalog } from './pages/other_pages/food-catalog/food-catalog';
 import { ExerciseCatalog } from './pages/other_pages/exercise-catalog/exercise-catalog';
 import { Cart } from './Shop/cart/cart';
+import { ProductDetailsPage } from './Shop/product-details-page/product-details-page';
 
 export const routes: Routes = [
     { path: '', component: Home },
@@ -27,12 +28,12 @@ export const routes: Routes = [
     { path: 'profile-dashboard', component: ProfileDashboard},
     { path: 'customize-plan-page/:id', component: CustomizePlanPage},
     { path: 'help', component: HelpPage/*, canActivate: [authGuard]*/},
-    { path: 'product/:id', component: ProductCard},
     { path: 'login', component: Login},
     { path: 'register', component: Register},
     { path: 'diagram', component: DiagramPage },
     { path: 'admin', component: AdminDash },
     { path: 'food-catalog', component: FoodCatalog },
     { path: 'exercise-catalog', component: ExerciseCatalog },
-    { path: 'cart', component: Cart}
+    { path: 'cart', component: Cart},
+    { path: 'product-details/:id', component: ProductDetailsPage}
 ];

@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { Product } from '../../models/product';
 import { ProductCard } from "../product-card/product-card";
+import { ProductShop } from '../../models/productShop';
 
 @Component({
   selector: 'app-shop',
@@ -12,12 +12,12 @@ import { ProductCard } from "../product-card/product-card";
 })
 export class Shop {
 
-  products: Product[] = [
+  products: ProductShop[] = [
     {
       id: 1,
       name: 'Whey Protein',
       price: 59,
-      description: 'High quality whey protein for muscle growth and recovery.',
+      shortDescription: 'High quality whey protein for muscle growth and recovery.',
       image: '/products/whey.jpg'
     },
 
@@ -25,7 +25,7 @@ export class Shop {
       id: 2,
       name: 'Creatine Monohydrate',
       price: 24,
-      description: 'Increase strength, power, and workout performance.',
+      shortDescription: 'Increase strength, power, and workout performance.',
       image: '/products/creatine.jpg'
     },
 
@@ -33,7 +33,7 @@ export class Shop {
       id: 3,
       name: 'Pre Workout',
       price: 39,
-      description: 'Energy boost supplement for intense training sessions.',
+      shortDescription: 'Energy boost supplement for intense training sessions.',
       image: '/products/preworkout.jpg'
     },
 
@@ -41,7 +41,7 @@ export class Shop {
       id: 4,
       name: 'Omega 3',
       price: 19,
-      description: 'Supports heart health and joint recovery.',
+      shortDescription: 'Supports heart health and joint recovery.',
       image: '/products/omega3.jpg'
     },
 
@@ -49,7 +49,7 @@ export class Shop {
       id: 5,
       name: 'Mass Gainer',
       price: 74,
-      description: 'Calorie-dense shake designed for clean bulking.',
+      shortDescription: 'Calorie-dense shake designed for clean bulking.',
       image: '/products/massgainer.jpg'
     },
 
@@ -57,7 +57,7 @@ export class Shop {
       id: 6,
       name: 'Omega 3',
       price: 19,
-      description: 'Supports heart health and joint recovery.',
+      shortDescription: 'Supports heart health and joint recovery.',
       image: '/products/omega3.jpg'
     },
 
@@ -65,7 +65,7 @@ export class Shop {
       id: 7,
       name: 'Mass Gainer',
       price: 74,
-      description: 'Calorie-dense shake designed for clean bulking.',
+      shortDescription: 'Calorie-dense shake designed for clean bulking.',
       image: '/products/massgainer.jpg'
     }
 
@@ -74,7 +74,7 @@ export class Shop {
   private router = inject(Router);
   
   goToProduct(id: number) {
-    this.router.navigate(['/product', id]);
+    this.router.navigate(['/product-details', id]);
   }
 
 }
