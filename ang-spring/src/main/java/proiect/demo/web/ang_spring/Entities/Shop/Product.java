@@ -28,42 +28,44 @@ public class Product {
 	@Column(nullable = false)
 	private Double price;
 	
-	private Double rating;
-	private Integer reviews;
-	private Boolean inStock;
+	private Double rating = 0.0;
+	private Integer reviews = 0;
+	
+	@Column(nullable = false)
+	private Boolean inStock = true;
 	
 	private String category;
 	private String brand;
 	
-	private Integer discountPercentage;
+	private Integer discountPercentage = 0;
 	
     @OneToMany(mappedBy = "product",
 	            cascade = CascadeType.ALL,
 	            orphanRemoval = true)
-	 private List<ProductImage> images;
+	private List<ProductImage> images;
 	
-	 @OneToMany(mappedBy = "product",
-	            cascade = CascadeType.ALL,
-	            orphanRemoval = true)
-	 private List<ProductSpecification> specs;
+	@OneToMany(mappedBy = "product",
+	           cascade = CascadeType.ALL,
+	           orphanRemoval = true)
+	private List<ProductSpecification> specs;
 	 
-	 public Product() { }
+	public Product() { }
 
-	 public Product(String name, String shortDescription, String description, Double price, Double rating,
+	public Product(String name, String shortDescription, String description, Double price, Double rating,
 			 Integer reviews, Boolean inStock, String category, String brand, Integer discountPercentage,
 			 List<ProductImage> images, List<ProductSpecification> specs) {
-		 this.name = name;
-		 this.shortDescription = shortDescription;
-		 this.description = description;
-		 this.price = price;
-		 this.rating = rating;
-		 this.reviews = reviews;
-		 this.inStock = inStock;
-		 this.category = category;
-		 this.brand = brand;
-		 this.discountPercentage = discountPercentage;
-		 this.images = images;
-		 this.specs = specs;
+		this.name = name;
+		this.shortDescription = shortDescription;
+		this.description = description;
+		this.price = price;
+		this.rating = rating;
+		this.reviews = reviews;
+		this.inStock = inStock;
+		this.category = category;
+		this.brand = brand;
+		this.discountPercentage = discountPercentage;
+		this.images = images;
+		this.specs = specs;
 	 }
 
 	public Long getId() {

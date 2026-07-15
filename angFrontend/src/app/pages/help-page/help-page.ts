@@ -25,7 +25,7 @@ export class HelpPage {
       Validators.minLength(3)
     ]],
     email: [''],
-    issues: this.fb.array([this.createIssue])
+    issues: this.fb.array([this.createIssue()])
   });
 
   createIssue(): FormGroup {
