@@ -1,8 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductCard } from "../product-card/product-card";
 import { ProductShop } from '../../models/productShop';
+import { ShopService } from '../../services/HTTP/shop-service';
+import { NotificationService } from '../../shared/notification-service';
+import { Product } from '../../models/product';
 
 @Component({
   selector: 'app-shop',
@@ -10,7 +13,7 @@ import { ProductShop } from '../../models/productShop';
   templateUrl: './shop.html',
   styleUrl: './shop.css',
 })
-export class Shop {
+export class Shop implements OnInit {
 
   products: ProductShop[] = [
     {
@@ -71,10 +74,27 @@ export class Shop {
 
   ];
 
+  productss = signal<Product[]>([]);
+
   private router = inject(Router);
+  private shopServ = inject(ShopService);
+  private notifServ = inject(NotificationService);
+
+  ngOnInit() {
+
+    this.shopServ.getProducts().subscribe({
+      next: (response) => {
+        this.productss.set(response);
+      }
+    });
+
+  }
+
   
   goToProduct(id: number) {
     this.router.navigate(['/product-details', id]);
   }
+
+
 
 }
