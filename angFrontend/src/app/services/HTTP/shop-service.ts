@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Product } from '../../models/product';
+import { CreateProductRequest } from '../../models/DTO/CreateProductRequest';
 
 @Injectable({
   providedIn: 'root',
@@ -8,13 +9,13 @@ import { Product } from '../../models/product';
 export class ShopService {
 
   private http = inject(HttpClient);
-  private apiUrl = 'https://localhost:8080/products';
+  private apiUrl = 'http://localhost:8080/products';
 
   getProducts() {
     return this.http.get<Product[]>(this.apiUrl);
   }
 
-  createProduct(product: Product) {
+  createProduct(product: CreateProductRequest) {
     return this.http.post<Product>(this.apiUrl, product);
   }
 

@@ -6,10 +6,13 @@ import { ProductShop } from '../../models/productShop';
 import { ShopService } from '../../services/HTTP/shop-service';
 import { NotificationService } from '../../shared/notification-service';
 import { Product } from '../../models/product';
+import { AuthService } from '../../auth/authService/auth.service';
+import { FormArray, FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CreateProductRequest } from '../../models/DTO/CreateProductRequest';
 
 @Component({
   selector: 'app-shop',
-  imports: [CommonModule, ProductCard],
+  imports: [CommonModule, ProductCard, FormsModule, ReactiveFormsModule],
   templateUrl: './shop.html',
   styleUrl: './shop.css',
 })
@@ -76,9 +79,53 @@ export class Shop implements OnInit {
 
   productss = signal<Product[]>([]);
 
+  isOpen = false;
+
   private router = inject(Router);
   private shopServ = inject(ShopService);
   private notifServ = inject(NotificationService);
+  private auth = inject(AuthService)
+  private fb = inject(FormBuilder);
+
+  /* -- Form -- */
+
+  shopForm = this.fb.group({
+    name: ['', [
+      Validators.required
+    ]],
+    description: [''],
+    price: [0, [
+      Validators.required
+    ]],
+    stock: [true],
+    category: [''],
+
+    images: this.fb.array([this.createImage()])
+  })
+
+  get images(): FormArray {
+    return this.shopForm.get('images') as FormArray;
+  }
+
+  createImage() {
+    return this.fb.control('');
+  }
+
+  addImages() {
+    this.images.push(
+      this.fb.control('')
+    )
+  }
+
+  removeImage(index: number) {
+    this.images.removeAt(index);
+  }
+
+  /* -- Form --*/
+
+  isAdmin() {
+    return this.auth.getCurrentUser()?.role === 'ADMIN';
+  }
 
   ngOnInit() {
 
@@ -90,11 +137,34 @@ export class Shop implements OnInit {
 
   }
 
-  
+  createProduct() {
+
+    const productData: CreateProductRequest = {
+      name: this.shopForm.value.name!,
+      description: this.shopForm.value.description!,
+      price: this.shopForm.value.price!,
+      inStock: this.shopForm.value.stock!,
+      category: this.shopForm.value.category!,
+      images: (this.shopForm.value.images ?? [])
+        .filter((img): img is string => img !== null)
+    }
+
+    this.shopServ.createProduct(productData).subscribe({
+      next: (response) => {
+
+        this.productss.update(prods => [
+          ...prods, response
+        ])
+
+        this.isOpen = false;
+      }
+
+    })
+
+  }
+
   goToProduct(id: number) {
     this.router.navigate(['/product-details', id]);
   }
-
-
 
 }

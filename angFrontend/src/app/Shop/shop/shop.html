@@ -26,11 +26,24 @@
           <option>Price High</option>
         </select>
 
+        @if(isAdmin()) {
+          <button class="add-prod" (click)="isOpen = true"> Add Product </button>
+        } 
+
       </div>
 
     </div>
 
     <div class="products-container">
+
+      @for(product of productss(); track product.id) {
+
+        <app-product-card
+          [product]="product"
+          (selected)="goToProduct($event)">
+        </app-product-card>
+
+      }
 
       @for(product of products; track product.id) {
 
@@ -44,5 +57,61 @@
     </div>
 
   </div>
+
+  @if(isOpen) {
+
+    <div class="shop-add">
+
+      <form class="shop-form" [formGroup]="shopForm" (ngSubmit)="createProduct()">
+
+        <label>
+          Name
+          <input type="text" name="name" placeholder="name" 
+          formControlName="name">
+        </label>
+
+        <label>
+          Description
+          <input type="text" name="description" placeholder="description" 
+          formControlName="description">
+        </label>
+
+        <label>
+          Price
+          <input type="number" name="price" placeholder="price" 
+          formControlName="price">
+        </label>
+
+        <label>
+          In Stock
+          <input type="checkbox" formControlName="stock">
+        </label>
+
+        <label>
+          Category
+          <input type="text" name="category" placeholder="category" 
+          formControlName="category">
+        </label>
+
+        @for(images of images.controls; track $index) {
+
+          <div formArrayName="images">
+            <input type="text" placeholder="Image URL" [formControlName]="$index">
+            <button type="button" (click)="removeImage($index)">Remove</button>
+          </div>
+
+        }
+
+        <div class="form-shop-update">
+          <button type="button" (click)="addImages()">Add Image</button>
+          <button type="button" (click)="isOpen = false"> Close </button>
+          <button type="submit"> Submit </button>
+        </div>
+
+      </form>
+
+    </div>
+
+  }
 
 </div>

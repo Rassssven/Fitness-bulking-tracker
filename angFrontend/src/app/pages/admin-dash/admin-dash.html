@@ -1,70 +1,70 @@
 <div class="main-picture">
 
-  <div class="admin-dashboard">
+    <div class="admin-dashboard">
 
-    <div class="dashboard-header">
+        <div class="dashboard-header">
 
-        <h1>User Management</h1>
+            <h1>User Management</h1>
 
-        <input type="text" placeholder="Search users..." class="search-bar" #searchInput>
-        
-        <button (click)="searchUsers(searchInput.value)" class="search-btn">Search</button>
+            <input type="text" placeholder="Search users..." class="search-bar" #searchInput>
+            
+            <button (click)="searchUsers(searchInput.value)" class="search-btn">Search</button>
 
-    </div>
-
-    <div class="users-table">
-
-        <div class="table-header">
-            <span class="id-column">ID</span>
-            <span class="name-column">Name</span>
-            <span class="email-column">Email</span>
-            <span class="role-column">Role</span>
-            <span class="actions">Actions</span>
         </div>
 
-        @for(user of userData(); track user.id) {
+        <div class="users-table">
 
-            <div class="table-row">
-
-            <span>{{ user.id }}</span>
-
-            <span>
-                {{ user.firstName }}
-                {{ user.lastName }}
-            </span>
-
-            <span>{{ user.email }}</span>
-
-            <span>{{ user.role }}</span>
-
-            <div class="actions">
-
-                <button class="view-btn" (click)="setRole(user.id, roleSelect.value)">
-                    Update Role
-                </button>
-
-                <select [ngModel]="user.role" class="role-select" #roleSelect>
-                    <option value="USER">User</option>
-                    <option value="ADMIN">Admin</option>
-                    <option value="SELLER">Seller</option>
-                </select>
-
-                <button class="view-btn">
-                    View
-                </button>
-
-                <button class="delete-btn">
-                    Delete
-                </button>
-
+            <div class="table-header">
+                <span class="id-column">ID</span>
+                <span class="name-column">Name</span>
+                <span class="email-column">Email</span>
+                <span class="role-column">Role</span>
+                <span class="actions">Actions</span>
             </div>
 
-            </div>
+            @for(user of userData(); track user.id) {
 
-        }
+                <div class="table-row">
+
+                <span>{{ user.id }}</span>
+
+                <span>
+                    {{ user.firstName }}
+                    {{ user.lastName }}
+                </span>
+
+                <span>{{ user.email }}</span>
+
+                <span>{{ user.role }}</span>
+
+                <div class="actions">
+
+                    <button class="view-btn" (click)="setRole(user.id, roleSelect.value)">
+                        Update Role
+                    </button>
+
+                    <select [ngModel]="user.role" class="role-select" #roleSelect>
+                        <option value="USER">User</option>
+                        <option value="ADMIN">Admin</option>
+                        <option value="SELLER">Seller</option>
+                    </select>
+
+                    <button class="view-btn">
+                        View
+                    </button>
+
+                    <button class="delete-btn">
+                        Delete
+                    </button>
+
+                </div>
+
+                </div>
+
+            }
+
+        </div>
 
     </div>
-
-  </div>
 
 </div>

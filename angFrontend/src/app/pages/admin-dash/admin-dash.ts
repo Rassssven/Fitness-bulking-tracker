@@ -3,6 +3,7 @@ import { UserService } from '../../services/HTTP/user-service';
 import { User } from '../../models/user';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Product } from '../../models/product';
 
 @Component({
   selector: 'app-admin-dash',
@@ -15,6 +16,7 @@ export class AdminDash implements OnInit {
   private userService = inject(UserService);
 
   userData = signal<User[]>([]);
+  product = signal<Product | null>(null);
 
   role = '';
 
@@ -46,5 +48,6 @@ export class AdminDash implements OnInit {
       }
     });
   }
+
 
 }
