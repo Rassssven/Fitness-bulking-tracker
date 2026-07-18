@@ -72,23 +72,31 @@
   position: fixed;
   inset: 0;
 
-  background: rgba(20,20,20,0.95);
-
-  z-index:9999;
-
   display: flex;
   justify-content: center;
-  flex-direction: column;
   align-items: center;
+
+  background: rgba(0, 0, 0, 0.6);
 }
 
-.shop-form form {
-  width: 500px;
-
+.shop-form {
   display: flex;
   flex-direction: column;
+  gap: 18px;
 
-  gap: 16px;
+  width: 600px;
+
+  padding: 30px;
+
+  background: #1a1a1a;
+
+  border-radius: 15px;
+
+  box-shadow: 0 0 20px rgba(0, 0, 0, .5);
+}
+
+.shop-form h2 {
+  color: #00ff99;
 }
 
 .shop-form label {
@@ -98,21 +106,49 @@
   gap: 6px;
 
   color: white;
-
-  font-size: 0.95rem;
-  font-weight: 500;
+  font-weight: bold;
 }
 
-.shop-form input {
-  padding: 12px;
+.shop-form input,
+.shop-form select {
+  padding: 10px;
 
-  border: 1px solid #333;
+  border: 1px solid #444;
   border-radius: 8px;
 
-  background: #1b1b1b;
-
+  background: #2a2a2a;
   color: white;
+}
+
+.shop-form input:focus,
+.shop-form select:focus {
   outline: none;
-  transition: 0.2s;
+  border-color: #00ff99;
+}
+
+.form-shop-update {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+
+  margin-top: 10px;
+}
+
+.form-shop-update button {
+  padding: 10px 18px;
+
+  border: none;
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  background: #00c16a;
+  color: white;
+
+  font-weight: bold;
+}
+
+.form-shop-update button:hover {
+  background: #00a85b;
 }
 

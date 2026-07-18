@@ -84,7 +84,7 @@ export class Shop implements OnInit {
   private router = inject(Router);
   private shopServ = inject(ShopService);
   private notifServ = inject(NotificationService);
-  private auth = inject(AuthService)
+  private auth = inject(AuthService);
   private fb = inject(FormBuilder);
 
   /* -- Form -- */
