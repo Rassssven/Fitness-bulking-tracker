@@ -60,18 +60,18 @@ public class ShopService {
 		
 		prod.setImages(images);
 		
-		List<ProductSpecification> specs = dto.getSpecifications()
-			    .stream()
-			    .map(s -> {
-			        ProductSpecification spec = new ProductSpecification();
-			        spec.setName(s.getName());
-			        spec.setValue(s.getValue());
-			        spec.setProduct(prod);
-			        return spec;
-			    })
-			    .toList();
-
-		prod.setSpecs(specs);
+//		List<ProductSpecification> specs = dto.getSpecifications()
+//			    .stream()
+//			    .map(s -> {
+//			        ProductSpecification spec = new ProductSpecification();
+//			        spec.setName(s.getName());
+//			        spec.setValue(s.getValue());
+//			        spec.setProduct(prod);
+//			        return spec;
+//			    })
+//			    .toList();
+//
+//		prod.setSpecs(specs);
 		
 		return productRepo.save(prod);
 	}
@@ -102,16 +102,14 @@ public class ShopService {
 		String email = auth.getName();
 		
 		User user = userRepo.findByEmail(email)
-				.orElseThrow(() -> new RuntimeException("Product can't be created!"));
-		
-		Product product = productRepo.findById(prodId)
-				.orElseThrow(() -> new RuntimeException("Product can't be created!"));
-		
+				.orElseThrow(() -> new RuntimeException("No user found!"));
+	
 		if(user.getRole() != Role.ADMIN) {
 			throw new RuntimeException("User must be admin to handle products!");
 		}
 		
-		//Product product = new Product();
+		Product product = productRepo.findById(prodId)
+				.orElseThrow(() -> new RuntimeException("Product can't be updated!"));
 		
 		product.setName(dto.getName());
 	    product.setShortDescription(dto.getShortDescription());
