@@ -1,9 +1,10 @@
-export interface CreateProductRequest {
+export interface UpdateProductRequest {
     name: string;
     description: string;
     shortDescription: string;
     price: number;
     inStock: boolean;
     category: string;
-    images: string[];
+    brand: string;
+    discountPercentage: number;
 }

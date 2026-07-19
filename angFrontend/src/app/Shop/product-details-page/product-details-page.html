@@ -73,6 +73,13 @@
                     <p>✅ Secure payment</p>
                 </div>
 
+                @if(isAdmin()) {
+                    <div class="admin-buttons">
+                        <button type="button"> Update Product </button>
+                        <button type="button" (click)="deleteProduct()"> Delete </button>
+                    </div>
+                }
+
             </div>
         </div>
 

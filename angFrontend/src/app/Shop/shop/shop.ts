@@ -94,6 +94,7 @@ export class Shop implements OnInit {
       Validators.required
     ]],
     description: [''],
+    shortDescription: [''],
     price: [0, [
       Validators.required
     ]],
@@ -142,6 +143,7 @@ export class Shop implements OnInit {
     const productData: CreateProductRequest = {
       name: this.shopForm.value.name!,
       description: this.shopForm.value.description!,
+      shortDescription: this.shopForm.value.shortDescription!,
       price: this.shopForm.value.price!,
       inStock: this.shopForm.value.stock!,
       category: this.shopForm.value.category!,

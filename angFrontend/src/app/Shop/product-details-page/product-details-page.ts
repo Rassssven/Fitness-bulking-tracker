@@ -1,5 +1,8 @@
-import { Component, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, inject, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '../../auth/authService/auth.service';
+import { ShopService } from '../../services/HTTP/shop-service';
+import { NotificationService } from '../../shared/notification-service';
 
 @Component({
   selector: 'app-product-details-page',
@@ -7,10 +10,42 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './product-details-page.html',
   styleUrl: './product-details-page.css',
 })
-export class ProductDetailsPage {
+export class ProductDetailsPage implements OnInit {
 
   private route = inject(ActivatedRoute);
+  private router = inject(Router)
+  private authService = inject(AuthService);
+  private shopServ = inject(ShopService);
+  private notifServ = inject(NotificationService);
 
-  
+  productId!: number;
+
+  ngOnInit() {
+    this.productId = Number(
+      this.route.snapshot.paramMap.get('id')
+    );
+  }
+
+  isAdmin() {
+    return this.authService.getCurrentUser()?.role === 'ADMIN';
+  }
+
+  deleteProduct() {
+    this.shopServ.deleteProduct(this.productId).subscribe({
+      next: () => {
+        console.log("Product deleted.");
+
+        this.notifServ.showSuccess("Product has been deleted.")
+
+        this.router.navigate(['/shop']);
+      }
+    })
+  }
+
+  // updateProduct() {
+  //   this.shopServ.updateProduct(this.productId).subscribe({
+      
+  //   });
+  // }
 
 }

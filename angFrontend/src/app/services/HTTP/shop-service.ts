@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Product } from '../../models/product';
 import { CreateProductRequest } from '../../models/DTO/CreateProductRequest';
+import { UpdateProductRequest } from '../../models/DTO/UpdateDTO\'s/UpdateProductRequest';
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +22,10 @@ export class ShopService {
 
   deleteProduct(prodId: number) {
     return this.http.delete(`${this.apiUrl}/${prodId}`);
+  }
+
+  updateProduct(prodData: UpdateProductRequest, prodId: number) {
+    return this.http.put(`${this.apiUrl}/${prodId}`, prodData);
   }
   
 }
