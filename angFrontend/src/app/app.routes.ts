@@ -16,6 +16,7 @@ import { FoodCatalog } from './pages/other_pages/food-catalog/food-catalog';
 import { ExerciseCatalog } from './pages/other_pages/exercise-catalog/exercise-catalog';
 import { Cart } from './Shop/cart/cart';
 import { ProductDetailsPage } from './Shop/product-details-page/product-details-page';
+import { Catalogue } from './pages/other_pages/catalogue/catalogue';
 
 export const routes: Routes = [
     { path: '', component: Home },
@@ -35,5 +36,6 @@ export const routes: Routes = [
     { path: 'food-catalog', component: FoodCatalog },
     { path: 'exercise-catalog', component: ExerciseCatalog },
     { path: 'cart', component: Cart},
-    { path: 'product-details/:id', component: ProductDetailsPage}
+    { path: 'product-details/:id', component: ProductDetailsPage},
+    { path: 'catalogue', component: Catalogue}
 ];

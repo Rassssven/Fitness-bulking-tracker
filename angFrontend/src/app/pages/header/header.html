@@ -6,12 +6,14 @@
         <button routerLink="/help"> Help </button>
         <button routerLink="/diagram"> Diagram </button>
 
+        <button routerLink="/food-catalog"> Meals </button>
+        <button routerLink="/exercise-catalog"> Exercises </button>
+
+        <button routerLink="/catalogue"> Catalogue </button>
+
         @if(isLoggedIn() && isAdmin()) {
             <button routerLink="/admin"> Admin Dashboard </button>
         }
-
-        <button routerLink="/food-catalog"> Meals </button>
-        <button routerLink="/exercise-catalog"> Exercises </button>
     </div>
 
     <div class="h-right">
