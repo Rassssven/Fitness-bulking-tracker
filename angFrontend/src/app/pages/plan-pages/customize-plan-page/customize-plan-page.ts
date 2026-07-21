@@ -1,18 +1,18 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PlanExercise } from '../../models/planExercise';
-import { Plan } from '../../models/plan';
-import { PlanService } from '../../services/HTTP/plan-service';
-import { NotificationService } from '../../shared/notification-service';
+import { PlanExercise } from '../../../models/planExercise';
+import { Plan } from '../../../models/plan';
+import { PlanService } from '../../../services/HTTP/plan-service';
+import { NotificationService } from '../../../shared/notification-service';
 import { FormsModule } from '@angular/forms';
-import { Goal } from '../../models/goal';
-import { GoalService } from '../../services/HTTP/goal-service';
+import { Goal } from '../../../models/goal';
+import { GoalService } from '../../../services/HTTP/goal-service';
 import { CommonModule } from '@angular/common';
-import { FoodService } from '../../services/HTTP/food-service';
-import { PlanFood } from '../../models/planFood';
-import { ExerciseService } from '../../services/HTTP/exercise-service';
-import { CreatePlanExerciseRequest } from '../../models/DTO/CreatePlanExerciseRequest';
-import { CreatePlanMealRequest } from '../../models/DTO/CreatePlanFoodRequest';
+import { FoodService } from '../../../services/HTTP/food-service';
+import { PlanFood } from '../../../models/planFood';
+import { ExerciseService } from '../../../services/HTTP/exercise-service';
+import { CreatePlanExerciseRequest } from '../../../models/DTO/CreatePlanExerciseRequest';
+import { CreatePlanMealRequest } from '../../../models/DTO/CreatePlanFoodRequest';
 
 @Component({
   selector: 'app-customize-plan-page',

@@ -2,13 +2,13 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductCard } from "../product-card/product-card";
-import { ProductShop } from '../../models/productShop';
-import { ShopService } from '../../services/HTTP/shop-service';
-import { NotificationService } from '../../shared/notification-service';
-import { Product } from '../../models/product';
-import { AuthService } from '../../auth/authService/auth.service';
+import { ProductShop } from '../../../models/productShop';
+import { ShopService } from '../../../services/HTTP/shop-service';
+import { NotificationService } from '../../../shared/notification-service';
+import { Product } from '../../../models/product';
+import { AuthService } from '../../../auth/authService/auth.service';
 import { FormArray, FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CreateProductRequest } from '../../models/DTO/CreateProductRequest';
+import { CreateProductRequest } from '../../../models/DTO/CreateProductRequest';
 
 @Component({
   selector: 'app-shop',

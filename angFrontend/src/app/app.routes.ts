@@ -1,22 +1,20 @@
 import { Routes } from '@angular/router';
 import { Home } from './pages/home/home';
-import { Shop } from './Shop/shop/shop';
-import { CalcPage } from './pages/calc-page/calc-page';
-import { ResultPage } from './pages/result-page/result-page';
+import { Shop } from './pages/shop_pages/shop/shop';
+import { CalcPage } from './pages/plan-pages/calc-page/calc-page';
+import { ResultPage } from './pages/plan-pages/result-page/result-page';
 import { Login } from './auth/login/login';
 import { Register } from './auth/register/register';
 import { ProfileDashboard } from './pages/profile-dashboard/profile-dashboard';
-import { CustomizePlanPage } from './pages/customize-plan-page/customize-plan-page';
+import { CustomizePlanPage } from './pages/plan-pages/customize-plan-page/customize-plan-page';
 import { HelpPage } from './pages/help-page/help-page';
-import { ProductCard } from './Shop/product-card/product-card';
-import { DiagramPage } from './pages/diagram-page/diagram-page';
-import { authGuard } from './core/guards/auth-guard';
+//import { authGuard } from './core/guards/auth-guard';
 import { AdminDash } from './pages/admin-dash/admin-dash';
-import { FoodCatalog } from './pages/other_pages/food-catalog/food-catalog';
-import { ExerciseCatalog } from './pages/other_pages/exercise-catalog/exercise-catalog';
-import { Cart } from './Shop/cart/cart';
-import { ProductDetailsPage } from './Shop/product-details-page/product-details-page';
-import { Catalogue } from './pages/other_pages/catalogue/catalogue';
+import { FoodCatalog } from './pages/catalogue_pages/food-catalog/food-catalog';
+import { ExerciseCatalog } from './pages/catalogue_pages/exercise-catalog/exercise-catalog';
+import { Cart } from './pages/shop_pages/cart/cart';
+import { ProductDetailsPage } from './pages/shop_pages/product-details-page/product-details-page';
+import { Catalogue } from './pages/catalogue_pages/catalogue/catalogue';
 
 export const routes: Routes = [
     { path: '', component: Home },
@@ -31,7 +29,6 @@ export const routes: Routes = [
     { path: 'help', component: HelpPage/*, canActivate: [authGuard]*/},
     { path: 'login', component: Login},
     { path: 'register', component: Register},
-    { path: 'diagram', component: DiagramPage },
     { path: 'admin', component: AdminDash },
     { path: 'food-catalog', component: FoodCatalog },
     { path: 'exercise-catalog', component: ExerciseCatalog },

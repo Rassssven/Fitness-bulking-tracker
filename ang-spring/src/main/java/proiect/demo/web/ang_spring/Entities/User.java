@@ -86,11 +86,11 @@ public class User {
 			   orphanRemoval = true)
 	private List<Plan> plans;
 	
-	@JsonIgnore
-	@OneToMany(mappedBy = "user",
-			   cascade = CascadeType.ALL,
-			   orphanRemoval = true)
-	private List<DailyTracker> dailyTracker;
+//	@JsonIgnore
+//	@OneToMany(mappedBy = "user",
+//			   cascade = CascadeType.ALL,
+//			   orphanRemoval = true)
+//	private List<DailyTracker> dailyTracker;
 	
 	public User() {	}
 	
@@ -235,13 +235,13 @@ public class User {
 		this.plans = plans;
 	}
 
-	public List<DailyTracker> getDailyTracker() {
-		return dailyTracker;
-	}
-
-	public void setDailyTracker(List<DailyTracker> dailyTracker) {
-		this.dailyTracker = dailyTracker;
-	}
+//	public List<DailyTracker> getDailyTracker() {
+//		return dailyTracker;
+//	}
+//
+//	public void setDailyTracker(List<DailyTracker> dailyTracker) {
+//		this.dailyTracker = dailyTracker;
+//	}
 
 	
 	

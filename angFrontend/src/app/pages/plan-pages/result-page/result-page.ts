@@ -1,15 +1,15 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { CalcData } from '../../models/info-gym';
-import { Recommendations } from '../../services/Recommendations/recommendations';
-import { NotificationService } from '../../shared/notification-service';
-import { PlanService } from '../../services/HTTP/plan-service';
-import { AuthService } from '../../auth/authService/auth.service';
-import { UserService } from '../../services/HTTP/user-service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CalcData } from '../../../models/info-gym';
+import { Recommendations } from '../../../services/Recommendations/recommendations';
+import { NotificationService } from '../../../shared/notification-service';
+import { PlanService } from '../../../services/HTTP/plan-service';
+import { AuthService } from '../../../auth/authService/auth.service';
+import { UserService } from '../../../services/HTTP/user-service';
 
 @Component({
   selector: 'app-result-page',
-  imports: [RouterLink],
+  imports: [],
   templateUrl: './result-page.html',
   styleUrl: './result-page.css',
 })

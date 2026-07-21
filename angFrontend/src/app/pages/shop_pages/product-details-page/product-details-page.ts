@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '../../auth/authService/auth.service';
-import { ShopService } from '../../services/HTTP/shop-service';
-import { NotificationService } from '../../shared/notification-service';
+import { AuthService } from '../../../auth/authService/auth.service';
+import { ShopService } from '../../../services/HTTP/shop-service';
+import { NotificationService } from '../../../shared/notification-service';
 
 @Component({
   selector: 'app-product-details-page',

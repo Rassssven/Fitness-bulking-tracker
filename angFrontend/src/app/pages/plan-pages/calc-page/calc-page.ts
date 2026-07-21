@@ -1,9 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CalcData } from '../../models/info-gym';
-import { PlanService } from '../../services/HTTP/plan-service';
-import { NotificationService } from '../../shared/notification-service';
+import { CalcData } from '../../../models/info-gym';
+import { PlanService } from '../../../services/HTTP/plan-service';
+import { NotificationService } from '../../../shared/notification-service';
 
 @Component({
   selector: 'app-calc-page',
