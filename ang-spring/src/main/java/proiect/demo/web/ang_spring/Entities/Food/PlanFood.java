@@ -26,7 +26,6 @@ public class PlanFood {
 	private Plan plan;
 	
 	private Integer quantity;
-	
 	private String mealType;
 	
 	public PlanFood() { }

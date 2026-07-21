@@ -50,6 +50,10 @@ public class Plan {
 	@JoinColumn(name = "goal_id")
 	private Goal goal;
 	
+	@OneToMany(mappedBy = "plan")
+	@JsonIgnore
+	private List<DailyTracker> dailyTracker;
+	
 	public Plan() { }
 
 	public Plan(String name, String type) {
