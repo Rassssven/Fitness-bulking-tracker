@@ -1,5 +1,7 @@
 package proiect.demo.web.ang_spring.Services.ExerciseServices;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.security.core.Authentication;
@@ -60,11 +62,14 @@ public class PlanExerciseService {
 		
 		PlanExercise planEx = new PlanExercise();
 		
+		DayOfWeek today = LocalDate.now().getDayOfWeek();
+		
 		planEx.setExercise(ex);
 		planEx.setPlan(plan);
 		
 		planEx.setReps(dto.getReps());
 		planEx.setSets(dto.getSets());
+		planEx.setDayOfWeek(today);
 		
 		return planExRepo.save(planEx);
 	}

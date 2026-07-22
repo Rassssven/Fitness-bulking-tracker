@@ -1,5 +1,7 @@
 package proiect.demo.web.ang_spring.DTO;
 
+import java.time.DayOfWeek;
+
 public class CreatePlanExerciseRequest {
 
 	private String name;
@@ -9,6 +11,7 @@ public class CreatePlanExerciseRequest {
 	private String muscleGroup;
 	private Integer reps;
 	private Integer sets;
+	private DayOfWeek dayOfWeek;
 	
 	public String getName() {
 		return name;
@@ -65,5 +68,15 @@ public class CreatePlanExerciseRequest {
 	public void setSets(Integer sets) {
 		this.sets = sets;
 	}
+
+	public DayOfWeek getDayOfWeek() {
+		return dayOfWeek;
+	}
+
+	public void setDayOfWeek(DayOfWeek dayOfWeek) {
+		this.dayOfWeek = dayOfWeek;
+	}
+	
+	
 	
 }

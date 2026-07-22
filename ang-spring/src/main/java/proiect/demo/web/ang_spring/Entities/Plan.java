@@ -16,7 +16,9 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import proiect.demo.web.ang_spring.Entities.Exercise.Exercise;
+import proiect.demo.web.ang_spring.Entities.Exercise.PlanExercise;
 import proiect.demo.web.ang_spring.Entities.Food.Food;
+import proiect.demo.web.ang_spring.Entities.Food.PlanFood;
 import proiect.demo.web.ang_spring.Entities.Workout.Workout;
 
 @Entity
@@ -35,11 +37,23 @@ public class Plan {
 	@JsonIgnore
 	private User user;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	private List<Food> foods;
+//	@ManyToMany(cascade = CascadeType.ALL)
+//	private List<Food> foods;
+//	
+//	@ManyToMany(cascade = CascadeType.ALL)
+//	private List<Exercise> exercises;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	private List<Exercise> exercises;
+	@OneToMany(mappedBy = "plan",
+			   cascade = CascadeType.ALL,
+			   orphanRemoval = true)
+	@JsonIgnore
+	private List<PlanFood> planFoods;
+	
+	@OneToMany(mappedBy = "plan",
+			   cascade = CascadeType.ALL,
+			   orphanRemoval = true)
+	@JsonIgnore
+	private List<PlanExercise> planExercise;
 	
 	@OneToMany(mappedBy = "plan",
 			   cascade = CascadeType.ALL,
@@ -94,22 +108,6 @@ public class Plan {
 		this.user = user;
 	}
 
-	public List<Food> getFoods() {
-		return foods;
-	}
-
-	public void setFoods(List<Food> foods) {
-		this.foods = foods;
-	}
-
-	public List<Exercise> getExercises() {
-		return exercises;
-	}
-
-	public void setExercises(List<Exercise> exercises) {
-		this.exercises = exercises;
-	}
-
 	public List<Workout> getWorkouts() {
 		return workouts;
 	}
@@ -125,5 +123,31 @@ public class Plan {
 	public void setGoal(Goal goal) {
 		this.goal = goal;
 	}
+
+	public List<PlanFood> getPlanFoods() {
+		return planFoods;
+	}
+
+	public void setPlanFoods(List<PlanFood> planFoods) {
+		this.planFoods = planFoods;
+	}
+
+	public List<PlanExercise> getPlanExercise() {
+		return planExercise;
+	}
+
+	public void setPlanExercise(List<PlanExercise> planExercise) {
+		this.planExercise = planExercise;
+	}
+
+	public List<DailyTracker> getDailyTracker() {
+		return dailyTracker;
+	}
+
+	public void setDailyTracker(List<DailyTracker> dailyTracker) {
+		this.dailyTracker = dailyTracker;
+	}
+	
+	
 	
 }

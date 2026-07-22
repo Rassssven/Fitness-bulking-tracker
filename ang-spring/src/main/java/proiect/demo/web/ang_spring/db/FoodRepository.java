@@ -13,4 +13,14 @@ public interface FoodRepository extends JpaRepository<Food, Long>{
 	
 	List<Food> findByUser(User user);
 	
+	List<Food> findByProteinGreaterThan(double number);
+	
+	List<Food> findByCaloriesLessThan(double number);
+	
+	boolean existsByName(String name);
+	
+	List<Food> findByNameContaining(String name);
+	
+	List<Food> findByCaloriesAndProteinGreaterThan(double number, double number2);
+	
 }

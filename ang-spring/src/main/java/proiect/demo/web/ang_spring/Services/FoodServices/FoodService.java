@@ -89,5 +89,16 @@ public class FoodService {
 		
 		foodRepo.delete(food);
 	}
+	
+	/* JPA Methods */
+	
+	public List<Food> getByCalories(double calories) {
+		return foodRepo.findByCaloriesLessThan(calories);
+	}
+	
+	public List<Food> getByCaloriesAndProtein(double calories, double protein) {
+		return foodRepo.findByCaloriesAndProteinGreaterThan(calories, protein);
+	}
+	
 		
 }

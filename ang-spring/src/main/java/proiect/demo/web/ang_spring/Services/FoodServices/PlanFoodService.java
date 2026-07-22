@@ -1,5 +1,7 @@
 package proiect.demo.web.ang_spring.Services.FoodServices;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.security.core.Authentication;
@@ -62,6 +64,8 @@ public class PlanFoodService {
 	    
 	    //Setam relatiile deoarece Food nu exista inainte !!
 	    
+	    DayOfWeek today = LocalDate.now().getDayOfWeek();
+	    
 	    PlanFood planFood = new PlanFood();
 	    
 	    planFood.setFood(food);
@@ -69,6 +73,7 @@ public class PlanFoodService {
 		
 	    planFood.setQuantity(dto.getQuantity());
 	    planFood.setMealType(dto.getMealType());
+	    planFood.setDayOfWeek(today);
 
 	    return planFoodRepo.save(planFood);
 	}

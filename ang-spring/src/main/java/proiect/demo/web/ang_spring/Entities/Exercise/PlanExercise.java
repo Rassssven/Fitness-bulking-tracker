@@ -1,6 +1,11 @@
 package proiect.demo.web.ang_spring.Entities.Exercise;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -20,6 +25,9 @@ public class PlanExercise {
 	private Integer reps;
 	private Integer sets;
 	
+	@Enumerated(EnumType.STRING)
+	private DayOfWeek dayOfWeek;
+	
 	@ManyToOne
 	@JoinColumn(name = "exercise_id")
 	private Exercise exercise;
@@ -30,12 +38,13 @@ public class PlanExercise {
 
 	public PlanExercise() {}
 	
-	public PlanExercise(Integer reps, Integer sets, Exercise exercise, Plan plan) {
+	public PlanExercise(Integer reps, Integer sets, DayOfWeek dayOfWeek, Exercise exercise, Plan plan) {
 		super();
 		this.reps = reps;
 		this.sets = sets;
 		this.exercise = exercise;
 		this.plan = plan;
+		this.dayOfWeek = dayOfWeek;
 	}
 
 	public Long getId() {
@@ -78,6 +87,14 @@ public class PlanExercise {
 		this.sets = sets;
 	}
 
+	public DayOfWeek getDayOfWeek() {
+		return dayOfWeek;
+	}
 
+	public void setDayOfWeek(DayOfWeek dayOfWeek) {
+		this.dayOfWeek = dayOfWeek;
+	}
+
+	
 	
 }

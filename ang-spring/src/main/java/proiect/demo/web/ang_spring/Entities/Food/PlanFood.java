@@ -1,6 +1,11 @@
 package proiect.demo.web.ang_spring.Entities.Food;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -17,6 +22,12 @@ public class PlanFood {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	private Integer quantity;
+	private String mealType;
+	
+	@Enumerated(EnumType.STRING)
+	private DayOfWeek dayOfWeek;
+	
 	@ManyToOne
 	@JoinColumn(name = "food_id")
 	private Food food;
@@ -25,15 +36,15 @@ public class PlanFood {
 	@JoinColumn(name = "plan_id")
 	private Plan plan;
 	
-	private Integer quantity;
-	private String mealType;
-	
 	public PlanFood() { }
 	
-	public PlanFood(Integer quantity, String mealType) {
+	public PlanFood(Integer quantity, String mealType, DayOfWeek dayOfWeek, Food food, Plan plan) {
 		super();
 		this.quantity = quantity;
 		this.mealType = mealType;
+		this.dayOfWeek = dayOfWeek;
+		this.food = food;
+		this.plan = plan;
 	}
 
 	public Long getId() {
@@ -74,6 +85,14 @@ public class PlanFood {
 
 	public void setMealType(String mealType) {
 		this.mealType = mealType;
+	}
+
+	public DayOfWeek getDayOfWeek() {
+		return dayOfWeek;
+	}
+
+	public void setDayOfWeek(DayOfWeek dayOfWeek) {
+		this.dayOfWeek = dayOfWeek;
 	}
 	
 }

@@ -1,5 +1,8 @@
 package proiect.demo.web.ang_spring.DTO;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+
 public class CreatePlanFoodRequest {
 
 	private String name;
@@ -8,6 +11,7 @@ public class CreatePlanFoodRequest {
     private Integer carbs;
     private Integer fat;
     private String description;
+    private DayOfWeek dayOfWeek;
     
     private Integer quantity;
     private String mealType;
@@ -74,6 +78,14 @@ public class CreatePlanFoodRequest {
 	
 	public void setMealType(String mealType) {
 		this.mealType = mealType;
+	}
+
+	public DayOfWeek getDayOfWeek() {
+		return dayOfWeek;
+	}
+
+	public void setDayOfWeek(DayOfWeek dayOfWeek) {
+		this.dayOfWeek = dayOfWeek;
 	}
 	
 }
