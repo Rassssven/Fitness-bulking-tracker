@@ -64,9 +64,9 @@ public class Plan {
 	@JoinColumn(name = "goal_id")
 	private Goal goal;
 	
-	@OneToMany(mappedBy = "plan")
-	@JsonIgnore
-	private List<DailyTracker> dailyTracker;
+//	@OneToMany(mappedBy = "plan")
+//	@JsonIgnore
+//	private List<DailyTracker> dailyTracker;
 	
 	public Plan() { }
 
@@ -140,13 +140,13 @@ public class Plan {
 		this.planExercise = planExercise;
 	}
 
-	public List<DailyTracker> getDailyTracker() {
-		return dailyTracker;
-	}
-
-	public void setDailyTracker(List<DailyTracker> dailyTracker) {
-		this.dailyTracker = dailyTracker;
-	}
+//	public List<DailyTracker> getDailyTracker() {
+//		return dailyTracker;
+//	}
+//
+//	public void setDailyTracker(List<DailyTracker> dailyTracker) {
+//		this.dailyTracker = dailyTracker;
+//	}
 	
 	
 	
