@@ -6,17 +6,27 @@ public class RegisterRequestDTO {
 	private String lastName;
 	private String email;
 	private String password;
+	private double height;
 	
 	public RegisterRequestDTO() {
 		
 	}
 	
-	public RegisterRequestDTO(String firstName, String lastName, String email, String password) {
+	public RegisterRequestDTO(String firstName, String lastName, String email, String password, double height) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
+		this.height = height;
+	}
+	
+	public double getHeight() {
+		return height;
+	}
+
+	public void setHeight(double height) {
+		this.height = height;
 	}
 
 	public String getFirstName() {

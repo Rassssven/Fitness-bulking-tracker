@@ -117,3 +117,148 @@
   line-height: 1.6;
 }
 
+.feature-banner{
+  width:90%;
+  margin:90px auto;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  gap:50px;
+
+  padding:50px;
+
+  border-radius:25px;
+  background:linear-gradient(135deg, rgba(18,18,18,.92), rgba(8,25,12,.95));
+
+  border:1px solid rgba(46,204,113,.18);
+  backdrop-filter:blur(10px);
+  box-shadow:0 20px 60px rgba(0,0,0,.45);
+}
+
+.banner-left{
+  flex:1;
+
+  display:flex;
+  flex-direction:column;
+
+  gap:18px;
+}
+
+.banner-tag{
+  width:fit-content;
+
+  padding:8px 16px;
+  border-radius:999px;
+  background:rgba(46,204,113,.12);
+
+  color:#35d66f;
+  font-size:12px;
+  font-weight:700;
+
+  letter-spacing:1px;
+}
+
+.banner-left h2{
+  margin:0;
+
+  color:white;
+
+  font-size:44px;
+
+  line-height:1.2;
+}
+
+.banner-left p{
+  margin:0;
+  color:#b5b5b5;
+
+  line-height:1.8;
+  font-size:17px;
+
+  ma-width:650px;
+}
+
+.banner-buttons{
+  display:flex;
+
+  gap:18px;
+  margin-top:10px;
+}
+
+.banner-buttons button{
+  padding:14px 32px;
+
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  font-size:15px;
+
+  font-weight:600;
+  transition:.25s;
+}
+
+.banner-buttons button:first-child{
+  background:#2ecc71;
+  color:white;
+}
+
+.banner-buttons button:first-child:hover{
+  background:#28b463;
+}
+
+.secondary-btn{
+  background:#2a2a2a !important;
+  color:white;
+}
+
+.secondary-btn:hover{
+  background:#3b3b3b !important;
+}
+
+.banner-right{
+  width:360px;
+
+  display:flex;
+  flex-wrap:wrap;
+  gap:18px;
+  justify-content:center;
+}
+
+.stat-box{
+  width:160px;
+  height:130px;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+
+  border-radius:18px;
+  background:#202020;
+  border:1px solid rgba(46,204,113,.15);
+
+  transition:.25s;
+}
+
+.stat-box:hover{
+  transform:translateY(-6px);
+
+  border-color:#2ecc71;
+  box-shadow:0 12px 30px rgba(46,204,113,.15);
+}
+
+.stat-box h3{
+  margin:0;
+  color:#2ecc71;
+  font-size:34px;
+}
+
+.stat-box span{
+  margin-top:10px;
+  color:#d0d0d0;
+
+  font-size:14px;
+}
+
