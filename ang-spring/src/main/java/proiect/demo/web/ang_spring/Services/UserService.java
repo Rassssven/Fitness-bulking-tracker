@@ -6,8 +6,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import proiect.demo.web.ang_spring.DTO.UpdateProfileDTO;
-import proiect.demo.web.ang_spring.Entities.Role;
 import proiect.demo.web.ang_spring.Entities.User;
+import proiect.demo.web.ang_spring.Entities.Enums.Role;
 import proiect.demo.web.ang_spring.db.UserRepository;
 
 @Service
@@ -58,7 +58,17 @@ public class UserService {
 		return userRepo.save(current);
 	}
 	
-	public void deleteUser(Long id) {
+	public void deleteUser(Long id, Authentication auth) {
+		
+		String email = auth.getName();
+		
+		User current = userRepo.findByEmail(email)
+				.orElseThrow(() -> new RuntimeException("User not found!"));
+		
+		if(current.getRole() != Role.ADMIN) {
+			throw new RuntimeException("Only admins can delete accounts!");
+		}
+		
 		User User = getUserById(id);
 		userRepo.delete(User);
 	}

@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import proiect.demo.web.ang_spring.DTO.UpdateProfileDTO;
-import proiect.demo.web.ang_spring.Entities.Role;
 import proiect.demo.web.ang_spring.Entities.User;
+import proiect.demo.web.ang_spring.Entities.Enums.Role;
 import proiect.demo.web.ang_spring.Entities.Workout.Workout;
 import proiect.demo.web.ang_spring.Services.UserService;
 
@@ -60,8 +60,8 @@ public class UserController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public void deleteUser(@PathVariable Long id) {
-		userServ.deleteUser(id);
+	public void deleteUser(@PathVariable Long id, Authentication auth) {
+		userServ.deleteUser(id, auth);
 	}
 	
 	@PutMapping("/{id}/role")

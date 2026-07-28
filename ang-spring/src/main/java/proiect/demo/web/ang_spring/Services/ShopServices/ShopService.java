@@ -6,8 +6,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import proiect.demo.web.ang_spring.DTO.CreateProductRequest;
-import proiect.demo.web.ang_spring.Entities.Role;
 import proiect.demo.web.ang_spring.Entities.User;
+import proiect.demo.web.ang_spring.Entities.Enums.Role;
 import proiect.demo.web.ang_spring.Entities.Shop.Product;
 import proiect.demo.web.ang_spring.Entities.Shop.ProductImage;
 import proiect.demo.web.ang_spring.Entities.Shop.ProductSpecification;
