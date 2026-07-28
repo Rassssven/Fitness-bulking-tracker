@@ -21,15 +21,7 @@ import jakarta.persistence.UniqueConstraint;
 import proiect.demo.web.ang_spring.Entities.Food.DailyTrackerFood;
 
 @Entity
-@Table(
-		name = "daily_trackers",
-		uniqueConstraints = {
-				@UniqueConstraint(
-						name = "uk_daily_tracker_user_date",
-						columnNames = {"user_id", "tracker_date"}
-				)
-		}
-)
+@Table(name = "daily_trackers")
 public class DailyTracker {
 
 	@Id
