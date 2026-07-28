@@ -39,7 +39,7 @@ public class User {
 	//@Max(100)
 	private Integer age;
 	private String sex;
-	private Integer height;
+	private double height;
 	private String activityLevel;
 	
 	@NotBlank
@@ -94,7 +94,7 @@ public class User {
 	
 	public User() {	}
 	
-	public User(String password, Integer age, String sex, int height, String activityLevel, String lastName, String firstName, String tel, String email) {
+	public User(String password, Integer age, String sex, double height, String activityLevel, String lastName, String firstName, String tel, String email) {
 		super();
 		this.password = password;
 		this.age = age;
@@ -139,11 +139,11 @@ public class User {
 		this.sex = sex;
 	}
 
-	public Integer getHeight() {
+	public double getHeight() {
 		return height;
 	}
 
-	public void setHeight(Integer height) {
+	public void setHeight(double height) {
 		this.height = height;
 	}
 
