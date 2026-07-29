@@ -5,5 +5,4 @@ export interface CreateProductRequest {
     price: number;
     inStock: boolean;
     category: string;
-    images: string[];
 }

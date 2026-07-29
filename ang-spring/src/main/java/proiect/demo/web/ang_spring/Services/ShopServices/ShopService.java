@@ -52,7 +52,7 @@ public class ShopService {
 				.stream()
 				.map(url -> {
 					ProductImage img = new ProductImage();
-					img.setImageUrl(url);
+					img.setFileName(url);
 					img.setProduct(prod);
 					return img;
 				})

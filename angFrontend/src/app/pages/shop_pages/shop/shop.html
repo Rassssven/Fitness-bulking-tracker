@@ -99,17 +99,13 @@
           formControlName="category">
         </label>
 
-        @for(images of images.controls; track $index) {
-
-          <div formArrayName="images">
-            <input type="file" placeholder="Image URL" [formControlName]="$index">
-            <button type="button" (click)="removeImage($index)">Remove</button>
-          </div>
-
-        }
+        <label>
+          Product Image
+          <input type="file" accept="image/*" multiple (change)="onFileSelected($event)">
+        </label>
+        
 
         <div class="form-shop-update">
-          <button type="button" (click)="addImages()">Add Image</button>
           <button type="button" (click)="isOpen = false"> Close </button>
           <button type="submit"> Submit </button>
         </div>
