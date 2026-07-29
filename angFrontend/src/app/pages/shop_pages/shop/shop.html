@@ -102,7 +102,7 @@
         @for(images of images.controls; track $index) {
 
           <div formArrayName="images">
-            <input type="text" placeholder="Image URL" [formControlName]="$index">
+            <input type="file" placeholder="Image URL" [formControlName]="$index">
             <button type="button" (click)="removeImage($index)">Remove</button>
           </div>
 

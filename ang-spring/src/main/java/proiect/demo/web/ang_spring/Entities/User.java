@@ -18,6 +18,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
+import proiect.demo.web.ang_spring.Entities.Enums.Role;
 import proiect.demo.web.ang_spring.Entities.Exercise.Exercise;
 import proiect.demo.web.ang_spring.Entities.Food.Food;
 import proiect.demo.web.ang_spring.Entities.Workout.Workout;

@@ -37,6 +37,10 @@ export class UserService {
         return this.http.put(`${this.apiUrl}/me`, userData);
     }
 
+    deleteUser(id: number) {
+        return this.http.delete(`${this.apiUrl}/${id}`);
+    }
+
     updateRole(id: number, Role: string) {
         return this.http.put(`${this.apiUrl}/${id}/role?role=${Role}`, {});
     }

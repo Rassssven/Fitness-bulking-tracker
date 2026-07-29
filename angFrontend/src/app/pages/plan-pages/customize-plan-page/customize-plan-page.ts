@@ -13,6 +13,7 @@ import { PlanFood } from '../../../models/planFood';
 import { ExerciseService } from '../../../services/HTTP/exercise-service';
 import { CreatePlanExerciseRequest } from '../../../models/DTO/CreatePlanExerciseRequest';
 import { CreatePlanMealRequest } from '../../../models/DTO/CreatePlanFoodRequest';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-customize-plan-page',
@@ -147,7 +148,11 @@ export class CustomizePlanPage implements OnInit {
       mealType: ''
     }
 
-    this.foodServ.createPlanFood(this.planId, mealData).subscribe({
+    this.foodServ.createPlanFood(this.planId, mealData)
+    .pipe(
+      takeUntilDestroyed()
+    )
+    .subscribe({
       next: (response) => {
         
         this.planFoods.update(foods => [
