@@ -18,7 +18,8 @@ public class ProductImage {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String imageUrl;
+	private String fileName;
+	private String originalFileName;
 	
 	@ManyToOne
 	@JoinColumn(name = "product_id")
@@ -27,9 +28,10 @@ public class ProductImage {
 
 	public ProductImage() {}
 
-	public ProductImage(String imageUrl, Product product) {
+	public ProductImage(String fileName, String originalFileName, Product product) {
 		super();
-		this.imageUrl = imageUrl;
+		this.fileName = fileName;
+		this.originalFileName = originalFileName;
 		this.product = product;
 	}
 
@@ -41,12 +43,12 @@ public class ProductImage {
 		this.id = id;
 	}
 
-	public String getImageUrl() {
-		return imageUrl;
+	public String getFileName() {
+		return fileName;
 	}
 
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
+	public void setFileName(String imageUrl) {
+		this.fileName = imageUrl;
 	}
 
 	public Product getProduct() {
@@ -56,6 +58,13 @@ public class ProductImage {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
-	
+
+	public String getOriginalFileName() {
+		return originalFileName;
+	}
+
+	public void setOriginalFileName(String originalFileName) {
+		this.originalFileName = originalFileName;
+	}
 	
 }

@@ -7,7 +7,7 @@ import { ShopService } from '../../../services/HTTP/shop-service';
 import { NotificationService } from '../../../shared/notification-service';
 import { Product } from '../../../models/product';
 import { AuthService } from '../../../auth/authService/auth.service';
-import { FormArray, FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CreateProductRequest } from '../../../models/DTO/CreateProductRequest';
 
 @Component({
@@ -101,26 +101,25 @@ export class Shop implements OnInit {
     stock: [true],
     category: [''],
 
-    images: this.fb.array([this.createImage()])
   })
 
-  get images(): FormArray {
-    return this.shopForm.get('images') as FormArray;
-  }
+  // get images(): FormArray {
+  //   return this.shopForm.get('images') as FormArray;
+  // }
 
-  createImage() {
-    return this.fb.control('');
-  }
+  // createImage() {
+  //   return this.fb.control('');
+  // }
 
-  addImages() {
-    this.images.push(
-      this.fb.control('')
-    )
-  }
+  // addImages() {
+  //   this.images.push(
+  //     this.fb.control('')
+  //   )
+  // }
 
-  removeImage(index: number) {
-    this.images.removeAt(index);
-  }
+  // removeImage(index: number) {
+  //   this.images.removeAt(index);
+  // }
 
   /* -- Form --*/
 
@@ -147,8 +146,6 @@ export class Shop implements OnInit {
       price: this.shopForm.value.price!,
       inStock: this.shopForm.value.stock!,
       category: this.shopForm.value.category!,
-      images: (this.shopForm.value.images ?? [])
-        .filter((img): img is string => img !== null)
     }
 
     this.shopServ.createProduct(productData).subscribe({
@@ -158,15 +155,39 @@ export class Shop implements OnInit {
           ...prods, response
         ])
 
+        // if(this.selectedFile.length > 0) {
+        //   this.shopServ.uploadImages(response.id, this.selectedFile)
+        //     .subscribe({
+        //       next: () => {
+        //         console.log("Images uploaded.")
+        //       }
+        //   })
+        // }
+
         this.isOpen = false;
       }
-
     })
+
 
   }
 
   goToProduct(id: number) {
     this.router.navigate(['/product-details', id]);
+  }
+
+  /* -- File -- */
+
+  selectedFile: File[] = [];
+
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+
+    if(!input.files || input.files.length === 0) {
+      this.selectedFile = [];
+      return;
+    }
+
+    this.selectedFile = Array.from(input.files);
   }
 
 }

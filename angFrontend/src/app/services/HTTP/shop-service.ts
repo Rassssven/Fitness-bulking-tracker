@@ -27,5 +27,15 @@ export class ShopService {
   updateProduct(prodData: UpdateProductRequest, prodId: number) {
     return this.http.put(`${this.apiUrl}/${prodId}`, prodData);
   }
+
+  uploadImages(prodId: number, files: File[]) {
+    const formData = new FormData();
+
+    files.forEach(file => {
+      formData.append("images", file);
+    })
+
+    return this.http.post(`${this.apiUrl}/${prodId}/images`, formData);
+  }
   
 }
