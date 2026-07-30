@@ -1,6 +1,7 @@
 package proiect.demo.web.ang_spring.Entities.Shop;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -65,6 +66,11 @@ public class ProductImage {
 
 	public void setOriginalFileName(String originalFileName) {
 		this.originalFileName = originalFileName;
+	}
+	
+	@JsonProperty("url")
+	public String getUrl() {
+	    return "/images/" + fileName;
 	}
 	
 }

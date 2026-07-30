@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import proiect.demo.web.ang_spring.DTO.CreateProductRequest;
+import proiect.demo.web.ang_spring.DTO.ShopDTOs.CreateProductRequest;
 import proiect.demo.web.ang_spring.Entities.Shop.Product;
 import proiect.demo.web.ang_spring.Services.ShopServices.ShopService;
 
@@ -52,9 +52,10 @@ public class ProductController {
 	}
 	
 	@PostMapping("/{id}/images")
-	public void uploadImages(@PathVariable Long id, 
-			@RequestParam("images") List<MultipartFile> images) {
-		
+	public Product uploadImages(@PathVariable Long id, 
+			@RequestParam("images") List<MultipartFile> images, 
+			Authentication auth) {
+		return productServ.uploadImages(id, images, auth);
 	}
 	
 	

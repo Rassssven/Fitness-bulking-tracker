@@ -155,14 +155,14 @@ export class Shop implements OnInit {
           ...prods, response
         ])
 
-        // if(this.selectedFile.length > 0) {
-        //   this.shopServ.uploadImages(response.id, this.selectedFile)
-        //     .subscribe({
-        //       next: () => {
-        //         console.log("Images uploaded.")
-        //       }
-        //   })
-        // }
+        if(this.selectedFile.length > 0) {
+          this.shopServ.uploadImages(response.id, this.selectedFile)
+            .subscribe({
+              next: () => {
+                console.log("Images uploaded.")
+              }
+          })
+        }
 
         this.isOpen = false;
       }

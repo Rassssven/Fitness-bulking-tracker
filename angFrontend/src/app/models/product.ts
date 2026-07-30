@@ -1,3 +1,4 @@
+import { ProductImage } from "./DTO/ProductImageDTO";
 import { ProductSpecification } from "./productSpecification";
 
 export interface Product {
@@ -11,7 +12,7 @@ export interface Product {
 
     price: number;
 
-    images: string[];
+    images: ProductImage[];
 
     rating: number;
 
