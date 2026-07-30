@@ -1,6 +1,8 @@
-package proiect.demo.web.ang_spring.DTO;
+package proiect.demo.web.ang_spring.DTO.ShopDTOs;
 
 import java.util.List;
+
+import proiect.demo.web.ang_spring.DTO.ProductSpecificationRequest;
 
 public class CreateProductRequest {
 
@@ -12,7 +14,6 @@ public class CreateProductRequest {
 	private String category;
 	private String brand;
 	private Integer discountPercentage;
-	private List<String> images;
 	private List<ProductSpecificationRequest> specifications;
 	
 	public String getName() {
@@ -77,14 +78,6 @@ public class CreateProductRequest {
 	
 	public void setDiscountPercentage(Integer discountPercentage) {
 		this.discountPercentage = discountPercentage;
-	}
-
-	public List<String> getImages() {
-		return images;
-	}
-
-	public void setImages(List<String> images) {
-		this.images = images;
 	}
 
 	public List<ProductSpecificationRequest> getSpecifications() {
