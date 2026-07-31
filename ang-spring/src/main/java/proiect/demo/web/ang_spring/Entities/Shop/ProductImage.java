@@ -20,6 +20,7 @@ public class ProductImage {
 	private Long id;
 	
 	private String fileName;
+	private String publicId;
 	private String originalFileName;
 	
 	@ManyToOne
@@ -29,9 +30,10 @@ public class ProductImage {
 
 	public ProductImage() {}
 
-	public ProductImage(String fileName, String originalFileName, Product product) {
+	public ProductImage(String fileName, String publicId, String originalFileName, Product product) {
 		super();
 		this.fileName = fileName;
+		this.publicId = publicId;
 		this.originalFileName = originalFileName;
 		this.product = product;
 	}
@@ -68,9 +70,17 @@ public class ProductImage {
 		this.originalFileName = originalFileName;
 	}
 	
+	public String getPublicId() {
+		return publicId;
+	}
+
+	public void setPublicId(String publicId) {
+		this.publicId = publicId;
+	}
+
 	@JsonProperty("url")
 	public String getUrl() {
-	    return "/images/" + fileName;
+	    return fileName;
 	}
 	
 }
