@@ -1,6 +1,7 @@
 package proiect.demo.web.ang_spring.Controllers.ShopControllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -39,6 +40,11 @@ public class ProductController {
 	@GetMapping
 	public List<Product> getProducts() {
 		return productServ.getProducts();
+	}
+	
+	@GetMapping("/{id}")
+	public Optional<Product> getProduct(@PathVariable Long id, Authentication auth) {
+		return productServ.getProduct(id, auth);
 	}
 	
 	@DeleteMapping("/{prodId}")

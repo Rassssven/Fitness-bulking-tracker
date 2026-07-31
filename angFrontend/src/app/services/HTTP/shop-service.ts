@@ -16,6 +16,10 @@ export class ShopService {
     return this.http.get<Product[]>(this.apiUrl);
   }
 
+  getProduct(id: number) {
+    return this.http.get<Product>(`${this.apiUrl}/${id}`)
+  }
+
   createProduct(product: CreateProductRequest) {
     return this.http.post<Product>(this.apiUrl, product);
   }
@@ -35,7 +39,7 @@ export class ShopService {
       formData.append("images", file);
     })
 
-    return this.http.post(`${this.apiUrl}/${prodId}/images`, formData);
+    return this.http.post<Product>(`${this.apiUrl}/${prodId}/images`, formData);
   }
   
 }

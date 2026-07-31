@@ -4,16 +4,13 @@
 
         <div class="prodjuct-left-side"> 
 
-            <div class="product-image">
-
-            </div>
+            <img class="product-image" [src]="product()!.images[0]?.url" alt="{{ product()!.name }}">
 
             <div class="poduct-descriptionn">
                 <h2>Description</h2>
 
                 <p>
-                    High quality whey protein designed to support muscle growth,
-                    recovery and daily protein intake.
+                    {{product()?.description}}
                 </p>
 
                 <h3>Specifications</h3>
@@ -32,9 +29,9 @@
         <div class="product-right-side">
 
             <div class="poduct-buttons">
-                <h1>Whey Protein</h1>
+                <h1>{{product()?.name}}</h1>
 
-                <span class="price">$59.99</span>
+                <span class="price">${{product()?.price}}</span>
 
                 <div class="rating">
                     ★★★★★

@@ -2,6 +2,8 @@ package proiect.demo.web.ang_spring.Services.ShopServices;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
@@ -84,6 +86,16 @@ public class ShopService {
 		return productRepo.findAll();
 	}
 	
+	public Optional<Product> getProduct(Long id, Authentication auth) {
+		
+		String email = auth.getName();
+		
+		User user = userRepo.findByEmail(email)
+				.orElseThrow(() -> new RuntimeException("Invalid user!"));
+		
+		return productRepo.findById(id);
+	}
+	
 	public void deleteProduct(Long prodId, Authentication auth) {
 		
 		String email = auth.getName();
@@ -97,6 +109,12 @@ public class ShopService {
 		if(user.getRole() != Role.ADMIN) {
 			throw new RuntimeException("User must be admin to handle products!");
 		}
+		
+		product.getImages().forEach(img -> {
+	        if (img.getPublicId() != null) {
+	            fileStorageService.deleteFile(img.getPublicId());
+	        }
+	    });
 		
 		productRepo.delete(product);
 	}
@@ -143,11 +161,12 @@ public class ShopService {
 
 		List<ProductImage> images = files.stream()
 				.map(file -> {
-					String savedFileName = fileStorageService.saveFile(file);
+					Map uploadResult = fileStorageService.uploadFile(file);
 
 					ProductImage img = new ProductImage();
-					img.setFileName(savedFileName);
-					img.setOriginalFileName(file.getOriginalFilename());
+					img.setFileName((String) uploadResult.get("secure_url"));
+		            img.setPublicId((String) uploadResult.get("public_id"));
+		            img.setOriginalFileName(file.getOriginalFilename());
 					img.setProduct(product);
 					return img;
 				})

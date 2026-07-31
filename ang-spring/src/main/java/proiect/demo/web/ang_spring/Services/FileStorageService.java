@@ -1,50 +1,46 @@
 package proiect.demo.web.ang_spring.Services;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.util.UUID;
-
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.util.Map;
+
 @Service
 public class FileStorageService {
 
-	@Value("${file.upload-dir}")
-	private String dir;
-	
-	public String saveFile(MultipartFile file) {
-		
-		try {
-			Path uploadPath = Paths.get(dir);
-			
-			if(Files.exists(uploadPath)) {
-				Files.createDirectories(uploadPath);
-			}
-			
-			String extension = "";
-			String original = file.getOriginalFilename();
-			
-			if(original != null && original.contains(".")) {
-				extension = original.substring(original.lastIndexOf("."));
-			}
-			
-			String fileName = UUID.randomUUID() + extension;
-            Path target = uploadPath.resolve(fileName);
+    private final Cloudinary cloudinary;
 
-            Files.copy(file.getInputStream(), target, StandardCopyOption.REPLACE_EXISTING);
+    public FileStorageService(
+            @Value("${cloudinary.cloud-name}") String cloudName,
+            @Value("${cloudinary.api-key}") String apiKey,
+            @Value("${cloudinary.api-secret}") String apiSecret) {
 
-            return fileName;
-			
-		} catch (IOException e) {
-			throw new RuntimeException("Failed to store file", e);
-		}
-	}
+        this.cloudinary = new Cloudinary(ObjectUtils.asMap(
+                "cloud_name", cloudName,
+                "api_key", apiKey,
+                "api_secret", apiSecret,
+                "secure", true
+        ));
+    }
 
-		
-		
+
+    public Map uploadFile(MultipartFile file) {
+        try {
+            return cloudinary.uploader().upload(file.getBytes(), ObjectUtils.emptyMap());
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to upload file", e);
+        }
+    }
+
+    public void deleteFile(String publicId) {
+        try {
+            cloudinary.uploader().destroy(publicId, ObjectUtils.emptyMap());
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to delete file", e);
+        }
+    }
 }

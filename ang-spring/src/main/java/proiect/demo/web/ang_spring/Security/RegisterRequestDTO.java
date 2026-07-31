@@ -6,13 +6,13 @@ public class RegisterRequestDTO {
 	private String lastName;
 	private String email;
 	private String password;
-	private double height;
+	private Double height;
 	
 	public RegisterRequestDTO() {
 		
 	}
 	
-	public RegisterRequestDTO(String firstName, String lastName, String email, String password, double height) {
+	public RegisterRequestDTO(String firstName, String lastName, String email, String password, Double height) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -21,11 +21,11 @@ public class RegisterRequestDTO {
 		this.height = height;
 	}
 	
-	public double getHeight() {
+	public Double getHeight() {
 		return height;
 	}
 
-	public void setHeight(double height) {
+	public void setHeight(Double height) {
 		this.height = height;
 	}
 
