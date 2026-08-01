@@ -39,7 +39,36 @@
 
 .shop-filters {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filters-left {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.filters-right {
+  display: flex;
   gap: 15px;
+  align-items: center;
+}
+
+.filters-right button {
+  padding: 12px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: rgba(255,255,255,0.05);
+  color: white;
+
+  min-width: 160px;
+}
+
+.filters-right:focus {
+  outline: 1px solid #00ff99;
 }
 
 .shop-filters input,
@@ -64,6 +93,11 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+}
+
+.products-container app-product-card {
+  flex: 0 0 400px;
+  width: 420px;
 }
 
 /* Form */

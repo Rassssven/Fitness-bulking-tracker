@@ -1,0 +1,32 @@
+<div class="main-picture">
+
+    <div class="unlisted-card">
+
+        <div class="unlisted-filters"> 
+
+            <h1> Manage your products </h1>
+
+            <input
+            type="text"
+            placeholder="Search products..."
+            >
+
+        </div>
+
+        <div class="products-container">
+
+            @for(product of products(); track product.id) {
+
+                <app-product-card
+                    [product]="product"
+                    [isAdminView]="true"
+                    (selected)="goToProduct($event)">
+                </app-product-card>
+
+            }
+
+        </div>
+
+    </div>
+
+</div>

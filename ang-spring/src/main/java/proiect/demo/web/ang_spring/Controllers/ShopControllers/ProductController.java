@@ -42,6 +42,11 @@ public class ProductController {
 		return productServ.getProducts();
 	}
 	
+	@GetMapping("/listed")
+	public List<Product> getListedProducts() {
+		return productServ.getListedProducts();
+	}
+	
 	@GetMapping("/{id}")
 	public Optional<Product> getProduct(@PathVariable Long id, Authentication auth) {
 		return productServ.getProduct(id, auth);

@@ -8,26 +8,33 @@
 
       <div class="shop-filters">
 
-        <input
-          type="text"
-          placeholder="Search products..."
-        >
+        <div class="filters-left">
 
-        <select>
-          <option>All Categories</option>
-          <option>Protein</option>
-          <option>Creatine</option>
-          <option>Pre Workout</option>
-        </select>
+          <input
+            type="text"
+            placeholder="Search products..."
+          >
 
-        <select>
-          <option>Sort By</option>
-          <option>Price Low</option>
-          <option>Price High</option>
-        </select>
+          <select>
+            <option>All Categories</option>
+            <option>Protein</option>
+            <option>Creatine</option>
+            <option>Pre Workout</option>
+          </select>
+
+          <select>
+            <option>Sort By</option>
+            <option>Price Low</option>
+            <option>Price High</option>
+          </select>
+        </div>
 
         @if(isAdmin()) {
-          <button class="add-prod" (click)="isOpen = true"> Add Product </button>
+
+          <div class="filters-right">
+            <button routerLink="/unlisted"> View Unlisted Products </button>
+            <button (click)="isOpen = true"> Add Product </button>
+          </div>
         } 
 
       </div>
@@ -91,6 +98,11 @@
         <label>
           In Stock
           <input type="checkbox" formControlName="stock">
+        </label>
+
+        <label>
+          List Product
+          <input type="checkbox" formControlName="listed">
         </label>
 
         <label>

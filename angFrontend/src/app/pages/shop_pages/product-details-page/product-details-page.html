@@ -4,13 +4,13 @@
 
         <div class="prodjuct-left-side"> 
 
-            <img class="product-image" [src]="product()!.images[0]?.url" alt="{{ product()!.name }}">
+            <img class="product-image" [src]="product()!.images[0].url" alt="{{ product().name }}">
 
             <div class="poduct-descriptionn">
                 <h2>Description</h2>
 
                 <p>
-                    {{product()?.description}}
+                    {{product().description}}
                 </p>
 
                 <h3>Specifications</h3>
@@ -29,9 +29,9 @@
         <div class="product-right-side">
 
             <div class="poduct-buttons">
-                <h1>{{product()?.name}}</h1>
+                <h1>{{product().name}}</h1>
 
-                <span class="price">${{product()?.price}}</span>
+                <span class="price">${{product().price}}</span>
 
                 <div class="rating">
                     ★★★★★
@@ -72,7 +72,7 @@
 
                 @if(isAdmin()) {
                     <div class="admin-buttons">
-                        <button type="button"> Update Product </button>
+                        <button type="button" (click)="isOpen = true"> Update Product </button>
                         <button type="button" (click)="deleteProduct()"> Delete </button>
                     </div>
                 }
@@ -82,5 +82,73 @@
 
     </div>
 
+    @if(isOpen) {
+
+        <div class="prod-update">
+
+            <form class="update-form" [formGroup]="updateForm" (ngSubmit)="updateProduct()">
+
+                <label>
+                    Name
+                    <input type="text" name="name" placeholder="name" 
+                    formControlName="name">
+                </label>
+
+                <label>
+                    Description
+                    <input type="text" name="description" placeholder="description" 
+                    formControlName="description">
+                </label>
+
+                <label>
+                    Short Description
+                    <input type="text" name="shortDescription" placeholder="Shop Description" 
+                    formControlName="shortDescription">
+                </label>
+
+                <label>
+                    Price
+                    <input type="number" name="price" placeholder="price" 
+                    formControlName="price">
+                </label>
+
+                <label>
+                    In Stock
+                    <input type="checkbox" formControlName="stock">
+                </label>
+
+                <label>
+                    List Product
+                    <input type="checkbox" formControlName="listed">
+                </label>
+
+                <label>
+                    Category
+                    <input type="text" name="category" placeholder="category" 
+                    formControlName="category">
+                </label>
+
+                <label>
+                    Brand
+                    <input type="text" name="brand" placeholder="brand" 
+                    formControlName="brand">
+                </label>
+
+                <label>
+                    Discount Percentage
+                    <input type="number" name="discountPercentage" placeholder="discountPercentage" 
+                    formControlName="discountPercentage">
+                </label>
+
+                <div class="form-shop-update">
+                    <button type="button" (click)="isOpen = false"> Close </button>
+                    <button type="submit"> Submit </button>
+                </div>
+
+            </form>
+
+        </div>
+
+    }
 
 </div>

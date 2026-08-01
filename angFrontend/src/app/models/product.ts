@@ -26,5 +26,7 @@ export interface Product {
 
     specifications: ProductSpecification[];
 
+    listed: boolean;
+
     discountPercentage?: number;
 }

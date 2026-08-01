@@ -14,6 +14,7 @@ public class CreateProductRequest {
 	private String category;
 	private String brand;
 	private Integer discountPercentage;
+	private Boolean listed;
 	private List<ProductSpecificationRequest> specifications;
 	
 	public String getName() {
@@ -87,7 +88,14 @@ public class CreateProductRequest {
 	public void setSpecifications(List<ProductSpecificationRequest> specifications) {
 		this.specifications = specifications;
 	}
-	
+
+	public Boolean isListed() {
+		return listed;
+	}
+
+	public void setListed(Boolean listed) {
+		this.listed = listed;
+	}
 	
 	
 }

@@ -11,6 +11,13 @@
             {{ product().shortDescription }}
         </p>
 
+        @if(isAdminView()) {
+            <p>
+                Listed:
+                {{ product().listed ? 'Yes' : 'No' }}
+            </p>
+        }
+
         <div class="product-bottom">
 
             <span class="price">

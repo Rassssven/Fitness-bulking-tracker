@@ -12,6 +12,8 @@ export class ProductCard {
 
   cartServ = inject(CartService);
 
+  isAdminView = input(false);
+
   product = input.required<Product>();
   //@Input() product!: Product;
 
