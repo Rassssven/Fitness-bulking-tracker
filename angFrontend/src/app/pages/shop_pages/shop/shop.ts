@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ProductCard } from "../product-card/product-card";
 import { ShopService } from '../../../services/HTTP/shop-service';
 import { NotificationService } from '../../../shared/notification-service';
@@ -11,7 +11,7 @@ import { CreateProductRequest } from '../../../models/DTO/CreateProductRequest';
 
 @Component({
   selector: 'app-shop',
-  imports: [CommonModule, ProductCard, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, ProductCard, FormsModule, ReactiveFormsModule, RouterLink],
   templateUrl: './shop.html',
   styleUrl: './shop.css',
 })
@@ -98,8 +98,8 @@ export class Shop implements OnInit {
       Validators.required
     ]],
     stock: [true],
+    listed: [true],
     category: [''],
-
   })
 
   // get images(): FormArray {
@@ -128,7 +128,7 @@ export class Shop implements OnInit {
 
   ngOnInit() {
 
-    this.shopServ.getProducts().subscribe({
+    this.shopServ.getListedProducts().subscribe({
       next: (response) => {
         this.productss.set(response);
       }
@@ -144,6 +144,7 @@ export class Shop implements OnInit {
       shortDescription: this.shopForm.value.shortDescription!,
       price: this.shopForm.value.price!,
       inStock: this.shopForm.value.stock!,
+      listed: this.shopForm.value.listed!,
       category: this.shopForm.value.category!,
     }
 

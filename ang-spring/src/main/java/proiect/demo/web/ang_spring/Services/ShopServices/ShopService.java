@@ -52,6 +52,7 @@ public class ShopService {
 		prod.setInStock(dto.getInStock());
 		prod.setCategory(dto.getCategory());
 		prod.setBrand(dto.getBrand());
+		prod.setListed(dto.isListed());
 		prod.setDiscountPercentage(dto.getDiscountPercentage());
 		
 //		List<ProductImage> images = dto.getImages()
@@ -84,6 +85,10 @@ public class ShopService {
 	
 	public List<Product> getProducts() {
 		return productRepo.findAll();
+	}
+	
+	public List<Product> getListedProducts() {
+		return productRepo.findByListedTrue();
 	}
 	
 	public Optional<Product> getProduct(Long id, Authentication auth) {
@@ -133,14 +138,32 @@ public class ShopService {
 		Product product = productRepo.findById(prodId)
 				.orElseThrow(() -> new RuntimeException("Product can't be updated!"));
 		
-		product.setName(dto.getName());
-	    product.setShortDescription(dto.getShortDescription());
-	    product.setDescription(dto.getDescription());
-	    product.setPrice(dto.getPrice());
-	    product.setInStock(dto.getInStock());
-	    product.setCategory(dto.getCategory());
-	    product.setBrand(dto.getBrand());
-	    product.setDiscountPercentage(dto.getDiscountPercentage());
+		if(dto.getName() != null)
+			product.setName(dto.getName());
+
+		if(dto.getDescription() != null)
+		    product.setDescription(dto.getDescription());
+
+		if(dto.getShortDescription() != null)
+		    product.setShortDescription(dto.getShortDescription());
+
+		if(dto.getPrice() != null)
+		    product.setPrice(dto.getPrice());
+
+		if(dto.getInStock() != null)
+		    product.setInStock(dto.getInStock());
+
+		if(dto.isListed() != null)
+		    product.setListed(dto.isListed());
+
+		if(dto.getCategory() != null)
+		    product.setCategory(dto.getCategory());
+
+		if(dto.getBrand() != null)
+				product.setBrand(dto.getBrand());
+
+		if(dto.getDiscountPercentage() != null)
+		    product.setDiscountPercentage(dto.getDiscountPercentage());
 		
 	    return productRepo.save(product);
 	}

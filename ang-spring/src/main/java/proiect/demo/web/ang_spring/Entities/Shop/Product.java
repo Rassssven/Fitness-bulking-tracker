@@ -37,6 +37,8 @@ public class Product {
 	private String category;
 	private String brand;
 	
+	private Boolean listed = true;
+	
 	private Integer discountPercentage = 0;
 	
     @OneToMany(mappedBy = "product",
@@ -53,7 +55,7 @@ public class Product {
 
 	public Product(String name, String shortDescription, String description, Double price, Double rating,
 			 Integer reviews, Boolean inStock, String category, String brand, Integer discountPercentage,
-			 List<ProductImage> images, List<ProductSpecification> specs) {
+			 Boolean listed, List<ProductImage> images, List<ProductSpecification> specs) {
 		this.name = name;
 		this.shortDescription = shortDescription;
 		this.description = description;
@@ -66,6 +68,7 @@ public class Product {
 		this.discountPercentage = discountPercentage;
 		this.images = images;
 		this.specs = specs;
+		this.listed = listed;
 	 }
 
 	public Long getId() {
@@ -106,6 +109,14 @@ public class Product {
 
 	public void setPrice(Double price) {
 		this.price = price;
+	}
+
+	public Boolean isListed() {
+		return listed;
+	}
+
+	public void setListed(Boolean listed) {
+		this.listed = listed;
 	}
 
 	public Double getRating() {

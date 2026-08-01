@@ -16,6 +16,7 @@ import { Cart } from './pages/shop_pages/cart/cart';
 import { ProductDetailsPage } from './pages/shop_pages/product-details-page/product-details-page';
 import { Catalogue } from './pages/catalogue_pages/catalogue/catalogue';
 import { SavedInfo } from './pages/saved-info/saved-info';
+import { UnlistedPage } from './pages/shop_pages/unlisted-page/unlisted-page';
 
 export const routes: Routes = [
     { path: '', component: Home },
@@ -36,5 +37,6 @@ export const routes: Routes = [
     { path: 'cart', component: Cart},
     { path: 'product-details/:id', component: ProductDetailsPage},
     { path: 'catalogue', component: Catalogue},
-    { path: 'saved', component: SavedInfo}
+    { path: 'saved', component: SavedInfo},
+    { path: 'unlisted', component: UnlistedPage}
 ];

@@ -4,6 +4,7 @@ export interface UpdateProductRequest {
     shortDescription: string;
     price: number;
     inStock: boolean;
+    listed: boolean;
     category: string;
     brand: string;
     discountPercentage: number;

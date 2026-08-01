@@ -5,4 +5,5 @@ export interface CreateProductRequest {
     price: number;
     inStock: boolean;
     category: string;
+    listed: boolean;
 }
