@@ -8,6 +8,7 @@ import { Register } from './auth/register/register';
 import { ProfileDashboard } from './pages/profile-dashboard/profile-dashboard';
 import { CustomizePlanPage } from './pages/plan-pages/customize-plan-page/customize-plan-page';
 import { HelpPage } from './pages/help-page/help-page';
+import { DailyTrackerPage } from './pages/daily-tracker/daily-tracker';
 //import { authGuard } from './core/guards/auth-guard';
 import { AdminDash } from './pages/admin-dash/admin-dash';
 import { FoodCatalog } from './pages/catalogue_pages/food-catalog/food-catalog';
@@ -38,5 +39,6 @@ export const routes: Routes = [
     { path: 'product-details/:id', component: ProductDetailsPage},
     { path: 'catalogue', component: Catalogue},
     { path: 'saved', component: SavedInfo},
-    { path: 'unlisted', component: UnlistedPage}
+    { path: 'unlisted', component: UnlistedPage},
+    { path: 'daily-tracker', component: DailyTrackerPage}
 ];

@@ -40,7 +40,7 @@ public class User {
 	//@Max(100)
 	private Integer age;
 	private String sex;
-	private double height;
+	private Double height;
 	private String activityLevel;
 	
 	@NotBlank

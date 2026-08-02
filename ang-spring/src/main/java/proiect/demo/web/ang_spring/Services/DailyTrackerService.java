@@ -62,17 +62,52 @@ public class DailyTrackerService {
 	/*
 	 * Adaugă o masă în trackerul zilei curente.
 	 */
+	/*
+	 * Adaugă o masă în trackerul zilei curente.
+	 */
 	@Transactional
 	public DailyTrackerResponse addFoodToToday(
 			AddDailyFoodRequest dto,
 			Authentication auth) {
 
+		LocalDate today =
+				LocalDate.now(APP_TIME_ZONE);
+
+		return addFoodToDate(
+				today,
+				dto,
+				auth
+		);
+	}
+
+	/*
+	 * Adaugă o masă într-o dată selectată.
+	 * Nu permite date viitoare.
+	 */
+	@Transactional
+	public DailyTrackerResponse addFoodToDate(
+			LocalDate date,
+			AddDailyFoodRequest dto,
+			Authentication auth) {
+
 		validateFoodRequest(dto);
+
+		LocalDate today =
+				LocalDate.now(APP_TIME_ZONE);
+
+		if (date.isAfter(today)) {
+			throw new RuntimeException(
+					"Foods cannot be added to a future date!"
+			);
+		}
 
 		User user = getCurrentUser(auth);
 
 		DailyTracker tracker =
-				getOrCreateTodayTracker(user);
+				getOrCreateTrackerByDate(
+						user,
+						date
+				);
 
 		Food food = new Food();
 
@@ -150,6 +185,48 @@ public class DailyTrackerService {
 	}
 
 	/*
+	 * Modifică o masă numai dacă aceasta aparține
+	 * utilizatorului autentificat.
+	 */
+	@Transactional
+	public DailyTrackerResponse updateFood(
+			Long dailyTrackerFoodId,
+			AddDailyFoodRequest dto,
+			Authentication auth) {
+
+		validateFoodRequest(dto);
+
+		User user = getCurrentUser(auth);
+
+		DailyTrackerFood trackerFood =
+				dailyTrackerFoodRepo
+						.findByIdAndDailyTrackerUserId(
+								dailyTrackerFoodId,
+								user.getId()
+						)
+						.orElseThrow(() ->
+								new RuntimeException(
+										"Daily food not found!"
+								)
+						);
+
+		Food food = trackerFood.getFood();
+
+		food.setName(dto.getName());
+		food.setCalories(dto.getCalories());
+		food.setProtein(dto.getProtein());
+		food.setCarbs(dto.getCarbs());
+		food.setFat(dto.getFat());
+		food.setDescription(dto.getDescription());
+
+		foodRepo.save(food);
+
+		return mapToResponse(
+				trackerFood.getDailyTracker()
+		);
+	}
+
+	/*
 	 * Șterge o masă numai dacă aparține
 	 * utilizatorului autentificat.
 	 */
@@ -202,8 +279,8 @@ public class DailyTrackerService {
 	}
 
 	/*
-	 * Caută trackerul zilei curente.
-	 * Dacă nu există, creează unul nou.
+	 * Returnează trackerul zilei curente
+	 * sau creează unul nou.
 	 */
 	private DailyTracker getOrCreateTodayTracker(
 			User user) {
@@ -211,17 +288,31 @@ public class DailyTrackerService {
 		LocalDate today =
 				LocalDate.now(APP_TIME_ZONE);
 
+		return getOrCreateTrackerByDate(
+				user,
+				today
+		);
+	}
+
+	/*
+	 * Returnează trackerul unei date
+	 * sau creează unul nou.
+	 */
+	private DailyTracker getOrCreateTrackerByDate(
+			User user,
+			LocalDate date) {
+
 		return dailyTrackerRepo
 				.findByUserIdAndDate(
 						user.getId(),
-						today
+						date
 				)
 				.orElseGet(() -> {
 
 					DailyTracker tracker =
 							new DailyTracker();
 
-					tracker.setDate(today);
+					tracker.setDate(date);
 					tracker.setUser(user);
 
 					return dailyTrackerRepo.save(

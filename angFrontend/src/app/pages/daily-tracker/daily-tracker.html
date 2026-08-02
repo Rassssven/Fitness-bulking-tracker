@@ -1,0 +1,437 @@
+<div class="daily-tracker-page">
+
+  @if (isLoading()) {
+
+  <p>Loading daily tracker...</p>
+
+  } @else if (errorMessage()) {
+
+  <p class="error-message">
+    {{ errorMessage() }}
+  </p>
+
+  } @else if (tracker(); as currentTracker) {
+
+  <div class="tracker-header">
+
+    <div>
+      <h1>Daily Tracker</h1>
+
+      <p>
+        {{ currentTracker.date }}
+
+        @if (isViewingToday()) {
+        <span class="today-label">Today</span>
+        }
+      </p>
+    </div>
+
+    <div class="tracker-header-actions">
+
+      <button
+        type="button"
+        class="history-button"
+        (click)="toggleHistory()"
+      >
+        {{ showHistory() ? 'Close history' : 'History' }}
+      </button>
+
+      @if (!isViewingToday()) {
+
+      <button
+        type="button"
+        class="today-button"
+        (click)="returnToToday()"
+      >
+        Back to today
+      </button>
+
+      }
+
+      <button
+        type="button"
+        class="add-meal-button"
+        (click)="openMealForm()"
+      >
+        Add meal
+      </button>
+
+    </div>
+
+  </div>
+
+  @if (showHistory()) {
+
+  <section class="history-panel">
+
+    <div class="history-panel-header">
+
+      <div>
+        <h2>Tracker history</h2>
+
+        <p>
+          Select an existing day or choose another date.
+        </p>
+      </div>
+
+      <div class="history-date-selector">
+
+        <input
+          #historyDate
+          type="date"
+          [max]="todayDate()"
+        >
+
+        <button
+          type="button"
+          (click)="openDate(historyDate.value)"
+        >
+          View date
+        </button>
+
+      </div>
+
+    </div>
+
+    @if (isHistoryLoading()) {
+
+    <p class="history-message">
+      Loading history...
+    </p>
+
+    } @else if (history().length === 0) {
+
+    <p class="history-message">
+      No existing history. Select a date above.
+    </p>
+
+    } @else {
+
+    <div class="history-list">
+
+      @for (
+      historyTracker of history();
+      track historyTracker.id
+      ) {
+
+      <button
+        type="button"
+        class="history-card"
+        [class.active]="
+                  historyTracker.date === currentTracker.date
+                "
+        (click)="
+                  selectHistoryTracker(historyTracker)
+                "
+      >
+
+        <strong>
+          {{ historyTracker.date }}
+        </strong>
+
+        <span>
+                  {{ historyTracker.totalCalories }} kcal
+                </span>
+
+        <span>
+                  {{ historyTracker.meals.length }}
+
+                  {{
+                    historyTracker.meals.length === 1
+                      ? 'meal'
+                      : 'meals'
+                  }}
+                </span>
+
+      </button>
+
+      }
+
+    </div>
+
+    }
+
+  </section>
+
+  }
+
+  <section class="tracker-summary">
+
+    <div>
+      <span>Calories</span>
+
+      <strong>
+        {{ currentTracker.totalCalories }} kcal
+      </strong>
+    </div>
+
+    <div>
+      <span>Protein</span>
+
+      <strong>
+        {{ currentTracker.totalProtein }} g
+      </strong>
+    </div>
+
+    <div>
+      <span>Carbs</span>
+
+      <strong>
+        {{ currentTracker.totalCarbs }} g
+      </strong>
+    </div>
+
+    <div>
+      <span>Fat</span>
+
+      <strong>
+        {{ currentTracker.totalFat }} g
+      </strong>
+    </div>
+
+  </section>
+
+  @if (showMealForm()) {
+
+  <section class="meal-form-container">
+
+    <h2>
+
+      @if (editingMealId() !== null) {
+      Edit meal
+      } @else {
+      Add a meal for {{ currentTracker.date }}
+      }
+
+    </h2>
+
+    <form
+      [formGroup]="mealForm"
+      (ngSubmit)="saveFood()"
+    >
+
+      <div class="form-field">
+
+        <label for="meal-name">
+          Meal name
+        </label>
+
+        <input
+          id="meal-name"
+          type="text"
+          formControlName="name"
+          placeholder="Example: Chicken and rice"
+        >
+
+        @if (
+        mealForm.controls.name.touched &&
+        mealForm.controls.name.invalid
+        ) {
+        <small>Meal name is required.</small>
+        }
+
+      </div>
+
+      <div class="nutrition-fields">
+
+        <div class="form-field">
+
+          <label for="calories">
+            Calories
+          </label>
+
+          <input
+            id="calories"
+            type="number"
+            formControlName="calories"
+            min="0"
+          >
+
+        </div>
+
+        <div class="form-field">
+
+          <label for="protein">
+            Protein
+          </label>
+
+          <input
+            id="protein"
+            type="number"
+            formControlName="protein"
+            min="0"
+          >
+
+        </div>
+
+        <div class="form-field">
+
+          <label for="carbs">
+            Carbs
+          </label>
+
+          <input
+            id="carbs"
+            type="number"
+            formControlName="carbs"
+            min="0"
+          >
+
+        </div>
+
+        <div class="form-field">
+
+          <label for="fat">
+            Fat
+          </label>
+
+          <input
+            id="fat"
+            type="number"
+            formControlName="fat"
+            min="0"
+          >
+
+        </div>
+
+      </div>
+
+      <div class="form-field">
+
+        <label for="description">
+          Description
+        </label>
+
+        <textarea
+          id="description"
+          formControlName="description"
+          placeholder="Optional description"
+        ></textarea>
+
+      </div>
+
+      <div class="form-actions">
+
+        <button
+          type="button"
+          (click)="closeMealForm()"
+        >
+          Cancel
+        </button>
+
+        <button
+          type="submit"
+          [disabled]="isSaving()"
+        >
+
+          @if (isSaving()) {
+          Saving...
+          } @else if (editingMealId() !== null) {
+          Update meal
+          } @else {
+          Save meal
+          }
+
+        </button>
+
+      </div>
+
+    </form>
+
+  </section>
+
+  }
+
+  <section class="meals-section">
+
+    <h2>
+      Meals for {{ currentTracker.date }}
+    </h2>
+
+    @if (currentTracker.meals.length === 0) {
+
+    <p>No meals available for this day.</p>
+
+    } @else {
+
+    @for (
+    meal of currentTracker.meals;
+    track meal.id
+    ) {
+
+    <article class="meal-card">
+
+      <div class="meal-card-header">
+
+        <div>
+          <h3>
+            Meal {{ meal.mealNumber }}
+          </h3>
+
+          <h4>{{ meal.name }}</h4>
+        </div>
+
+        <div class="meal-card-actions">
+
+          <button
+            type="button"
+            class="edit-meal-button"
+            (click)="openEditMealForm(meal)"
+          >
+            Edit
+          </button>
+
+          <button
+            type="button"
+            class="delete-meal-button"
+            [disabled]="
+                    deletingMealId() === meal.id
+                  "
+            (click)="deleteFood(meal.id)"
+          >
+            {{
+            deletingMealId() === meal.id
+            ? 'Deleting...'
+            : 'Delete'
+            }}
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="meal-nutrition">
+
+              <span>
+                {{ meal.calories }} kcal
+              </span>
+
+        <span>
+                {{ meal.protein }} g protein
+              </span>
+
+        <span>
+                {{ meal.carbs }} g carbs
+              </span>
+
+        <span>
+                {{ meal.fat }} g fat
+              </span>
+
+      </div>
+
+      @if (meal.description) {
+      <p>{{ meal.description }}</p>
+      }
+
+    </article>
+
+    }
+
+    }
+
+  </section>
+
+  }
+
+</div>
