@@ -13,19 +13,20 @@
           <input
             type="text"
             placeholder="Search products..."
+            (input)="onSearch($event)"
           >
 
-          <select>
-            <option>All Categories</option>
-            <option>Protein</option>
-            <option>Creatine</option>
-            <option>Pre Workout</option>
+          <select (change)="onCategoryChange($event)">
+            <option value="">All Categories</option>
+            <option value="Protein">Protein</option>
+            <option value="Creatine">Creatine</option>
+            <option value="PreWorkout">Pre Workout</option>
           </select>
 
-          <select>
-            <option>Sort By</option>
-            <option>Price Low</option>
-            <option>Price High</option>
+          <select (change)="onSortChange($event)">
+            <option value="">Sort By</option>
+            <option value="priceAsc">Price Low</option>
+            <option value="priceDesc">Price High</option>
           </select>
         </div>
 

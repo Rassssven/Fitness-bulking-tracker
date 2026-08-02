@@ -69,5 +69,12 @@ public class ProductController {
 		return productServ.uploadImages(id, images, auth);
 	}
 	
+	@GetMapping("/filtered")
+	public List<Product> getProductFiltered(@RequestParam(required = false) String search,
+											@RequestParam(required = false) String category,
+											@RequestParam(required = false) String sort) {
+		return productServ.getProductsFiltered(search, category, sort);
+	}
+	
 	
 }

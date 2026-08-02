@@ -40,5 +40,6 @@ export const routes: Routes = [
     { path: 'catalogue', component: Catalogue},
     { path: 'saved', component: SavedInfo},
     { path: 'unlisted', component: UnlistedPage},
-    { path: 'daily-tracker', component: DailyTrackerPage}
+    { path: 'daily-tracker', component: DailyTrackerPage},
+    { path:'**', component: Home}
 ];
