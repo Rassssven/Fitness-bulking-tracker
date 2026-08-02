@@ -1,6 +1,7 @@
 package proiect.demo.web.ang_spring.Services.ShopServices;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -198,6 +199,58 @@ public class ShopService {
 		product.getImages().addAll(images);
 
 		return productRepo.save(product);
+	}
+	
+	public List<Product> getProductsFiltered(String search, String category, String sort) {
+		
+		List<Product> products = productRepo.findByListedTrue();
+		
+		if(search != null && !search.isBlank()) {
+
+	        products = products.stream()
+
+	                .filter(product ->
+	                        product.getName()
+	                        .toLowerCase()
+	                        .contains(search.toLowerCase())
+	                )
+	                .toList();
+
+	    }
+
+	    if(category != null && !category.isBlank()) {
+
+	        products = products.stream()
+
+	                .filter(product ->
+	                        product.getCategory().equalsIgnoreCase(category)
+	                )
+	                .toList();
+
+	    }
+
+	    if(sort != null) {
+
+	        switch (sort) {
+
+	            case "priceAsc" ->
+
+	                    products.sort(
+	                            Comparator.comparing(Product::getPrice)
+	                    );
+
+	            case "priceDesc" ->
+
+	                    products.sort(
+	                            Comparator.comparing(Product::getPrice).reversed()
+	                    );
+
+	        }
+
+		
+	    }
+	    
+	    return products;
 	}
 	
 }

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ProductCard } from "../product-card/product-card";
 import { ShopService } from '../../../services/HTTP/shop-service';
 import { NotificationService } from '../../../shared/notification-service';
@@ -78,9 +78,14 @@ export class Shop implements OnInit {
 
   productss = signal<Product[]>([]);
 
+  search = "";
+  category = "";
+  sort = "";
+
   isOpen = false;
 
   private router = inject(Router);
+  private route = inject(ActivatedRoute);
   private shopServ = inject(ShopService);
   private notifServ = inject(NotificationService);
   private auth = inject(AuthService);
@@ -120,13 +125,19 @@ export class Shop implements OnInit {
   //   this.images.removeAt(index);
   // }
 
-  /* -- Form --*/
-
   isAdmin() {
     return this.auth.getCurrentUser()?.role === 'ADMIN';
   }
 
   ngOnInit() {
+
+    this.route.queryParams.subscribe(params => {
+      this.search = params['search'] ?? "";
+      this.category = params['category'] ?? "";
+      this.sort = params['sort'] ?? "";
+
+      this.loadProducts();
+    })
 
     this.shopServ.getListedProducts().subscribe({
       next: (response) => {
@@ -192,6 +203,51 @@ export class Shop implements OnInit {
     }
 
     this.selectedFile = Array.from(input.files);
+  }
+
+  /* Query Params */
+
+  onSearch(event: Event) {
+    const input = event.target as HTMLInputElement;
+
+    this.search = input.value;
+    this.updateQueryParams();
+  }
+
+  onCategoryChange(event: Event) {
+    const select = event.target as HTMLSelectElement;
+
+    this.category = select.value;
+    this.updateQueryParams();
+  }
+
+  onSortChange(event: Event) {
+    const select = event.target as HTMLSelectElement;
+
+    this.sort = select.value;
+    this.updateQueryParams();
+  }
+
+  updateQueryParams() {
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: {
+        search: this.search,
+        category: this.category,
+        sort: this.sort
+      },
+      
+      queryParamsHandling:'merge'
+    })
+
+  }
+
+  loadProducts() {
+    this.shopServ.getProductsFiltered(this.search, this.category, this.sort)
+    .subscribe(prods => {
+      this.productss.set(prods);
+    })
   }
 
 }
