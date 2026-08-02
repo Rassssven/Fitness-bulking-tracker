@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import proiect.demo.web.ang_spring.DTO.AddDailyFoodRequest;
 import proiect.demo.web.ang_spring.DTO.DailyTrackerResponse;
@@ -57,6 +58,26 @@ public class DailyTrackerController {
 	}
 
 	/*
+	 * Adaugă o masă într-o zi selectată.
+	 */
+	@PostMapping("/date/{date}/foods")
+	public DailyTrackerResponse addFoodToDate(
+			@PathVariable
+			@DateTimeFormat(
+					iso = DateTimeFormat.ISO.DATE
+			)
+			LocalDate date,
+			@RequestBody AddDailyFoodRequest dto,
+			Authentication auth) {
+
+		return dailyTrackerServ.addFoodToDate(
+				date,
+				dto,
+				auth
+		);
+	}
+
+	/*
 	 * Returnează trackerul unei anumite date.
 	 *
 	 * Exemplu:
@@ -86,6 +107,25 @@ public class DailyTrackerController {
 			Authentication auth) {
 
 		return dailyTrackerServ.getTrackerHistory(
+				auth
+		);
+	}
+
+	/*
+	 * Modifică o masă din Daily Tracker.
+	 *
+	 * ID-ul este ID-ul DailyTrackerFood,
+	 * nu ID-ul Food.
+	 */
+	@PutMapping("/foods/{dailyTrackerFoodId}")
+	public DailyTrackerResponse updateFood(
+			@PathVariable Long dailyTrackerFoodId,
+			@RequestBody AddDailyFoodRequest dto,
+			Authentication auth) {
+
+		return dailyTrackerServ.updateFood(
+				dailyTrackerFoodId,
+				dto,
 				auth
 		);
 	}
