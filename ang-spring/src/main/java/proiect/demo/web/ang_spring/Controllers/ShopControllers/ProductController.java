@@ -76,5 +76,9 @@ public class ProductController {
 		return productServ.getProductsFiltered(search, category, sort);
 	}
 	
+	@GetMapping("/unfiltered")
+	public List<Product> getUnfilteredProds(@RequestParam(required = false) String search) {
+		return productServ.getUnfilteredProds(search);
+	}
 	
 }
