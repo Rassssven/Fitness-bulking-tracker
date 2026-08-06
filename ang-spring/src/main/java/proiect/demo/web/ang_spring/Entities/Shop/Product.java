@@ -42,8 +42,8 @@ public class Product {
 	private Integer discountPercentage = 0;
 	
     @OneToMany(mappedBy = "product",
-	            cascade = CascadeType.ALL,
-	            orphanRemoval = true)
+	           cascade = CascadeType.ALL,
+	           orphanRemoval = true)
 	private List<ProductImage> images;
 	
 	@OneToMany(mappedBy = "product",

@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
@@ -214,7 +215,7 @@ public class ShopService {
 	                        .toLowerCase()
 	                        .contains(search.toLowerCase())
 	                )
-	                .toList();
+	                .collect(Collectors.toList());
 
 	    }
 
@@ -222,10 +223,10 @@ public class ShopService {
 
 	        products = products.stream()
 
-	                .filter(product ->
+	        		.filter(product ->
 	                        product.getCategory().equalsIgnoreCase(category)
 	                )
-	                .toList();
+	        		.collect(Collectors.toList());
 
 	    }
 
@@ -251,6 +252,26 @@ public class ShopService {
 	    }
 	    
 	    return products;
+	}
+	
+	public List<Product> getUnfilteredProds(String search) {
+		
+		List<Product> prods = productRepo.findAll();
+		
+		if(search != null && !search.isBlank()) {
+			
+			prods = prods.stream()
+					
+					.filter(product ->
+							product.getName()
+							.toLowerCase()
+							.contains(search.toLowerCase())
+					)
+					.collect(Collectors.toList());
+			
+		}
+		
+		return prods;
 	}
 	
 }

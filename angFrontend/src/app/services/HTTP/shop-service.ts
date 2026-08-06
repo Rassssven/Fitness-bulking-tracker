@@ -49,5 +49,9 @@ export class ShopService {
   getProductsFiltered(search: string, category: string, sort: string) {
     return this.http.get<Product[]>(`${this.apiUrl}/filtered`, {params: {search, category, sort}})
   }
+
+  getUnlistedProductsFiltered(search: string) {
+    return this.http.get<Product[]>(`${this.apiUrl}/unfiltered`, {params: {search}});
+  }
   
 }
