@@ -3,11 +3,11 @@ import { ShopService } from '../../../services/HTTP/shop-service';
 import { NotificationService } from '../../../shared/notification-service';
 import { Product } from '../../../models/product';
 import { ProductCard } from "../product-card/product-card";
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-unlisted-page',
-  imports: [ProductCard],
+  imports: [ProductCard, RouterLink],
   templateUrl: './unlisted-page.html',
   styleUrl: './unlisted-page.css',
 })

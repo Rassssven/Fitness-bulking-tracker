@@ -6,11 +6,16 @@
 
             <h1> Manage your products </h1>
 
-            <input
-            type="text"
-            placeholder="Search products..."
-            (input)="onSearch($event)"
-            >
+            <div class="unlisted-search">
+                <input
+                type="text"
+                placeholder="Search products..."
+                (input)="onSearch($event)"
+                >
+
+                <button class="unlisted-butt" routerLink="/shop">Shop</button>
+                
+            </div>
 
         </div>
 
