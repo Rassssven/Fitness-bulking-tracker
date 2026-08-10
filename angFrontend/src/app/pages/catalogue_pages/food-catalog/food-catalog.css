@@ -140,6 +140,13 @@
     font-size: 0.8rem;
 }
 
+.f-butt {
+    display: flex;
+    flex-direction: row;
+
+    gap: 20px;
+}
+
 .food-card button {
     width: 100%;
     padding: 10px;

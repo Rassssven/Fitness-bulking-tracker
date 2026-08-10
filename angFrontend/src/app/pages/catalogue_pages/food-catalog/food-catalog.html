@@ -63,9 +63,13 @@
 
                         </div>
 
-                        <button>
-                            Add To Plan
-                        </button>
+                        <div class="f-butt"> 
+                            @if(isAdmin()) {
+                                <button style="background-color: rgb(245, 71, 71);" (click)="deleteFood(food.id)"> Delete </button>
+                            }
+
+                            <button> Add To Plan </button>
+                        </div>
 
                     </div>
 
@@ -86,9 +90,13 @@
 
                     </div>
 
-                    <button>
-                        Add To Plan
-                    </button>
+                    <div class="f-butt"> 
+                        @if(isAdmin()) {
+                            <button style="background-color: rgb(245, 71, 71);"> Delete </button>
+                        }
+
+                        <button> Add To Plan </button>
+                    </div>
 
                 </div>
 
@@ -107,9 +115,13 @@
                         <span>1g fat</span>
                     </div>
 
-                    <button>
-                        Add To Plan
-                    </button>
+                    <div class="f-butt"> 
+                        @if(isAdmin()) {
+                            <button style="background-color: rgb(245, 71, 71);"> Delete </button>
+                        }
+
+                        <button> Add To Plan </button>
+                    </div>
 
                 </div>
 
@@ -126,7 +138,13 @@
                         <span>11g fat</span>
                     </div>
 
-                    <button> Add To Plan </button>
+                    <div class="f-butt"> 
+                        @if(isAdmin()) {
+                            <button style="background-color: rgb(245, 71, 71);"> Delete </button>
+                        }
+
+                        <button> Add To Plan </button>
+                    </div>
 
                 </div>
 

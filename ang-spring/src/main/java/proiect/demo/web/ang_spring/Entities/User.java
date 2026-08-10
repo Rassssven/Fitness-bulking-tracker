@@ -20,7 +20,9 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 import proiect.demo.web.ang_spring.Entities.Enums.Role;
 import proiect.demo.web.ang_spring.Entities.Exercise.Exercise;
+import proiect.demo.web.ang_spring.Entities.Exercise.SavedExercise;
 import proiect.demo.web.ang_spring.Entities.Food.Food;
+import proiect.demo.web.ang_spring.Entities.Food.SavedFood;
 import proiect.demo.web.ang_spring.Entities.Workout.Workout;
 
 @Entity
@@ -94,6 +96,18 @@ public class User {
 			orphanRemoval = true
 	)
 	private List<DailyTracker> dailyTrackers;
+	
+	@OneToMany(mappedBy = "user",
+			   cascade = CascadeType.ALL,
+			   orphanRemoval = true)
+	@JsonIgnore
+	private List<SavedExercise> savedEx;
+	
+	@OneToMany(mappedBy = "user",
+			   cascade = CascadeType.ALL,
+			   orphanRemoval = true)
+	@JsonIgnore
+	private List<SavedFood> savedFood;
 
 	public User() {	}
 	

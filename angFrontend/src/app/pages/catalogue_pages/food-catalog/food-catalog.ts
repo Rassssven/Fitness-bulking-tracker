@@ -4,6 +4,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { Meal } from '../../../models/meal';
 import { NotificationService } from '../../../shared/notification-service';
 import { CreateFoodRequest } from '../../../models/DTO/CreateFoodRequest';
+import { AuthService } from '../../../auth/authService/auth.service';
 
 @Component({
   selector: 'app-food-catalog',
@@ -15,6 +16,7 @@ export class FoodCatalog implements OnInit {
 
   foodServ = inject(FoodService);
   notifService = inject(NotificationService)
+  private auth = inject(AuthService);
 
   foods = signal<Meal[]>([]);
 
@@ -55,6 +57,10 @@ export class FoodCatalog implements OnInit {
 
   }
 
+  isAdmin() {
+    return this.auth.getCurrentUser()?.role === 'ADMIN';
+  }
+
   createFood() {
 
     if(this.foodForm.invalid) {
@@ -89,6 +95,23 @@ export class FoodCatalog implements OnInit {
         this.notifService.showSuccess("Food added!");
       }
     });
+
+  }
+
+  deleteFood(foodId: number) {
+
+    this.foodServ.deleteFood(foodId).subscribe({
+      next: () => {
+        console.log("Food deleted")
+
+        this.foods.update(foods => 
+          foods.filter(food => food.id !== foodId)
+        )
+
+        this.notifService.showSuccess("Food deleted!");
+      }
+
+    })
 
   }
 

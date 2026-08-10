@@ -83,10 +83,6 @@ public class FoodService {
 		Food food = foodRepo.findById(foodId)
 				.orElseThrow(() -> new RuntimeException("Invalid"));
 		
-		if(!food.getUser().equals(user)) {
-			throw new RuntimeException("Invalid user");
-		}
-		
 		foodRepo.delete(food);
 	}
 	

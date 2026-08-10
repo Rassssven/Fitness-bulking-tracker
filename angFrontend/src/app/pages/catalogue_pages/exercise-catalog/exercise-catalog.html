@@ -62,9 +62,13 @@
                             {{ex.description}}
                         </p>
 
-                        <button>
-                            Add To Plan
-                        </button>
+                        <div class="ex-butt"> 
+                            @if(isAdmin()) {
+                                <button style="background-color: rgb(245, 71, 71);" (click)="deleteExercise(ex.id)"> Delete </button>
+                            }
+
+                            <button> Add To Plan </button>
+                        </div>
 
                     </div>
 
@@ -82,9 +86,13 @@
                         Compound exercise focused on chest development.
                     </p>
 
-                    <button>
-                        Add To Plan
-                    </button>
+                    <div class="ex-butt"> 
+                            @if(isAdmin()) {
+                                <button style="background-color: rgb(245, 71, 71);"> Delete </button>
+                            }
+
+                            <button> Add To Plan </button>
+                    </div>
 
                 </div>
 
@@ -100,9 +108,13 @@
                         Excellent exercise for upper body strength.
                     </p>
 
-                    <button>
-                        Add To Plan
-                    </button>
+                    <div class="ex-butt"> 
+                            @if(isAdmin()) {
+                                <button style="background-color: rgb(245, 71, 71);"> Delete </button>
+                            }
+
+                            <button> Add To Plan </button>
+                    </div>
 
                 </div>
 
@@ -118,9 +130,13 @@
                         Fundamental lower body compound movement.
                     </p>
 
-                    <button>
-                        Add To Plan
-                    </button>
+                    <div class="ex-butt"> 
+                        @if(isAdmin()) {
+                            <button style="background-color: rgb(245, 71, 71);"> Delete </button>
+                        }
+
+                        <button> Add To Plan </button>
+                    </div>
 
                 </div>
 
