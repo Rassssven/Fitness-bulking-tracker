@@ -66,9 +66,7 @@
     background: #00ff99;
 
     color: black;
-
     font-weight: bold;
-
     cursor: pointer;
 }
 
@@ -97,9 +95,7 @@
     background: #111;
 
     border: 1px solid #333;
-
     color: white;
-
     border-radius: 8px;
 }
 
@@ -118,9 +114,7 @@
     padding: 18px;
 
     background: #111;
-
     border: 1px solid #222;
-
     border-radius: 12px;
 
     display: flex;
@@ -139,37 +133,34 @@
     padding: 4px 10px;
 
     border-radius: 6px;
-
     background: #1a1a1a;
-
     color: #d6d6d6;
-
     font-size: 0.8rem;
 }
 
 .exercise-card p {
     color: #bdbdbd;
-
     font-size: 0.9rem;
-
     line-height: 1.4;
 }
 
-.exercise-card button {
-    margin-top: auto;
+.ex-butt {
+    display: flex;
+    flex-direction: row;
 
+    gap: 20px;
+}
+
+.exercise-card button {
+    width: 100%;
     padding: 10px;
 
     border: none;
-
     border-radius: 8px;
-
     background: #00ff99;
 
     color: black;
-
     font-weight: bold;
-
     cursor: pointer;
 }
 

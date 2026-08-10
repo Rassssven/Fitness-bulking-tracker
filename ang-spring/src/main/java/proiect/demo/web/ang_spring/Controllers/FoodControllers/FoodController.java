@@ -52,7 +52,7 @@ public class FoodController {
 		return foodServ.getFoodById(id);
 	}
 	
-	@DeleteMapping
+	@DeleteMapping("/{foodId}")
 	public void deleteFood(@PathVariable Long foodId, Authentication auth) {
 		foodServ.deleteFood(foodId, auth);
 	}

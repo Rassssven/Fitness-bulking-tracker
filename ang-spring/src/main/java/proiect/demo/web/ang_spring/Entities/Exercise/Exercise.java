@@ -48,6 +48,10 @@ public class Exercise {
 	@OneToMany(mappedBy = "exercise")
 	@JsonIgnore
 	private List<PlanExercise> planExercises;
+	
+	@OneToMany(mappedBy = "exercise")
+	@JsonIgnore
+	private List<SavedExercise> savedEx;
 
 	public Exercise() {
 

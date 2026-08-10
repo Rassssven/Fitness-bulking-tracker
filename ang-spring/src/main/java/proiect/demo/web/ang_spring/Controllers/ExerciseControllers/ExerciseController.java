@@ -43,7 +43,7 @@ public class ExerciseController {
 		return this.exServ.getExercises(auth);
 	}
 	
-	@DeleteMapping("/{exId}")
+	@DeleteMapping("/{id}")
 	public void deleteExercise(@PathVariable Long id, Authentication auth) {
 		exServ.deleteExercise(id, auth);
 	}

@@ -53,6 +53,10 @@ public class Food {
 	@JsonIgnore
 	private List<PlanFood> planFoods;
 	
+	@OneToMany(mappedBy = "food")
+	@JsonIgnore
+	private List<SavedFood> savedFood;
+	
 	public Food() {	}
 
 	public Food(String name, @Positive int calories, int protein, int carbs, int fat, String description) {
