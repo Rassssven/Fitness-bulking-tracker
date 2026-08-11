@@ -45,34 +45,103 @@
 
         <div class="update-profile">
 
-            <button (click)="updateInfo()" class="btn update-btn">Update Info</button>
+            <div class="update-header">
+                <div>
+                    <span class="update-tag">PROFILE SETTINGS</span>
+                    <h2>Update Info</h2>
+                    <p>
+                        Keep your personal and fitness information up to date.
+                        These values help us personalize your plans and calculations.
+                    </p>
+                </div>
+            </div>
 
             <div class="prof-update">
 
                 <div class="up-field">
-                    <label for="age"> Age </label>
-                    <input id="age" name="age" type="number" placeholder="Enter age" [(ngModel)]="userData.age">
-                </div>
-                
-                <div class="up-field">
-                    <label for="weight"> Weight </label>
-                    <input id="weight" name="weight" type="number" placeholder="Enter weight" [(ngModel)]="userData.weight">
+                    <label for="age">Age</label>
+
+                    <input
+                        id="age"
+                        name="age"
+                        type="number"
+                        placeholder="Enter age"
+                        [(ngModel)]="userData.age"
+                    >
                 </div>
 
                 <div class="up-field">
-                    <label for="height"> Height </label>
-                    <input id="height" name="height" type="number" placeholder="Enter height" [(ngModel)]="userData.height">
+                    <label for="weight">Weight</label>
+
+                    <input
+                        id="weight"
+                        name="weight"
+                        type="number"
+                        placeholder="Enter weight"
+                        [(ngModel)]="userData.weight"
+                    >
                 </div>
 
                 <div class="up-field">
-                    <label for="activity-level"> Activity Level </label>
-                    <select id="activity-level" name="activity-level" [(ngModel)]="userData.activityLevel">
+                    <label for="height">Height</label>
+
+                    <input
+                        id="height"
+                        name="height"
+                        type="number"
+                        placeholder="Enter height"
+                        [(ngModel)]="userData.height"
+                    >
+                </div>
+
+                <div class="up-field">
+                    <label for="activity-level">Activity Level</label>
+
+                    <select
+                        id="activity-level"
+                        name="activity-level"
+                        [(ngModel)]="userData.activityLevel"
+                    >
                         <option value="Sedentary">Sedentary</option>
                         <option value="Light">Light</option>
                         <option value="Moderate">Moderate</option>
                         <option value="Active">High</option>
                     </select>
                 </div>
+
+            </div>
+
+            <div class="update-actions">
+                <button
+                    type="button"
+                    class="update-btn"
+                    (click)="updateInfo()"
+                >
+                    Save Changes
+                </button>
+            </div>
+
+            <div class="future-updates">
+
+                <div class="future-update-card">
+
+                    <div>
+                        <span class="future-label">COMING NEXT</span>
+
+                        <h3>Security & Preferences</h3>
+
+                        <p>
+                            Manage password, notification preferences and additional
+                            account settings from this section.
+                        </p>
+                    </div>
+
+                    <button type="button">
+                        Manage
+                    </button>
+
+                </div>
+
             </div>
 
         </div>
