@@ -14,6 +14,7 @@ export class ExerciseService {
     private http = inject(HttpClient);
     private apiUrl = 'http://localhost:8080/exercise';
     private apiUrlPlan = 'http://localhost:8080/plan-exercise';
+    private apiUrlSaved = 'http://localhost:8080/saved-exercises';
 
     createExercise(exerciseData: CreateExerciseRequest) {
         return this.http.post<Exercise>(this.apiUrl, exerciseData);
@@ -45,5 +46,18 @@ export class ExerciseService {
         return this.http.delete(`${this.apiUrlPlan}/${exerciseId}`);
     }
 
+    /* Saved Exercises */
+
+    addExerciseToSaved(id: number) {
+        return this.http.post<Exercise>(`/${this.apiUrlSaved}/${id}`, null);
+    }
+
+    getSavedExercises() {
+        return this.http.get<Exercise[]>(`/${this.apiUrlSaved}`)
+    }
+
+    deleteSavedExercises(id: number) {
+        return this.http.delete(`/${this.apiUrlSaved}/${id}`);
+    }
 
 }

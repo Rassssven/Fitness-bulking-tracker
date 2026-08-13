@@ -13,6 +13,7 @@ export class FoodService {
   private http = inject(HttpClient);
   private apiUrl = 'http://localhost:8080/foods';
   private apiUrlPlan = 'http://localhost:8080/plan-food';
+  private apiUrlSaved = 'http://localhost:8080/saved-foods';
 
   createFood(mealData: CreateFoodRequest) {
     return this.http.post<Meal>(this.apiUrl, mealData);
@@ -42,6 +43,19 @@ export class FoodService {
   }
 
 
+  /* Saved Food */
+
+  addFoodToSaved(id: number) {
+    return this.http.post<Meal>(`/${this.apiUrlSaved}/${id}`, null);
+  }
+
+  getSavedFoods() {
+    return this.http.get<Meal[]>(`/${this.apiUrlSaved}`);
+  }
+
+  deleteSavedFood(id: number) {
+    return this.http.delete(`/${this.apiUrlSaved}/${id}`)
+  }
 
 
 }
