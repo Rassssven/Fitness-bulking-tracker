@@ -3,7 +3,7 @@ import { NotificationService } from '../../shared/notification-service';
 import { FoodService } from '../../services/HTTP/food-service';
 import { ExerciseService } from '../../services/HTTP/exercise-service';
 import { Exercise } from '../../models/exercise';
-import { Meal } from '../../models/meal';
+import { SavedFood } from '../../models/savedFood';
 
 @Component({
   selector: 'app-saved-info',
@@ -18,7 +18,7 @@ export class SavedInfo implements OnInit {
   notifService = inject(NotificationService);
 
   exercises = signal<Exercise[]>([]);
-  foods = signal<Meal[]>([]);
+  foods = signal<SavedFood[]>([]);
 
   ngOnInit() {
 
