@@ -49,15 +49,15 @@ export class ExerciseService {
     /* Saved Exercises */
 
     addExerciseToSaved(id: number) {
-        return this.http.post<Exercise>(`/${this.apiUrlSaved}/${id}`, null);
+        return this.http.post<Exercise>(`${this.apiUrlSaved}/${id}`, null);
     }
 
     getSavedExercises() {
-        return this.http.get<Exercise[]>(`/${this.apiUrlSaved}`)
+        return this.http.get<Exercise[]>(`${this.apiUrlSaved}`)
     }
 
     deleteSavedExercises(id: number) {
-        return this.http.delete(`/${this.apiUrlSaved}/${id}`);
+        return this.http.delete(`${this.apiUrlSaved}/${id}`);
     }
 
 }

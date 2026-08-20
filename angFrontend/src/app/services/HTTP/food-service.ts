@@ -4,6 +4,7 @@ import { PlanFood } from '../../models/planFood';
 import { CreatePlanMealRequest } from '../../models/DTO/CreatePlanFoodRequest';
 import { CreateFoodRequest } from '../../models/DTO/CreateFoodRequest';
 import { Meal } from '../../models/meal';
+import { SavedFood } from '../../models/savedFood';
 
 @Injectable({
   providedIn: 'root',
@@ -46,15 +47,15 @@ export class FoodService {
   /* Saved Food */
 
   addFoodToSaved(id: number) {
-    return this.http.post<Meal>(`/${this.apiUrlSaved}/${id}`, null);
+    return this.http.post<Meal>(`${this.apiUrlSaved}/${id}`, null);
   }
 
   getSavedFoods() {
-    return this.http.get<Meal[]>(`/${this.apiUrlSaved}`);
+    return this.http.get<SavedFood[]>(`${this.apiUrlSaved}`);
   }
 
   deleteSavedFood(id: number) {
-    return this.http.delete(`/${this.apiUrlSaved}/${id}`)
+    return this.http.delete(`${this.apiUrlSaved}/${id}`)
   }
 
 

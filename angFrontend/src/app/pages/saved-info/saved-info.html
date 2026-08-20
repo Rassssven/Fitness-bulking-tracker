@@ -27,6 +27,46 @@
 
             <div class="saved-food">
 
+                @for(food of foods(); track food.id) {
+
+                    <div class="food-s">
+
+                        <!-- <img src="/chicken-breast.jpg" alt="Chicken breast" class="item-image"> -->
+
+                        <div class="item-content">
+
+                            <div class="item-title">
+                                <h3>{{ food.food.name }}</h3>
+                                <span class="item-badge">FOOD</span>
+                            </div>
+
+                            <div class="food-info">
+                                <span>{{food.food.calories}}</span>
+                                <span>{{food.food.protein}}</span>
+                                <span>{{food.food.carbs}}</span>
+                                <span>{{food.food.fat}}</span>
+                            </div>
+
+                            <p>
+                                {{food.food.description}}
+                            </p>
+
+                            <div class="food-butt">
+                                <button type="button" class="delete-btn">
+                                    Delete
+                                </button>
+
+                                <button type="button" class="plan-btn">
+                                    Add to plan
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                }
+
                 <div class="food-s">
 
                     <!-- <img src="/chicken-breast.jpg" alt="Chicken breast" class="item-image"> -->

@@ -115,5 +115,16 @@ export class FoodCatalog implements OnInit {
 
   }
 
+  /* Saved Foods */
+
+  addFoodToSaved(foodId: number) {
+
+    this.foodServ.addFoodToSaved(foodId).subscribe({
+      next: () => {
+        this.notifService.showSuccess("Food saved!");
+      }
+    })
+
+  }
 
 }
