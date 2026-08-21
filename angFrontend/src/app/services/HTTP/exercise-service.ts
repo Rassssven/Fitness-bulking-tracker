@@ -1,10 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { PlanExercise } from '../../models/planExercise';
 import { CreatePlanExerciseRequest } from '../../models/DTO/CreatePlanExerciseRequest';
 import { CreateExerciseRequest } from '../../models/DTO/CreateExerciseRequest';
 import { Exercise } from '../../models/exercise';
 import { AddCatalogueExerciseToPlanRequest } from '../../models/DTO/AddCatalogueExerciseToPlanRequest';
+import { SavedExercise } from '../../models/savedExercise';
 
 @Injectable({
   providedIn: 'root',
@@ -53,11 +54,26 @@ export class ExerciseService {
     }
 
     getSavedExercises() {
-        return this.http.get<Exercise[]>(`${this.apiUrlSaved}`)
+        return this.http.get<SavedExercise[]>(`${this.apiUrlSaved}`)
     }
 
     deleteSavedExercises(id: number) {
         return this.http.delete(`${this.apiUrlSaved}/${id}`);
+    }
+
+    /* Filtering */
+
+    getExercisesFiltered(search: string, muscleGroup: string) {
+        let params = new HttpParams();
+
+        if (search) {
+            params = params.set('search', search);
+        }
+        if (muscleGroup) {
+            params = params.set('muscleGroup', muscleGroup);
+        }
+
+        return this.http.get<Exercise[]>(this.apiUrl, { params });
     }
 
 }

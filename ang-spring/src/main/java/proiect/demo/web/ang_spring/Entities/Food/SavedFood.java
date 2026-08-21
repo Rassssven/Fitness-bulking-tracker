@@ -28,7 +28,6 @@ public class SavedFood { //create your workout -- next
 	
 	@ManyToOne
 	@JoinColumn(name = "food_id")
-	@JsonIgnore
 	private Food food;
 
 	public SavedFood(LocalDateTime savedAt, User user, Food food) {

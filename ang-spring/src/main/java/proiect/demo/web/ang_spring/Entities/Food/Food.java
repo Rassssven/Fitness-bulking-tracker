@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -53,7 +54,7 @@ public class Food {
 	@JsonIgnore
 	private List<PlanFood> planFoods;
 	
-	@OneToMany(mappedBy = "food")
+	@OneToMany(mappedBy = "food", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonIgnore
 	private List<SavedFood> savedFood;
 	
