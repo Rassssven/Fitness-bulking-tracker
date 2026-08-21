@@ -52,7 +52,7 @@
                             </p>
 
                             <div class="food-butt">
-                                <button type="button" class="delete-btn">
+                                <button type="button" class="delete-btn" (click)="deleteSavedFood(food.id)">
                                     Delete
                                 </button>
 
@@ -202,46 +202,48 @@
 
             <div class="saved-ex">
 
-                <div class="ex-s">
+                @for(ex of exercises(); track ex.id) {
 
-                    <!-- <img
-                        src="/bench-press.jpg"
-                        alt="Bench press"
-                        class="item-image"
-                    > -->
+                    <div class="ex-s">
 
-                    <div class="item-content">
+                        <!-- <img
+                            src="/bench-press.jpg"
+                            alt="Bench press"
+                            class="item-image"
+                        > -->
 
-                        <div class="item-title">
-                            <h3>Bench Press</h3>
-                            <span class="item-badge">EXERCISE</span>
-                        </div>
+                        <div class="item-content">
 
-                        <div class="exercise-info">
-                            <span>Chest</span>
-                            <span>Strength</span>
-                            <span>85 kcal</span>
-                            <span>Compound</span>
-                        </div>
+                            <div class="item-title">
+                                <h3>{{ex.exercise.name}}</h3>
+                                <span class="item-badge">EXERCISE</span>
+                            </div>
 
-                        <p>
-                            Compound upper-body exercise focused on chest,
-                            shoulders and triceps development.
-                        </p>
+                            <div class="exercise-info">
+                                <span>{{ex.exercise.muscleGroup}}</span>
+                                <span>{{ex.exercise.type}}</span>
+                                <span>{{ex.exercise.caloriesPerExercise}}</span>
+                                <span>Compound</span>
+                            </div>
 
-                        <div class="food-butt">
-                            <button type="button" class="delete-btn">
-                                Delete
-                            </button>
+                            <p>
+                                {{ ex.exercise.description }}
+                            </p>
 
-                            <button type="button" class="plan-btn">
-                                Add to plan
-                            </button>
+                            <div class="food-butt">
+                                <button type="button" class="delete-btn" (click)="deleteSavedExercise(ex.id)">
+                                    Delete
+                                </button>
+
+                                <button type="button" class="plan-btn">
+                                    Add to plan
+                                </button>
+                            </div>
+
                         </div>
 
                     </div>
-
-                </div>
+                }
 
                 <div class="ex-s">
 

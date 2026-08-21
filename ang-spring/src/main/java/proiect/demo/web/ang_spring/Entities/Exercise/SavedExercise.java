@@ -28,7 +28,6 @@ public class SavedExercise {
 	
 	@ManyToOne
 	@JoinColumn(name = "exercise_id")
-	@JsonIgnore
 	private Exercise exercise;
 
 	public SavedExercise(LocalDateTime savedAt, User user, Exercise exercise) {

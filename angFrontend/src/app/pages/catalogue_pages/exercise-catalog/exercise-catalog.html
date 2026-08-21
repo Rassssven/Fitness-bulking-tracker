@@ -10,6 +10,8 @@
                 <input
                     type="text"
                     placeholder="Search exercises..."
+                    [value]="search"
+                    (input)="onSearch($event)"
                 >
                 
                 <button (click)="showExerciseForm = true"> Add exercise </button>
@@ -28,20 +30,13 @@
 
                 <h3>Filters</h3>
 
-                <select>
-                    <option>All Types</option>
-                    <option>Chest</option>
-                    <option>Back</option>
-                    <option>Legs</option>
-                    <option>Shoulders</option>
-                    <option>Arms</option>
-                </select>
-
-                <select>
-                    <option>Difficulty</option>
-                    <option>Beginner</option>
-                    <option>Intermediate</option>
-                    <option>Advanced</option>
+                <select (change)="onCategoryChange($event)">
+                    <option value="" [selected]="category === ''">All Types</option>
+                    <option value="Chest" [selected]="category === 'Chest'">Chest</option>
+                    <option value="Back" [selected]="category === 'Back'">Back</option>
+                    <option value="Legs" [selected]="category === 'Legs'">Legs</option>
+                    <option value="Shoulders" [selected]="category === 'Shoulders'">Shoulders</option>
+                    <option value="Arms" [selected]="category === 'Arms'">Arms</option>
                 </select>
 
             </aside>
@@ -67,7 +62,7 @@
                                 <button style="background-color: rgb(245, 71, 71);" (click)="deleteExercise(ex.id)"> Delete </button>
                             }
 
-                            <button> Add To Plan </button>
+                            <button (click)="addExerciseToSaved(ex.id)"> Save Exercise </button>
                         </div>
 
                     </div>

@@ -5,6 +5,7 @@ import { Exercise } from '../../../models/exercise';
 import { CreateExerciseRequest } from '../../../models/DTO/CreateExerciseRequest';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../auth/authService/auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-exercise-catalog',
@@ -17,8 +18,13 @@ export class ExerciseCatalog implements OnInit {
   exServ = inject(ExerciseService);
   notifService = inject(NotificationService);
   private auth = inject(AuthService);
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
 
   exercises = signal<Exercise[]>([]);
+
+  search = "";
+  category = "";
 
   exData: CreateExerciseRequest = {
     name: '',
@@ -36,6 +42,12 @@ export class ExerciseCatalog implements OnInit {
       next: response => {
         this.exercises.set(response);
       }
+    });
+
+    this.route.queryParams.subscribe(params => {
+      this.search = params['search'] || '';
+      this.category = params['category'] || '';
+      this.loadExercises();
     });
 
   }
@@ -68,6 +80,56 @@ export class ExerciseCatalog implements OnInit {
       }
     })
 
+  }
+
+  addExerciseToSaved(id: number) {
+
+    this.exServ.addExerciseToSaved(id).subscribe({
+      next: () => {
+        this.notifService.showSuccess("Exercise saved!")
+      }
+    })
+
+  }
+
+  /* Search & Sort */
+
+  loadExercises() {
+
+    this.exServ.getExercisesFiltered(this.search, this.category).subscribe({
+      next: exs => {
+        this.exercises.set(exs);
+      }
+    })
+
+  }
+
+  onSearch(event: Event) {
+    const input = event.target as HTMLInputElement;
+    this.search = input.value;
+
+    this.updateQueryParams();
+  }
+
+  onCategoryChange(event: Event) {
+    const select = event.target as HTMLSelectElement;
+    this.category = select.value;
+
+    this.updateQueryParams();
+  }
+
+  updateQueryParams() {
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: {
+        search: this.search,
+        category: this.category
+      },
+
+      queryParamsHandling: 'merge'
+    });
+    
   }
 
 }
